@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .btn {
+            background-color: purple;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>🐶 Dashboard LudoPet</h1>
+
+<div class="card">
+
+    <a class="btn"
+       href="/adocao">
+
+        Ver Animais para Adoção
+
+    </a>
+
+</div>
+
+<div class="card">
+
+    <a class="btn"
+       href="/animais-perdidos">
+
+        Ver Animais Perdidos
+
+    </a>
+
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Quiz LudoPet</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial;
+
+            text-align: center;
+
+            margin: 40px;
+
+        }
+
+        .card {
+
+            border: 1px solid #ccc;
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            width: 400px;
+
+            margin: auto;
+
+        }
+
+        .btn {
+
+            background-color: #4FAF7B;
+
+            color: white;
+
+            padding: 10px;
+
+            border: none;
+
+            border-radius: 6px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>🧠 Quiz LudoPet</h1>
+
+<div class="card">
+
+    <form action="/resultado-quiz"
+          method="post">
+
+        <label>
+
+            Você mora em:
+
+        </label>
+
+        <select name="espaco">
+
+            <option value="pequeno">
+                Apartamento
+            </option>
+
+            <option value="grande">
+                Casa
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+
+            Tempo disponível:
+
+        </label>
+
+        <select name="tempo">
+
+            <option value="pouco">
+                Pouco
+            </option>
+
+            <option value="muito">
+                Muito
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button class="btn"
+                type="submit">
+
+            Ver Resultado 🐶
+
+        </button>
+
+    </form>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

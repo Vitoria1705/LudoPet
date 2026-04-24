@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Animais para Adoção</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #63af63;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>🐾 Animais para Adoção</h1>
+
+<br>
+
+<a class="btn"
+   th:href="@{/adocao}">
+    Disponíveis
+</a>
+
+<a class="btn"
+   th:href="@{/adocao/todos}">
+    Todos
+</a>
+
+<br><br>
+
+<div th:if="${animais.size() == 0}">
+    Nenhum animal disponível 🐶
+</div>
+
+<div class="card"
+     th:each="animal : ${animais}">
+
+    <img th:src="@{'/img/' + ${animal.foto}}"
+         width="100%"
+         height="180px"
+         style="object-fit: cover;
+                border-radius: 8px;"
+         onerror="this.src='/img/padrao.png'">
+
+    <h3 th:text="${animal.nome}"></h3>
+
+    <p>
+        Raça:
+        <span th:text="${animal.raca}"></span>
+    </p>
+
+    <p>
+        Idade:
+        <span th:text="${animal.idade}"></span>
+    </p>
+
+    <p>
+        Sexo:
+        <span th:text="${animal.sexo}"></span>
+    </p>
+
+    <p>
+        Porte:
+        <span th:text="${animal.porte}"></span>
+    </p>
+
+    <a class="btn"
+       th:href="@{/detalhes/{id}(id=${animal.id})}">
+        Adotar 🐶
+    </a>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

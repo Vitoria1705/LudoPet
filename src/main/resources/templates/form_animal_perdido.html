@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Animal Perdido</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            width: 400px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>📢 Cadastrar Animal Perdido</h1>
+
+<div class="card">
+
+    <form action="/salvar-animal-perdido"
+          method="post"
+          enctype="multipart/form-data">
+        <label>Foto:</label>
+
+        <input type="file"
+               name="arquivo">
+
+
+        <label>Nome:</label>
+        <input type="text"
+               name="nome"
+               required>
+
+        <label>Espécie:</label>
+        <input type="text"
+               name="especie">
+
+        <label>Raça:</label>
+        <input type="text"
+               name="raca">
+
+        <label>Cor:</label>
+        <input type="text"
+               name="cor">
+
+        <label>Cidade:</label>
+        <input type="text"
+               name="cidade">
+
+        <label>Telefone:</label>
+        <input type="text"
+               name="telefone">
+
+        <label>Descrição:</label>
+        <textarea name="descricao"></textarea>
+
+        <label>Nome da foto:</label>
+        <input type="text"
+               name="foto"
+               placeholder="Ex: dog1.jpg">
+
+        <button class="btn"
+                type="submit">
+
+            Salvar 🐶
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

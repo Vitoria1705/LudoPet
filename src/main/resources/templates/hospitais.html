@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hospitais Veterinários</title>
+</head>
+
+<body>
+
+<h1>🚑 Hospitais Veterinários</h1>
+
+<table border="1">
+
+    <tr>
+
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>Cidade</th>
+        <th>Serviços</th>
+
+    </tr>
+
+    <tr th:each="h : ${hospitais}">
+
+        <td th:text="${h.nome}"></td>
+
+        <td th:text="${h.telefone}"></td>
+
+        <td th:text="${h.cidade}"></td>
+
+        <td th:text="${h.servicos}"></td>
+
+    </tr>
+
+</table>
+
+<br>
+
+<a href="/cadastro">
+    <button>⬅ Voltar</button>
+</a>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Cadastro</title>
+</head>
+
+<body>
+
+<h2>Cadastro de Usuario</h2>
+
+<form th:action="@{/cadastro}" method="post">
+
+    <input type="text"
+           name="nome"
+           placeholder="Nome completo"
+           required>
+
+    <br><br>
+
+    <input type="email"
+           name="email"
+           placeholder="Email"
+           required>
+
+    <br><br>
+
+    <input type="password"
+           name="senha"
+           placeholder="Senha"
+           required>
+
+    <br><br>
+
+    <input type="text"
+           name="telefone"
+           placeholder="Telefone">
+
+    <br><br>
+
+    <input type="text"
+           name="endereco"
+           placeholder="Endereco">
+
+    <br><br>
+    <br><br>
+
+    <input type="text"
+           name="descricao"
+           placeholder="Descricão da clínica ou hospital">
+
+    <br><br>
+
+    <input type="text"
+           name="servicos"
+           placeholder="Serviços oferecidos (ex: vacinação, cirurgia, emergência)">
+
+    <br><br>
+
+    <input type="text"
+           name="cidade"
+           placeholder="Cidade">
+
+    <br><br>
+
+    <input type="text"
+           name="estado"
+           placeholder="Estado">
+
+    <select name="tipo">
+
+        <option value="adotante">Adotante</option>
+
+        <option value="ong">ONG</option>
+
+        <option value="doador">Doador</option>
+
+        <option value="clinica">Clinica Veterinaria</option>
+
+        <option value="hospital">Hospital Veterinario</option>
+
+    </select>
+    <br><br>
+
+    <button type="submit">
+
+        Cadastrar
+
+    </button>
+
+</form>
+
+</body>
+
+</html>

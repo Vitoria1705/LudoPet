@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Animal</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .btn {
+            background-color: green;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>🐶 Detalhes do Animal</h1>
+
+<div class="card">
+    <img th:src="@{'/img/' + ${animal.foto}}"
+         width="300px"
+         style="border-radius: 10px;"
+         onerror="this.src='/img/padrao.png'">
+
+    <h2 th:text="${animal.nome}"></h2>
+
+    <p>
+        Raça:
+        <span th:text="${animal.raca}"></span>
+    </p>
+
+    <p>
+        Idade:
+        <span th:text="${animal.idade}"></span>
+    </p>
+
+    <p>
+        Sexo:
+        <span th:text="${animal.sexo}"></span>
+    </p>
+
+    <p>
+        Porte:
+        <span th:text="${animal.porte}"></span>
+    </p>
+
+    <br>
+
+    <a class="btn"
+       th:href="@{/form-adocao/{id}(id=${animal.id})}">
+        Quero Adotar 🐶
+    </a>
+
+</div>
+
+</body>
+
+</html>
