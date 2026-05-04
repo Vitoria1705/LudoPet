@@ -1,195 +1,213 @@
-
 body {
-
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-    background-color: #f5f5f5;
-
+    background-color: #f5f9ff;
 }
-
 
 h2 {
-
-    color: #6a0dad;
-
+    color: #2563eb;
     font-weight: bold;
-
 }
 
-
-
 .card {
-
     border-radius: 15px;
-
     transition: 0.3s;
-
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-
 }
 
 .card:hover {
-
     transform: scale(1.03);
-
 }
-
 
 .pet-img {
-
     width: 100%;
-
     height: 240px;
-
-    object-fit: contain; /* mostra o animal inteiro */
-
+    object-fit: contain;
     background-color: #ffffff;
-
     padding: 10px;
-
 }
 
-
-
 .btn-success {
-
-    background-color: #6a0dad;
-
+    background-color: #2563eb;
     border: none;
-
     font-weight: bold;
-
 }
 
 .btn-success:hover {
-
-    background-color: #4b0082;
-
+    background-color: #1d4ed8;
 }
 
-
-
 table {
-
     width: 95%;
-
     margin: 30px auto;
-
     border-collapse: collapse;
-
     background-color: white;
-
     border-radius: 12px;
-
     overflow: hidden;
-
 }
 
 th {
-
-    background-color: #6a0dad;
-
+    background-color: #2563eb;
     color: white;
-
     padding: 12px;
-
 }
 
 td {
-
     padding: 10px;
-
     text-align: center;
-
 }
 
 tr:hover {
-
-    background-color: #f1e6ff;
-
+    background-color: #dbeafe;
 }
-
-
 
 a.btn {
-
     border-radius: 10px;
-
 }
-
-
 
 .foto-fundador {
-
     width: 150px;
-
     height: 150px;
-
     border-radius: 50%;
-
     object-fit: cover;
-
-    border: 4px solid #6a0dad;
-
+    border: 4px solid #2563eb;
     margin-bottom: 10px;
-
 }
-
-
 
 .card-sucesso {
-
     max-width: 500px;
-
     margin: 80px auto;
-
     padding: 30px;
-
     background-color: white;
-
     border-radius: 15px;
-
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-
 }
 
-
-
 .dashboard-card {
-
     background-color: white;
-
     border-radius: 15px;
-
     padding: 20px;
-
     text-align: center;
-
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-
 }
 
 .dashboard-numero {
-
     font-size: 30px;
-
     font-weight: bold;
-
-    color: #6a0dad;
-
+    color: #2563eb;
 }
 
-
 .filtros {
-
     text-align: center;
-
     margin-bottom: 25px;
-
 }
 
 .filtros button {
-
     margin: 5px;
+}
 
+.kit-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: #eff6ff;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.kit-section a {
+    background: #2563eb;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.navbar {
+    background: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    height: 65px;
+    width: auto;
+    object-fit: contain;
+}
+
+.menu-toggle {
+    font-size: 32px;
+    cursor: pointer;
+    color: #1976d2;
+    font-weight: bold;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    padding: 100px 20px;
+}
+
+.hero-section h1 {
+    font-size: 52px;
+    color: #1565c0;
+    font-weight: bold;
+}
+
+.hero-section p {
+    font-size: 20px;
+    color: #555;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.feature-card {
+    background: white;
+    padding: 35px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+}
+
+.feature-card h4 {
+    color: #1976d2;
+    font-weight: bold;
+}
+
+.ia-section {
+    padding: 70px 20px;
+    background: #f8fbff;
+    border-radius: 20px;
+    margin: 50px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #1976d2;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #0d47a1;
+}
+
+.logo {
+    height: 65px;
+    width: auto;
 }

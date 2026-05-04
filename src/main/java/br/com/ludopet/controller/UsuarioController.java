@@ -13,37 +13,21 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/")
-    public String home() {
-        return "redirect:/cadastro";
-    }
-
     @GetMapping("/cadastro")
     public String mostrarCadastro(Model model) {
-
         model.addAttribute("usuario", new Usuario());
-
         return "cadastro_user";
     }
 
     @GetMapping("/clinicas")
     public String listarClinicas(Model model) {
-
-        model.addAttribute(
-                "clinicas",
-                usuarioService.listarClinicas()
-        );
-
+        model.addAttribute("clinicas", usuarioService.listarClinicas());
         return "clinicas";
     }
+
     @GetMapping("/hospitais")
     public String listarHospitais(Model model) {
-
-        model.addAttribute(
-                "hospitais",
-                usuarioService.listarHospitais()
-        );
-
+        model.addAttribute("hospitais", usuarioService.listarHospitais());
         return "hospitais";
     }
 }
