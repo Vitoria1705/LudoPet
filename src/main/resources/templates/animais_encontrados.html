@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Animais Encontrados</title>
+</head>
+<form method="get" action="/animais-perdidos">
+
+    <input type="text" name="nome" placeholder="Buscar por nome">
+
+
+
+    <select name="especie">
+
+        <option value="">Todas espécies</option>
+
+        <option value="cachorro">Cachorro</option>
+
+        <option value="gato">Gato</option>
+
+    </select>
+
+
+
+    <button type="submit">Buscar</button>
+
+</form>
+
+
+<div th:each="animal : ${animais}">
+
+    <h3 th:text="${animal.nome}"></h3>
+
+    <p>Espécie: <span th:text="${animal.especie}"></span></p>
+
+    <p>Local: <span th:text="${animal.local}"></span></p>
+
+
+
+    <hr>
+
+</div>
+<body>
+
+
+</body>
+
+</html>
