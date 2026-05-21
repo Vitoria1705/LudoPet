@@ -25,10 +25,10 @@ public class LoginController {
             @RequestParam String senha,
             Model model) {
 
-        Usuario usuario =
+        String resultado =
                 loginService.autenticar(email, senha);
 
-        if (usuario != null) {
+        if(resultado.equals("Login realizado")) {
 
             return "dashboard";
         }
