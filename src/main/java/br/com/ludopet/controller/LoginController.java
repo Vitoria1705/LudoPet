@@ -1,7 +1,11 @@
 package br.com.ludopet.controller;
 
 import br.com.ludopet.model.Usuario;
+import br.com.ludopet.repository.UsuarioRepository;
 import br.com.ludopet.service.LoginService;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +17,9 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     @GetMapping("/login")
     public String mostrarLogin() {
 
@@ -23,14 +30,23 @@ public class LoginController {
     public String fazerLogin(
             @RequestParam String email,
             @RequestParam String senha,
+            HttpSession session,
             Model model) {
 
-        Usuario usuario =
+        String resultado =
                 loginService.autenticar(email, senha);
 
-        if (usuario != null) {
+        if(resultado.equals("Login realizado")) {
 
-            return "dashboard";
+            Usuario usuario =
+                    usuarioRepository.findByEmail(email);
+
+            session.setAttribute(
+                    "usuarioLogado",
+                    usuario
+            );
+
+            return "redirect:/dashboard";
         }
 
         model.addAttribute(
@@ -41,4 +57,11 @@ public class LoginController {
         return "login";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+
+        session.invalidate();
+
+        return "redirect:/login";
+    }
 }
