@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil</title>
+</head>
+
+<body>
+
+<h1>Meu Perfil</h1>
+
+<form
+        action="/perfil/salvar"
+        method="post"
+        th:object="${usuario}"
+>
+
+    <label>Nome:</label>
+    <br>
+
+    <input
+            type="text"
+            th:field="*{nome}"
+    >
+
+    <br><br>
+
+    <label>Telefone:</label>
+    <br>
+
+    <input
+            type="text"
+            th:field="*{telefone}"
+    >
+
+    <br><br>
+
+    <label>Cidade:</label>
+    <br>
+
+    <input
+            type="text"
+            th:field="*{cidade}"
+    >
+
+    <br><br>
+
+    <label>Estado:</label>
+    <br>
+
+    <input
+            type="text"
+            th:field="*{estado}"
+    >
+
+    <br><br>
+
+    <label>Descrição:</label>
+    <br>
+
+    <textarea
+            th:field="*{descricao}"
+    ></textarea>
+
+    <br><br>
+
+    <button type="submit">
+        Salvar Perfil
+    </button>
+
+</form>
+
+<br>
+
+<a href="/dashboard">
+    Voltar
+</a>
+
+</body>
+</html>

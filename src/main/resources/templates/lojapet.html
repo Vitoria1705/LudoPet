@@ -62,6 +62,13 @@
 
     <!-- PRODUTOS DINÂMICOS -->
     <h2>🛍 Produtos</h2>
+    <input
+            type="text"
+            id="pesquisa"
+            class="form-control mb-3"
+            placeholder="Pesquisar produto..."
+            onkeyup="filtrarProdutos()"
+    >
     <div id="produtos"></div>
 
     <!-- CARRINHO -->
@@ -77,8 +84,19 @@
 
 <script>
     let carrinho = [];
+    let produtosGlobais = [];
+    let produtoEditando = null;
 
     function cadastrar() {
+
+        if(
+            !document.getElementById("nome").value ||
+            !document.getElementById("preco").value
+        ){
+            alert("Preencha nome e preço!");
+            return;
+        }
+
         const produto = {
             nome: document.getElementById("nome").value,
             descricao: document.getElementById("descricao").value,
@@ -86,14 +104,37 @@
             imagemUrl: document.getElementById("imagem").value
         };
 
-        fetch("http://localhost:8081/api/produtos", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
+        let url = "http://localhost:8081/api/produtos";
+        let metodo = "POST";
+
+        if(produtoEditando != null){
+            url += "/" + produtoEditando;
+            metodo = "PUT";
+        }
+
+        fetch(url, {
+            method: metodo,
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(produto)
         })
             .then(() => {
-                alert("Produto cadastrado!");
-                location.reload();
+
+                alert(
+                    produtoEditando != null
+                        ? "Produto atualizado!"
+                        : "Produto cadastrado!"
+                );
+
+                produtoEditando = null;
+
+                document.getElementById("nome").value = "";
+                document.getElementById("descricao").value = "";
+                document.getElementById("preco").value = "";
+                document.getElementById("imagem").value = "";
+
+                carregarProdutos();
             });
     }
 
@@ -139,6 +180,91 @@
         carrinho.splice(index, 1);
         atualizarCarrinho();
     }
+
+    function deletarProduto(id) {
+
+        fetch(`http://localhost:8081/api/produtos/${id}`, {
+            method: "DELETE"
+        })
+            .then(() => {
+                alert("Produto removido!");
+                carregarProdutos();
+            });
+    }
+    function editarProduto(produto) {
+
+        produtoEditando = produto.id;
+
+        document.getElementById("nome").value =
+            produto.nome;
+
+        document.getElementById("descricao").value =
+            produto.descricao;
+
+        document.getElementById("preco").value =
+            produto.preco;
+
+        document.getElementById("imagem").value =
+            produto.imagemUrl;
+
+        window.scrollTo(0, 0);
+    }
+
+    function filtrarProdutos() {
+
+        const texto =
+            document.getElementById("pesquisa")
+                .value
+                .toLowerCase();
+
+        const produtosFiltrados =
+            produtosGlobais.filter(produto =>
+
+                produto.nome &&
+                produto.nome.toLowerCase().includes(texto)
+
+            );
+
+        const div =
+            document.getElementById("produtos");
+
+        div.innerHTML = "";
+
+        produtosFiltrados.forEach(produto => {
+
+            div.innerHTML += `
+<div class="card-custom">
+
+    <img src="${produto.imagemUrl || 'https://via.placeholder.com/150'}">
+
+    <h3>${produto.nome}</h3>
+
+    <p>${produto.descricao}</p>
+
+    <div class="preco">
+        R$ ${produto.preco}
+    </div>
+
+    <button
+        class="btn btn-success w-100 mt-2"
+        onclick="comprar('${produto.nome}', ${produto.preco})">
+
+        Comprar
+
+    </button>
+
+    <button
+        class="btn btn-danger w-100 mt-2"
+        onclick="deletarProduto(${produto.id})">
+
+        Excluir
+
+    </button>
+
+</div>
+`;
+        });
+    }
     function finalizarCompra() {
 
         fetch("http://localhost:8081/api/pedidos", {
@@ -165,21 +291,51 @@
         fetch("http://localhost:8081/api/produtos")
             .then(r => r.json())
             .then(data => {
+                produtosGlobais = data;
+
                 const div = document.getElementById("produtos");
                 div.innerHTML = "";
 
                 data.forEach(produto => {
                     div.innerHTML += `
-                    <div class="card-custom">
-                        <img src="${produto.imagemUrl}">
-                        <h3>${produto.nome}</h3>
-                        <p>${produto.descricao}</p>
-                        <div class="preco">R$ ${produto.preco}</div>
-                        <button onclick="comprar('${produto.nome}', ${produto.preco})">
-                            Comprar
-                        </button>
-                    </div>
-                `;
+<div class="card-custom">
+
+    <img src="${produto.imagemUrl || 'https://via.placeholder.com/150'}">
+
+    <h3>${produto.nome}</h3>
+
+    <p>${produto.descricao}</p>
+
+    <div class="preco">
+        R$ ${produto.preco}
+    </div>
+
+   <button
+    class="btn btn-success w-100 mt-2"
+    onclick="comprar('${produto.nome}', ${produto.preco})">
+
+    Comprar
+
+</button>
+
+<button
+    class="btn btn-warning w-100 mt-2"
+    onclick='editarProduto(${JSON.stringify(produto)})'>
+
+    Editar
+
+</button>
+
+<button
+    class="btn btn-danger w-100 mt-2"
+    onclick="deletarProduto(${produto.id})">
+
+    Excluir
+
+</button>
+
+</div>
+`;
                 });
             });
     }
