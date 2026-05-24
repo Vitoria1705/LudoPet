@@ -1,8 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<footer th:fragment="footer" class="text-center mt-5 p-3 bg-light">
-    <p>&copy; 2026 LudoPet - Todos os direitos reservados &#128062;</p>
+<body>
+
+<footer th:fragment="footer" class="simple-footer mt-5">
+    <div class="container text-center">
+        <h2>Fale com a LudoPet</h2>
+
+        <p>
+            Estamos por perto para ajudar voce a cuidar, encontrar e acolher quem faz parte da familia.
+        </p>
+
+        <div class="footer-contact-actions">
+            <a class="footer-contact-btn whatsapp"
+               href="https://wa.me/5585999999999?text=Ola%20LudoPet!%20Quero%20falar%20com%20voces."
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Falar com a LudoPet pelo WhatsApp">
+                <span>W</span>
+                WhatsApp
+            </a>
+
+            <a class="footer-contact-btn"
+               href="mailto:contatoludopet@gmail.com"
+               aria-label="Enviar email para a LudoPet">
+                <span>@</span>
+                Email
+            </a>
+
+            <a class="footer-contact-btn"
+               href="https://github.com/"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Acessar GitHub da LudoPet">
+                <span>Git</span>
+                GitHub
+            </a>
+        </div>
+
+        <small>&copy; 2026 LudoPet - Cuidando de pets com carinho.</small>
+    </div>
 </footer>
 
+</body>
 </html>

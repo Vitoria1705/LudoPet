@@ -12,56 +12,308 @@
 
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
-<main>
-    <section class="hero-section text-center">
-        <div class="container">
-            <h1>Conectando pets a novos lares &#128062;</h1>
-            <p>Ado&ccedil;&atilde;o respons&aacute;vel, tecnologia inteligente e rede parceira para transformar vidas.</p>
-
-            <a th:href="@{/adocao}" class="btn btn-primary btn-lg me-2">Adotar agora</a>
-            <a th:href="@{/petalerta}" class="btn btn-outline-primary btn-lg">Pet Alerta</a>
+<div id="carouselExample" class="carousel slide home-carousel mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/img/banner/banner1.png"
+                 class="d-block w-100"
+                 alt="LudoPet - cuidado completo para pets">
         </div>
-    </section>
 
-    <section class="container mt-5">
+        <div class="carousel-item">
+            <img src="/img/banner/banner2.png"
+                 class="d-block w-100"
+                 alt="Produtos e servicos para pets">
+        </div>
+
+        <div class="carousel-item">
+            <img src="/img/banner/banner3.png"
+                 class="d-block w-100"
+                 alt="Adocao e apoio para animais">
+        </div>
+    </div>
+
+    <div class="carousel-caption home-carousel-caption text-start">
+        <span class="hero-badge">Cuidado, loja e adocao</span>
+
+        <h1 class="display-4 fw-bold mt-3">
+            Bem-vindo a LudoPet
+        </h1>
+
+        <p class="lead">
+            Tudo que seu pet precisa em um so lugar.
+        </p>
+
+        <a th:href="@{/adocao}" class="btn btn-light btn-lg mt-3">
+            Quero adotar
+        </a>
+    </div>
+
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="prev"
+            aria-label="Banner anterior">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="next"
+            aria-label="Proximo banner">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<main class="container">
+    <section class="home-section">
+        <div class="section-heading">
+            <span class="section-kicker">LudoPet</span>
+            <h2>Servicos para cuidar melhor do seu pet</h2>
+            <p>Escolha uma area e acesse rapidamente as principais funcoes da plataforma.</p>
+        </div>
+
         <div class="row g-4">
             <div class="col-md-4">
                 <a th:href="@{/adocao}" class="card-link">
-                    <div class="feature-card h-100">
-                        <h4>&#128062; Ado&ccedil;&atilde;o</h4>
-                        <p>Encontre um novo melhor amigo.</p>
-                    </div>
+                    <article class="feature-card h-100">
+                        <div class="feature-icon">A</div>
+                        <h3>Adocao</h3>
+                        <p>Veja animais disponiveis e demonstre interesse em oferecer um novo lar.</p>
+                    </article>
                 </a>
             </div>
 
             <div class="col-md-4">
                 <a th:href="@{/petalerta}" class="card-link">
-                    <div class="feature-card h-100">
-                        <h4>&#128269; Pet Alerta</h4>
-                        <p>Ajude a localizar animais perdidos.</p>
-                    </div>
+                    <article class="feature-card h-100">
+                        <div class="feature-icon">P</div>
+                        <h3>Pet Alerta</h3>
+                        <p>Ajude tutores a encontrar animais perdidos com informacoes organizadas.</p>
+                    </article>
                 </a>
             </div>
 
             <div class="col-md-4">
                 <a th:href="@{/lojapet}" class="card-link">
-                    <div class="feature-card h-100">
-                        <h4>&#128722; Loja Pet</h4>
-                        <p>Itens essenciais para o cuidado dos pets.</p>
-                    </div>
+                    <article class="feature-card h-100">
+                        <div class="feature-icon">L</div>
+                        <h3>Loja Pet</h3>
+                        <p>Cadastre produtos, veja itens da loja e compre o essencial para o dia a dia.</p>
+                    </article>
                 </a>
             </div>
         </div>
     </section>
 
-    <section class="ia-section text-center">
-        <h2>&#10024; Busca Inteligente (em breve)</h2>
-        <p>Envie uma foto do pet e a plataforma poder&aacute; buscar poss&iacute;veis correspond&ecirc;ncias.</p>
-        <a th:href="@{/petalerta}" class="btn btn-outline-primary">Ver Pet Alerta</a>
+    <section class="home-section">
+        <div class="section-heading">
+            <span class="section-kicker">Adocao</span>
+            <h2>Pets disponiveis para adocao</h2>
+            <p>Conheca alguns animais que estao esperando uma familia.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-sm-6 col-lg-3">
+                <article class="pet-home-card h-100">
+                    <img src="/img/pets/lola.jpg" alt="Lola">
+                    <div class="pet-home-body">
+                        <h3>Lola</h3>
+                        <p>Muito carinhosa e brincalhona.</p>
+                        <a th:href="@{/adocao}" class="btn btn-success w-100">Adotar</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <article class="pet-home-card h-100">
+                    <img src="/img/pets/marrie.jpeg" alt="Marrie">
+                    <div class="pet-home-body">
+                        <h3>Marrie</h3>
+                        <p>Ama carinho e lugares tranquilos.</p>
+                        <a th:href="@{/adocao}" class="btn btn-success w-100">Adotar</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <article class="pet-home-card h-100">
+                    <img src="/img/pets/luiz.jpeg" alt="Luiz">
+                    <div class="pet-home-body">
+                        <h3>Luiz</h3>
+                        <p>Muito docil e amigavel.</p>
+                        <a th:href="@{/adocao}" class="btn btn-success w-100">Adotar</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <article class="pet-home-card h-100">
+                    <img src="/img/pets/thor.jpg" alt="Thor">
+                    <div class="pet-home-body">
+                        <h3>Thor</h3>
+                        <p>Cheio de energia e muito divertido.</p>
+                        <a th:href="@{/adocao}" class="btn btn-success w-100">Adotar</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="highlight-section">
+        <div>
+            <span class="section-kicker">Em evolucao</span>
+            <h2>Busca inteligente para pets perdidos</h2>
+            <p>
+                A proxima etapa e usar fotos e dados do animal para ajudar a encontrar possiveis correspondencias
+                com mais rapidez.
+            </p>
+        </div>
+
+        <a th:href="@{/petalerta}" class="btn btn-outline-primary">
+            Ver Pet Alerta
+        </a>
+    </section>
+    <section class="container mt-5 mb-5">
+
+        <h2 class="text-center mb-4">
+            🛍 Produtos em destaque
+        </h2>
+
+        <div class="row g-4">
+
+            <!-- PRODUTO 1 -->
+            <div class="col-md-3">
+
+                <div class="card shadow h-100">
+
+                    <img src="/img/produtos/racoes/racao-golden-adulto.jpg"
+                         class="card-img-top"
+                         style="height:250px; object-fit:cover;">
+
+                    <div class="card-body text-center">
+
+                        <h5>Ração Golden</h5>
+
+                        <p>
+                            Ração premium para cães adultos.
+                        </p>
+
+                        <h4 class="text-success">
+                            R$ 129,90
+                        </h4>
+
+                        <button class="btn btn-warning w-100">
+                            Comprar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PRODUTO 2 -->
+            <div class="col-md-3">
+
+                <div class="card shadow h-100">
+
+                    <img src="/img/produtos/brinquedos/bola-de-brinquedo.jpg"
+                         class="card-img-top"
+                         style="height:250px; object-fit:cover;">
+
+                    <div class="card-body text-center">
+
+                        <h5>Bola para Pets</h5>
+
+                        <p>
+                            Diversão garantida para cães e gatos.
+                        </p>
+
+                        <h4 class="text-success">
+                            R$ 29,90
+                        </h4>
+
+                        <button class="btn btn-warning w-100">
+                            Comprar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PRODUTO 3 -->
+            <div class="col-md-3">
+
+                <div class="card shadow h-100">
+
+                    <img src="/img/produtos/camas/sofa-pet.webp"
+                         class="card-img-top"
+                         style="height:250px; object-fit:cover;">
+
+                    <div class="card-body text-center">
+
+                        <h5>Sofá Pet</h5>
+
+                        <p>
+                            Muito conforto para o descanso.
+                        </p>
+
+                        <h4 class="text-success">
+                            R$ 199,90
+                        </h4>
+
+                        <button class="btn btn-warning w-100">
+                            Comprar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PRODUTO 4 -->
+            <div class="col-md-3">
+
+                <div class="card shadow h-100">
+
+                    <img src="/img/produtos/higiene/shampoo-anti-pulgas.webp"
+                         class="card-img-top"
+                         style="height:250px; object-fit:cover;">
+
+                    <div class="card-body text-center">
+
+                        <h5>Shampoo Anti Pulgas</h5>
+
+                        <p>
+                            Higiene e cuidado para seu pet.
+                        </p>
+
+                        <h4 class="text-success">
+                            R$ 39,90
+                        </h4>
+
+                        <button class="btn btn-warning w-100">
+                            Comprar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </section>
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
