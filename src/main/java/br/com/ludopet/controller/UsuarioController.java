@@ -19,6 +19,12 @@ public class UsuarioController {
         return "cadastro_user";
     }
 
+    @PostMapping("/cadastro")
+    public String salvarCadastro(@ModelAttribute Usuario usuario) {
+        usuarioService.salvarUsuario(usuario);
+        return "redirect:/login";
+    }
+
     @GetMapping("/clinicas")
     public String listarClinicas(Model model) {
         model.addAttribute("clinicas", usuarioService.listarClinicas());

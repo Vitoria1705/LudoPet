@@ -1,122 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login - LudoPet</title>
 
-    <style>
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            height: 100vh;
-        }
-
-        .login-box {
-
-            background: white;
-            padding: 40px;
-
-            border-radius: 12px;
-
-            width: 350px;
-
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        input {
-
-            width: 100%;
-            padding: 12px;
-
-            margin-bottom: 15px;
-
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-
-        button {
-
-            width: 100%;
-            padding: 12px;
-
-            border: none;
-
-            background-color: #7c3aed;
-
-            color: white;
-
-            border-radius: 8px;
-
-            cursor: pointer;
-
-            font-size: 16px;
-        }
-
-        button:hover {
-
-            background-color: #6d28d9;
-        }
-
-        .erro {
-
-            color: red;
-
-            text-align: center;
-
-            margin-top: 10px;
-        }
-
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+<body class="auth-page">
 
-<body>
+<main class="auth-shell">
+    <section class="auth-panel">
+        <a href="/" class="auth-brand">
+            <img src="/img/logo/logo.jpeg" alt="LudoPet">
+        </a>
 
-<div class="login-box">
+        <span class="section-kicker">Area do usuario</span>
+        <h1>Entrar na LudoPet</h1>
+        <p class="text-muted">Acesse sua conta para acompanhar pedidos, cadastros e solicitacoes.</p>
 
-    <h2>Login LudoPet 🐾</h2>
+        <form action="/login" method="post" class="mt-4">
+            <label class="form-label" for="email">Email</label>
+            <input id="email" type="email" name="email" class="form-control mb-3" placeholder="seuemail@exemplo.com" required>
 
-    <form action="/login" method="post">
+            <label class="form-label" for="senha">Senha</label>
+            <input id="senha" type="password" name="senha" class="form-control mb-3" placeholder="Digite sua senha" required>
 
-        <input
-                type="email"
-                name="email"
-                placeholder="Digite seu email"
-                required
-        >
+            <button type="submit" class="btn btn-success btn-lg w-100">Entrar</button>
+        </form>
 
-        <input
-                type="password"
-                name="senha"
-                placeholder="Digite sua senha"
-                required
-        >
+        <p th:if="${erro}" th:text="${erro}" class="alert alert-danger mt-3 mb-0"></p>
 
-        <button type="submit">
-            Entrar
-        </button>
-
-    </form>
-
-    <p
-            th:if="${erro}"
-            th:text="${erro}"
-            class="erro">
-    </p>
-
-</div>
+        <p class="text-center mt-4 mb-0">
+            Ainda nao tem conta?
+            <a href="/cadastro">Criar cadastro</a>
+        </p>
+    </section>
+</main>
 
 </body>
 </html>

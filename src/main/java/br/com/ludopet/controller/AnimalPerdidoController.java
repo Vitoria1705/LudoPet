@@ -65,9 +65,11 @@ public class AnimalPerdidoController {
                 File destino =
                         new File(caminho + nomeArquivo);
 
+                destino.getParentFile().mkdirs();
+
                 arquivo.transferTo(destino);
 
-                animal.setFoto(nomeArquivo);
+                animal.setFoto("/uploads/" + nomeArquivo);
             }
 
             animal.setStatus("perdido");

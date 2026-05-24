@@ -1,95 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Cadastro</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro - LudoPet</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+<body class="auth-page">
 
-<body>
+<main class="auth-shell auth-shell-wide">
+    <section class="auth-panel">
+        <a href="/" class="auth-brand">
+            <img src="/img/logo/logo.jpeg" alt="LudoPet">
+        </a>
 
-<h2>Cadastro de Usuario</h2>
+        <span class="section-kicker">Novo cadastro</span>
+        <h1>Criar conta</h1>
+        <p class="text-muted">Cadastre seus dados para usar a adocao, Pet Alerta, loja e rede parceira.</p>
 
-<form th:action="@{/cadastro}" method="post">
+        <form th:action="@{/cadastro}" method="post" class="row g-3 mt-2">
+            <div class="col-md-6">
+                <label class="form-label" for="nome">Nome completo</label>
+                <input id="nome" type="text" name="nome" class="form-control" required>
+            </div>
 
-    <input type="text"
-           name="nome"
-           placeholder="Nome completo"
-           required>
+            <div class="col-md-6">
+                <label class="form-label" for="email">Email</label>
+                <input id="email" type="email" name="email" class="form-control" required>
+            </div>
 
-    <br><br>
+            <div class="col-md-6">
+                <label class="form-label" for="senha">Senha</label>
+                <input id="senha" type="password" name="senha" class="form-control" required>
+            </div>
 
-    <input type="email"
-           name="email"
-           placeholder="Email"
-           required>
+            <div class="col-md-6">
+                <label class="form-label" for="telefone">Telefone</label>
+                <input id="telefone" type="text" name="telefone" class="form-control">
+            </div>
 
-    <br><br>
+            <div class="col-md-8">
+                <label class="form-label" for="endereco">Endereco</label>
+                <input id="endereco" type="text" name="endereco" class="form-control">
+            </div>
 
-    <input type="password"
-           name="senha"
-           placeholder="Senha"
-           required>
+            <div class="col-md-4">
+                <label class="form-label" for="tipo">Tipo de perfil</label>
+                <select id="tipo" name="tipo" class="form-select">
+                    <option value="adotante">Adotante</option>
+                    <option value="ong">ONG</option>
+                    <option value="doador">Doador</option>
+                    <option value="clinica">Clinica Veterinaria</option>
+                    <option value="hospital">Hospital Veterinario</option>
+                </select>
+            </div>
 
-    <br><br>
+            <div class="col-md-8">
+                <label class="form-label" for="descricao">Descricao da clinica, hospital ou perfil</label>
+                <input id="descricao" type="text" name="descricao" class="form-control">
+            </div>
 
-    <input type="text"
-           name="telefone"
-           placeholder="Telefone">
+            <div class="col-md-4">
+                <label class="form-label" for="servicos">Servicos oferecidos</label>
+                <input id="servicos" type="text" name="servicos" class="form-control" placeholder="Vacinacao, emergencia...">
+            </div>
 
-    <br><br>
+            <div class="col-md-6">
+                <label class="form-label" for="cidade">Cidade</label>
+                <input id="cidade" type="text" name="cidade" class="form-control" value="Sao Luis">
+            </div>
 
-    <input type="text"
-           name="endereco"
-           placeholder="Endereco">
+            <div class="col-md-6">
+                <label class="form-label" for="estado">Estado</label>
+                <input id="estado" type="text" name="estado" class="form-control" value="MA">
+            </div>
 
-    <br><br>
-    <br><br>
-
-    <input type="text"
-           name="descricao"
-           placeholder="Descricão da clínica ou hospital">
-
-    <br><br>
-
-    <input type="text"
-           name="servicos"
-           placeholder="Serviços oferecidos (ex: vacinação, cirurgia, emergência)">
-
-    <br><br>
-
-    <input type="text"
-           name="cidade"
-           placeholder="Cidade">
-
-    <br><br>
-
-    <input type="text"
-           name="estado"
-           placeholder="Estado">
-
-    <select name="tipo">
-
-        <option value="adotante">Adotante</option>
-
-        <option value="ong">ONG</option>
-
-        <option value="doador">Doador</option>
-
-        <option value="clinica">Clinica Veterinaria</option>
-
-        <option value="hospital">Hospital Veterinario</option>
-
-    </select>
-    <br><br>
-
-    <button type="submit">
-
-        Cadastrar
-
-    </button>
-
-</form>
+            <div class="col-12 d-flex gap-2 flex-wrap">
+                <button type="submit" class="btn btn-success btn-lg">Cadastrar</button>
+                <a href="/login" class="btn btn-outline-secondary btn-lg">Ja tenho conta</a>
+            </div>
+        </form>
+    </section>
+</main>
 
 </body>
-
 </html>

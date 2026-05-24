@@ -60,6 +60,28 @@ public class AnimalController {
         return "detalhes";
     }
 
+    @GetMapping("/detalhes/nome/{nome}")
+    public String verDetalhesPorNome(
+            @PathVariable String nome,
+            Model model) {
+
+        Animal animal =
+                animalRepository
+                        .findFirstByNomeIgnoreCase(nome)
+                        .orElse(null);
+
+        if (animal == null) {
+            return "redirect:/adocao";
+        }
+
+        model.addAttribute(
+                "animal",
+                animal
+        );
+
+        return "detalhes";
+    }
+
     // 🐶 ABRIR FORMULÁRIO
     @GetMapping("/form-adocao/{id}")
     public String mostrarFormulario(
