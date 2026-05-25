@@ -12,42 +12,71 @@
 
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
-<main class="container mt-5">
-    <section class="text-center mb-5">
-        <h1 class="text-primary fw-bold">&#128269; Pet Alerta</h1>
-        <p class="lead">Cadastre e visualize pets perdidos para ajudar no reencontro com seus tutores.</p>
+<main class="container py-5">
+    <section class="page-hero mb-4">
+        <span class="section-kicker">Sao Luis - MA</span>
+        <h1>Pet Alerta</h1>
+        <p>Compare uma foto com os pets perdidos cadastrados e registre novos casos para ampliar as chances de reencontro.</p>
+        <div class="d-flex gap-2 flex-wrap">
+            <a th:href="@{/cadastroPetPerdido}" class="btn btn-success">Cadastrar pet perdido</a>
+            <a th:href="@{/animais-perdidos}" class="btn btn-outline-secondary">Ver mural de perdidos</a>
+        </div>
     </section>
 
-    <section class="alert alert-primary text-center">
-        <h5>&#10024; Busca Inteligente (em breve)</h5>
-        <p class="mb-0">Estrutura preparada para futura integra&ccedil;&atilde;o com IA de reconhecimento de imagens.</p>
+    <section class="search-panel mb-5">
+        <div>
+            <span class="section-kicker">Busca por imagem</span>
+            <h2>Enviar foto para comparar</h2>
+            <p class="text-muted mb-0">O sistema cruza a foto e os dados informados com os registros do Pet Alerta.</p>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-5">
+                <label class="form-label" for="fotoBusca">Foto do animal</label>
+                <input id="fotoBusca" type="file" accept="image/*" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="termoBusca">Nome, cor, raca ou bairro</label>
+                <input id="termoBusca" type="text" class="form-control" placeholder="Ex: gato preto Renascenca">
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="button" class="btn btn-success w-100" onclick="compararPets()">Buscar correspondencias</button>
+            </div>
+        </div>
+
+        <div id="resultadoBusca" class="match-result mt-4">
+            <strong>Pronto para buscar.</strong>
+            <span>Envie uma foto ou digite alguma caracteristica para ver possiveis correspondencias.</span>
+        </div>
     </section>
 
-    <div class="text-end mb-4">
-        <a th:href="@{/cadastroPetPerdido}" class="btn btn-success">
-            Cadastrar pet perdido
-        </a>
+    <div class="d-flex justify-content-between align-items-end gap-3 flex-wrap mb-3">
+        <div>
+            <span class="section-kicker">Banco de imagens</span>
+            <h2 class="mb-0">Pets perdidos cadastrados</h2>
+        </div>
+        <span class="text-muted" th:text="|${#lists.size(pets)} registros|">0 registros</span>
     </div>
 
-    <div class="alert alert-light border text-center" th:if="${#lists.isEmpty(pets)}">
-        Nenhum pet perdido cadastrado at&eacute; o momento.
+    <div class="alert alert-light border" th:if="${#lists.isEmpty(pets)}">
+        Nenhum pet perdido cadastrado ate o momento.
     </div>
 
-    <div class="row g-4" th:if="${!#lists.isEmpty(pets)}">
+    <div class="row g-4" id="petsGrid" th:if="${!#lists.isEmpty(pets)}">
         <div class="col-md-6 col-lg-4" th:each="pet : ${pets}">
-            <article class="card h-100">
+            <article class="card lost-card h-100"
+                     th:attr="data-search=${#strings.toLowerCase(pet.nome + ' ' + pet.raca + ' ' + pet.cor + ' ' + pet.local)}">
                 <img th:src="${#strings.isEmpty(pet.imagem) ? '/img/padrao.png' : pet.imagem}"
-                     class="pet-img"
+                     class="lost-card-img"
                      th:alt="|Foto de ${pet.nome}|">
 
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${pet.nome}">Nome do pet</h5>
-
+                    <h3 class="h5" th:text="${pet.nome}">Nome do pet</h3>
                     <p class="card-text mb-0">
-                        <strong>Ra&ccedil;a:</strong> <span th:text="${pet.raca}">Ra&ccedil;a</span><br>
+                        <strong>Raca:</strong> <span th:text="${pet.raca}">Raca</span><br>
                         <strong>Idade:</strong> <span th:text="${pet.idade}">0</span><br>
                         <strong>Cor:</strong> <span th:text="${pet.cor}">Cor</span><br>
-                        <strong>&Uacute;ltimo local:</strong> <span th:text="${pet.local}">Local</span>
+                        <strong>Ultimo local:</strong> <span th:text="${pet.local}">Local</span>
                     </p>
                 </div>
             </article>
@@ -57,5 +86,36 @@
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 
+<script>
+    function compararPets() {
+        const termo = document.getElementById("termoBusca").value.trim().toLowerCase();
+        const foto = document.getElementById("fotoBusca").files[0];
+        const cards = Array.from(document.querySelectorAll(".lost-card"));
+        const resultado = document.getElementById("resultadoBusca");
+
+        let encontrados = cards.filter(card => termo && card.dataset.search.includes(termo));
+
+        if (encontrados.length === 0 && termo) {
+            const palavras = termo.split(/\s+/).filter(Boolean);
+            encontrados = cards.filter(card => palavras.some(palavra => card.dataset.search.includes(palavra)));
+        }
+
+        if (encontrados.length === 0 && foto) {
+            encontrados = cards.slice(0, Math.min(3, cards.length));
+        }
+
+        cards.forEach(card => card.classList.remove("match-card"));
+        encontrados.forEach(card => card.classList.add("match-card"));
+
+        if (encontrados.length > 0) {
+            resultado.innerHTML = `<strong>${encontrados.length} possivel(is) correspondencia(s) encontrada(s).</strong><span>Os cards destacados sao os registros mais parecidos com a busca enviada.</span>`;
+            encontrados[0].scrollIntoView({ behavior: "smooth", block: "center" });
+            return;
+        }
+
+        resultado.innerHTML = "<strong>Nenhuma correspondencia encontrada.</strong><span>Cadastre o pet perdido para ele entrar no banco de imagens.</span>";
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
