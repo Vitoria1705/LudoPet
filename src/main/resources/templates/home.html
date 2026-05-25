@@ -12,7 +12,7 @@
 
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
-<div id="carouselExample" class="carousel slide home-carousel mb-5" data-bs-ride="carousel">
+<div id="carouselExample" class="carousel slide home-carousel mb-4" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="/img/banner/banner1.png" class="d-block w-100" alt="LudoPet - cuidado completo para pets">
@@ -27,9 +27,9 @@
 
     <div class="carousel-caption home-carousel-caption text-start">
         <span class="hero-badge">Cuidado, loja e adocao</span>
-        <h1 class="display-4 fw-bold mt-3">Bem-vindo a LudoPet</h1>
+        <h1 class="home-hero-title fw-bold mt-2">Bem-vindo a LudoPet</h1>
         <p class="lead">Apoio para adotar, reencontrar e cuidar melhor do seu pet em Sao Luis.</p>
-        <a th:href="@{/adocao}" class="btn btn-light btn-lg mt-3">Quero adotar</a>
+        <a th:href="@{/adocao}" class="btn btn-light mt-2">Quero adotar</a>
     </div>
 
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev" aria-label="Banner anterior">
@@ -95,7 +95,7 @@
                     <div class="pet-home-body">
                         <h3>Lola</h3>
                         <p>Muito carinhosa e brincalhona.</p>
-                        <a th:href="@{/detalhes/nome/Lola}" class="btn btn-success w-100">Ver detalhes e adotar</a>
+                        <a th:href="@{/adocao}" class="btn btn-success w-100">Ver pets para adotar</a>
                     </div>
                 </article>
             </div>
@@ -106,7 +106,7 @@
                     <div class="pet-home-body">
                         <h3>Marrie</h3>
                         <p>Ama carinho e lugares tranquilos.</p>
-                        <a th:href="@{/detalhes/nome/Marrie}" class="btn btn-success w-100">Ver detalhes e adotar</a>
+                        <a th:href="@{/adocao}" class="btn btn-success w-100">Ver pets para adotar</a>
                     </div>
                 </article>
             </div>
@@ -117,7 +117,7 @@
                     <div class="pet-home-body">
                         <h3>Luiz</h3>
                         <p>Muito docil e amigavel.</p>
-                        <a th:href="@{/detalhes/nome/Luiz}" class="btn btn-success w-100">Ver detalhes e adotar</a>
+                        <a th:href="@{/adocao}" class="btn btn-success w-100">Ver pets para adotar</a>
                     </div>
                 </article>
             </div>
@@ -128,7 +128,7 @@
                     <div class="pet-home-body">
                         <h3>Thor</h3>
                         <p>Cheio de energia e muito divertido.</p>
-                        <a th:href="@{/detalhes/nome/Thor}" class="btn btn-success w-100">Ver detalhes e adotar</a>
+                        <a th:href="@{/adocao}" class="btn btn-success w-100">Ver pets para adotar</a>
                     </div>
                 </article>
             </div>
