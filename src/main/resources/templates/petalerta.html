@@ -18,7 +18,9 @@
         <h1>Pet Alerta</h1>
         <p>Compare uma foto com os pets perdidos cadastrados e registre novos casos para ampliar as chances de reencontro.</p>
         <div class="d-flex gap-2 flex-wrap">
-            <a th:href="@{/cadastroPetPerdido}" class="btn btn-success">Cadastrar pet perdido</a>
+            <a href="/novo-animal-perdido" class="btn btn-success">
+                Cadastrar pet perdido
+            </a>
             <a th:href="@{/animais-perdidos}" class="btn btn-outline-secondary">Ver mural de perdidos</a>
         </div>
     </section>
@@ -63,24 +65,52 @@
     </div>
 
     <div class="row g-4" id="petsGrid" th:if="${!#lists.isEmpty(pets)}">
-        <div class="col-md-6 col-lg-4" th:each="pet : ${pets}">
+
+        <div class="col-md-6 col-lg-4"
+             th:each="animal : ${pets}">
+
             <article class="card lost-card h-100"
-                     th:attr="data-search=${#strings.toLowerCase(pet.nome + ' ' + pet.raca + ' ' + pet.cor + ' ' + pet.local)}">
-                <img th:src="${#strings.isEmpty(pet.imagem) ? '/img/padrao.png' : pet.imagem}"
+                     th:attr="data-search=${#strings.toLowerCase(animal.nome + ' ' + animal.raca + ' ' + animal.cor + ' ' + animal.cidade)}">
+
+                <img <img th:src="${#strings.isEmpty(animal.foto) ? '/img/padrao.png' : animal.foto}"
                      class="lost-card-img"
-                     th:alt="|Foto de ${pet.nome}|">
+                     th:alt="|Foto de ${animal.nome}|">
 
                 <div class="card-body">
-                    <h3 class="h5" th:text="${pet.nome}">Nome do pet</h3>
+
+                    <h3 class="h5"
+                        th:text="${animal.nome}">
+                        Nome do pet
+                    </h3>
+
                     <p class="card-text mb-0">
-                        <strong>Raca:</strong> <span th:text="${pet.raca}">Raca</span><br>
-                        <strong>Idade:</strong> <span th:text="${pet.idade}">0</span><br>
-                        <strong>Cor:</strong> <span th:text="${pet.cor}">Cor</span><br>
-                        <strong>Ultimo local:</strong> <span th:text="${pet.local}">Local</span>
+
+                        <strong>Raca:</strong>
+                        <span th:text="${animal.raca}">Raca</span>
+
+                        <br>
+
+                        <strong>Idade:</strong>
+                        <span th:text="${animal.idade}">0</span>
+
+                        <br>
+
+                        <strong>Cor:</strong>
+                        <span th:text="${animal.cor}">Cor</span>
+
+                        <br>
+
+                        <strong>Ultimo local:</strong>
+                        <span th:text="${animal.cidade}">Local</span>
+
                     </p>
+
                 </div>
+
             </article>
+
         </div>
+
     </div>
 </main>
 
