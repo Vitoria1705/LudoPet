@@ -33,8 +33,8 @@
             </h1>
 
             <p class="lead col-md-8 mx-auto">
-                Conheça clínicas veterinárias e ONGs
-                parceiras que ajudam o LudoPet
+                Conheça clínicas veterinárias, ONGs e petshops
+                parceiros que ajudam o LudoPet
                 a cuidar e proteger os animais.
             </p>
 
@@ -42,229 +42,68 @@
 
     </section>
 
-    <!-- CLÍNICAS -->
+    <!-- PARCEIROS -->
     <section class="container py-5">
 
         <div class="text-center mb-5">
 
             <h2 class="fw-bold"
                 style="color: #4FAF7B;">
-                Clínicas Veterinárias
+                Parceiros LudoPet
             </h2>
 
             <p class="text-muted">
-                Parceiros especializados no cuidado animal.
+                Empresas e instituições parceiras da plataforma.
             </p>
 
         </div>
 
         <div class="row g-4">
 
-            <!-- CARD -->
-            <div class="col-md-4">
+            <div class="col-md-4"
+                 th:each="parceiro : ${parceiros}">
 
                 <div class="card border-0 shadow-sm h-100 rounded-4">
 
-                    <div class="card-body p-4">
+                    <div class="card-body p-4 d-flex flex-column">
 
-                        <h4 class="fw-bold">
-                            Vet Center São Luís
+                        <span class="badge bg-success mb-3"
+                              th:text="${parceiro.tipo}">
+                            Tipo
+                        </span>
+
+                        <h4 class="fw-bold"
+                            th:text="${parceiro.nome}">
+                            Nome
                         </h4>
 
                         <p class="text-muted mb-2">
-                            📍 Renascença
+                            📍
+                            <span th:text="${parceiro.endereco}">
+                                Endereço
+                            </span>
                         </p>
 
-                        <p>
-                            Atendimento veterinário,
-                            vacinação e exames.
+                        <p th:text="${parceiro.descricao}">
+                            Descrição
                         </p>
 
-                        <p class="fw-semibold">
-                            📞 (98) 984838902
+                        <p class="fw-semibold mt-auto">
+                            📞
+                            <span th:text="${parceiro.telefone}">
+                                Telefone
+                            </span>
                         </p>
 
-                        <a href="#"
-                           class="btn btn-success rounded-pill w-100">
+                        <a class="btn btn-success rounded-pill w-100 mt-3"
+                           th:href="'https://wa.me/55' + ${#strings.replace(parceiro.telefone, '(', '')
+                           .replace(')', '')
+                           .replace('-', '')
+                           .replace(' ', '')}">
+
                             Entrar em contato
+
                         </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- CARD -->
-            <div class="col-md-4">
-
-                <div class="card border-0 shadow-sm h-100 rounded-4">
-
-                    <div class="card-body p-4">
-
-                        <h4 class="fw-bold">
-                            Clínica Pet Vida
-                        </h4>
-
-                        <p class="text-muted mb-2">
-                            📍 Cohama
-                        </p>
-
-                        <p>
-                            Consultas, cirurgias e cuidados gerais.
-                        </p>
-
-                        <p class="fw-semibold">
-                            📞 (98) 98888-2222
-                        </p>
-
-                        <a href="#"
-                           class="btn btn-success rounded-pill w-100">
-                            Entrar em contato
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- CARD -->
-            <div class="col-md-4">
-
-                <div class="card border-0 shadow-sm h-100 rounded-4">
-
-                    <div class="card-body p-4">
-
-                        <h4 class="fw-bold">
-                            Hospital Veterinário CEUMA
-                        </h4>
-
-                        <p class="text-muted mb-2">
-                            📍 Renascença
-                        </p>
-
-                        <p>
-                            Atendimento clínico e suporte especializado.
-                        </p>
-
-                        <p class="fw-semibold">
-                            📞 (98) 98888-3333
-                        </p>
-
-                        <a href="#"
-                           class="btn btn-success rounded-pill w-100">
-                            Entrar em contato
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ONGS -->
-    <section class="py-5"
-             style="background-color: #eef8f2;">
-
-        <div class="container">
-
-            <div class="text-center mb-5">
-
-                <h2 class="fw-bold"
-                    style="color: #4FAF7B;">
-                    ONGs Parceiras
-                </h2>
-
-                <p class="text-muted">
-                    Instituições que ajudam animais
-                    em situação de vulnerabilidade.
-                </p>
-
-            </div>
-
-            <div class="row g-4">
-
-                <!-- ONG -->
-                <div class="col-md-4">
-
-                    <div class="card border-0 shadow-sm h-100 rounded-4">
-
-                        <div class="card-body p-4">
-
-                            <h4 class="fw-bold">
-                                Patinhas Felizes
-                            </h4>
-
-                            <p>
-                                ONG dedicada ao resgate,
-                                tratamento e adoção responsável.
-                            </p>
-
-                            <a href="#"
-                               class="btn btn-outline-success rounded-pill w-100">
-                                Conhecer ONG
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- ONG -->
-                <div class="col-md-4">
-
-                    <div class="card border-0 shadow-sm h-100 rounded-4">
-
-                        <div class="card-body p-4">
-
-                            <h4 class="fw-bold">
-                                Amor Animal SLZ
-                            </h4>
-
-                            <p>
-                                Apoio a animais abandonados
-                                e campanhas de conscientização.
-                            </p>
-
-                            <a href="#"
-                               class="btn btn-outline-success rounded-pill w-100">
-                                Conhecer ONG
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- ONG -->
-                <div class="col-md-4">
-
-                    <div class="card border-0 shadow-sm h-100 rounded-4">
-
-                        <div class="card-body p-4">
-
-                            <h4 class="fw-bold">
-                                Instituto Cães do Maranhão
-                            </h4>
-
-                            <p>
-                                Projeto social voltado ao cuidado
-                                e proteção dos animais.
-                            </p>
-
-                            <a href="#"
-                               class="btn btn-outline-success rounded-pill w-100">
-                                Conhecer ONG
-                            </a>
-
-                        </div>
 
                     </div>
 
@@ -286,7 +125,7 @@
             </h2>
 
             <p class="text-muted mb-4">
-                Clínicas, ONGs e empresas podem
+                Clínicas, ONGs, petshops e empresas podem
                 colaborar com a proteção animal.
             </p>
 
