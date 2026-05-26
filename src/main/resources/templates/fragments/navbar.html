@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<nav th:fragment="navbar"
+     class="navbar navbar-expand-lg navbar-dark shadow"
+     style="background-color: #4F8F78;">
 
-<body>
-
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark shadow" style="background-color: #4F8F78;">
     <div class="container">
-        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/">
+
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2"
+           href="/">
+
             <img src="/img/logo/logo.jpeg"
                  alt="Logo LudoPet"
                  class="navbar-logo">
+
         </a>
 
         <button class="navbar-toggler"
@@ -18,54 +20,68 @@
                 aria-controls="menu"
                 aria-expanded="false"
                 aria-label="Abrir menu">
+
             <span class="navbar-toggler-icon"></span>
+
         </button>
 
-        <div class="collapse navbar-collapse" id="menu">
+        <div class="collapse navbar-collapse"
+             id="menu">
+
             <ul class="navbar-nav ms-auto">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="/">HOME</a>
+                    <a class="nav-link" href="/">
+                        HOME
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/adocao">ADOTAR</a>
+                    <a class="nav-link" href="/adocao">
+                        ADOTAR
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/petalerta">PET ALERTA</a>
+                    <a class="nav-link" href="/petalerta">
+                        PET ALERTA
+                    </a>
                 </li>
 
                 <li class="nav-item">
-<<<<<<< HEAD
-                    <a class="nav-link" href="/rede-parceiras">REDE PARCEIRAS</a>
-=======
-                    <a class="nav-link" href="/rede-parceiras">REDE PARCEIRA</a>
->>>>>>> fb981f3d26472c67d920209668ee0a7b5f0c7679
+                    <a class="nav-link" href="/rede-parceiras">
+                        REDE PARCEIRAS
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/lojapet">LOJAPET</a>
+                    <a class="nav-link" href="/lojapet">
+                        LOJAPET
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/animais-perdidos">PERDIDOS</a>
+                    <a class="nav-link" href="/animais-perdidos">
+                        PERDIDOS
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">LOGIN</a>
+                    <a class="nav-link" href="/forum">
+                        FORUM
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/cadastro">CADASTRO</a>
+                    <a class="nav-link" href="/login">
+                        LOGIN
+                    </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/forum">FORUM</a>
-                </li>
             </ul>
-        </div>
-    </div>
-</nav>
 
-</body>
-</html>
+        </div>
+
+    </div>
+
+</nav>
