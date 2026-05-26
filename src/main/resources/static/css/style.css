@@ -161,12 +161,12 @@ a.btn {
 }
 
 .navbar-logo {
-    width: 124px;
-    height: 52px;
+    width: 86px;
+    height: 38px;
     object-fit: contain;
     background: white;
-    border-radius: 12px;
-    padding: 5px 8px;
+    border-radius: 8px;
+    padding: 3px 6px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
@@ -196,7 +196,7 @@ a.btn {
 }
 
 .home-carousel .carousel-item img {
-    height: 500px;
+    height: 340px;
     object-fit: cover;
 }
 
@@ -209,9 +209,15 @@ a.btn {
     max-width: 640px;
 }
 
+.home-hero-title {
+    font-size: 2.45rem;
+    line-height: 1.1;
+}
+
 .home-carousel-caption .lead {
     max-width: 540px;
-    font-size: 1.25rem;
+    font-size: 1.05rem;
+    margin-bottom: 0;
 }
 
 .hero-badge {
@@ -220,7 +226,7 @@ a.btn {
     background: rgba(255, 255, 255, 0.18);
     border: 1px solid rgba(255, 255, 255, 0.28);
     border-radius: 999px;
-    padding: 8px 14px;
+    padding: 6px 12px;
     font-weight: 700;
     color: white;
 }
@@ -235,7 +241,7 @@ a.btn {
 }
 
 .home-section {
-    margin-top: 56px;
+    margin-top: 36px;
 }
 
 .section-heading {
@@ -660,21 +666,25 @@ a.btn {
 
 @media (max-width: 768px) {
     .home-carousel .carousel-item img {
-        height: 420px;
+        height: 280px;
     }
 
     .home-carousel-caption {
-        left: 24px;
-        right: 24px;
+        left: 18px;
+        right: 18px;
         max-width: none;
     }
 
-    .home-carousel-caption h1 {
-        font-size: 2.1rem;
+    .home-hero-title {
+        font-size: 1.65rem;
     }
 
     .home-carousel-caption .lead {
-        font-size: 1.05rem;
+        font-size: 0.95rem;
+    }
+
+    .hero-badge {
+        font-size: 0.82rem;
     }
 
     .highlight-section {
