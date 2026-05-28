@@ -1,45 +1,64 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <body>
 
-<footer th:fragment="footer" class="simple-footer mt-5">
-    <div class="container text-center">
-        <h2>Fale com a LudoPet</h2>
+<footer th:fragment="footer" class="mt-5" style="background-color: #2D6A56; color: white;">
 
-        <p>
-            Estamos por perto para ajudar voce a cuidar, encontrar e acolher quem faz parte da familia.
-        </p>
+    <div class="container py-5">
+        <div class="row gy-4">
 
-        <div class="footer-contact-actions">
-            <a class="footer-contact-btn whatsapp"
-               href="https://wa.me/5585999999999?text=Ola%20LudoPet!%20Quero%20falar%20com%20voces."
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Falar com a LudoPet pelo WhatsApp">
-                <span>W</span>
-                WhatsApp
-            </a>
+            <!-- LOGO E DESCRIÇÃO -->
+            <div class="col-md-4">
+                <img src="/img/logo/logo.jpeg" alt="LudoPet" style="height:50px; border-radius:8px; background:white; padding:4px;">
+                <p class="mt-3" style="color: rgba(255,255,255,0.8); font-size: 0.95rem;">
+                    Conectando pets a lares cheios de amor. Adote, cuide e transforme vidas.
+                </p>
+            </div>
 
-            <a class="footer-contact-btn"
-               href="mailto:contatoludopet@gmail.com"
-               aria-label="Enviar email para a LudoPet">
-                <span>@</span>
-                Email
-            </a>
+            <!-- LINKS RÁPIDOS -->
+            <div class="col-md-4">
+                <h6 class="fw-bold text-uppercase mb-3" style="color: #A7CDBD; letter-spacing: 0.08em;">Navegação</h6>
+                <ul class="list-unstyled" style="line-height: 2;">
+                    <li><a href="/" style="color:rgba(255,255,255,0.8); text-decoration:none;">🏠 Home</a></li>
+                    <li><a href="/adocao" style="color:rgba(255,255,255,0.8); text-decoration:none;">🐾 Adotar</a></li>
+                    <li><a href="/lojapet" style="color:rgba(255,255,255,0.8); text-decoration:none;">🛍 Loja Pet</a></li>
+                    <li><a href="/petalerta" style="color:rgba(255,255,255,0.8); text-decoration:none;">🔔 Pet Alerta</a></li>
+                    <li><a href="/forum" style="color:rgba(255,255,255,0.8); text-decoration:none;">💬 Fórum</a></li>
+                </ul>
+            </div>
 
-            <a class="footer-contact-btn"
-               href="https://github.com/"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Acessar GitHub da LudoPet">
-                <span>Git</span>
-                GitHub
-            </a>
+            <!-- CONTATO -->
+            <div class="col-md-4">
+                <h6 class="fw-bold text-uppercase mb-3" style="color: #A7CDBD; letter-spacing: 0.08em;">Contato</h6>
+                <div class="d-flex flex-column gap-2">
+                    <a href="https://wa.me/5585999999999" target="_blank"
+                       style="color:white; text-decoration:none; display:flex; align-items:center; gap:8px;">
+                        <span style="background:#25D366; border-radius:50%; width:30px; height:30px; display:grid; place-items:center; font-size:0.8rem; font-weight:bold;">W</span>
+                        WhatsApp
+                    </a>
+                    <a href="mailto:contatoludopet@gmail.com"
+                       style="color:white; text-decoration:none; display:flex; align-items:center; gap:8px;">
+                        <span style="background:#4F8F78; border-radius:50%; width:30px; height:30px; display:grid; place-items:center; font-size:0.8rem;">@</span>
+                        contatoludopet@gmail.com
+                    </a>
+                    <a href="https://github.com/" target="_blank"
+                       style="color:white; text-decoration:none; display:flex; align-items:center; gap:8px;">
+                        <span style="background:#333; border-radius:50%; width:30px; height:30px; display:grid; place-items:center; font-size:0.7rem; font-weight:bold;">Git</span>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+
         </div>
 
-        <small>&copy; 2026 LudoPet - Cuidando de pets com carinho.</small>
+        <hr style="border-color: rgba(255,255,255,0.15); margin-top: 40px;">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <small style="color: rgba(255,255,255,0.6);">© 2026 LudoPet — Cuidando de pets com carinho.</small>
+            <small style="color: rgba(255,255,255,0.6);">Feito com 🐾 por estudantes apaixonados</small>
+        </div>
     </div>
+
 </footer>
 
 </body>

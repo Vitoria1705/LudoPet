@@ -5,47 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Loja Pet - LudoPet</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #F8FAFC;
-        }
+        body { font-family: Arial, sans-serif; background: #F8FAFC; }
 
-        h2 {
-            color: #4F8F78;
-        }
+        h2 { color: #4F8F78; }
 
-        .produto-form {
-            background: white;
+        .loja-hero {
+            background: #4F8F78;
             border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
-        .upload-preview {
+        /* FILTROS */
+        .filtros {
             display: flex;
-            gap: 16px;
-            align-items: center;
+            gap: 10px;
             flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
-        .upload-preview img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #E2E8F0;
-            background: #F8FAFC;
+        .filtro-btn {
+            border: 2px solid #4F8F78;
+            color: #4F8F78;
+            background: white;
+            border-radius: 20px;
+            padding: 6px 18px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.2s;
         }
 
+        .filtro-btn:hover, .filtro-btn.ativo {
+            background: #4F8F78;
+            color: white;
+        }
+
+        /* PRODUTOS */
         #produtos {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
-            padding: 20px 0;
+            padding: 10px 0;
         }
 
         .card-custom {
@@ -53,40 +54,31 @@
             border-radius: 8px;
             padding: 15px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: 0.3s;
         }
 
-        .card-custom:hover {
-            transform: translateY(-5px);
-        }
+        .card-custom:hover { transform: translateY(-5px); }
 
         .card-custom img {
             width: 100%;
             height: 150px;
             object-fit: cover;
             border-radius: 8px;
-            background: #F1F5F9;
         }
 
-        .card-custom h3 {
-            font-size: 1.15rem;
-            margin-top: 12px;
-            min-height: 44px;
+        .card-custom h5 {
+            font-size: 1rem;
+            margin-top: 10px;
+            min-height: 40px;
         }
 
-        .preco {
-            color: #4F8F78;
-            font-weight: bold;
-        }
-
-        .btn {
-            border-radius: 10px;
-        }
+        .preco { color: #4F8F78; font-weight: bold; font-size: 1.1rem; }
 
         .btn-primary {
             background-color: #6FAF98;
             border-color: #6FAF98;
+            border-radius: 10px;
         }
 
         .btn-primary:hover {
@@ -97,37 +89,15 @@
         .btn-success {
             background-color: #4F8F78;
             border-color: #4F8F78;
+            border-radius: 10px;
         }
 
-        .btn-success:hover {
-            background-color: #3F735F;
-            border-color: #3F735F;
-        }
-
-        .btn-warning {
-            background-color: #F97316;
-            border-color: #F97316;
-            color: white;
-        }
-
-        .btn-warning:hover {
-            background-color: #EA580C;
-            border-color: #EA580C;
-            color: white;
-        }
-
-        .loja-hero {
-            background: #4F8F78;
+        /* CARRINHO */
+        .carrinho-box {
+            background: white;
             border-radius: 8px;
-        }
-
-        .cart-line {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #E2E8F0;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
     </style>
 </head>
@@ -138,158 +108,158 @@
 
 <main class="container mt-4">
 
-    <section class="loja-hero text-white p-5 mb-4">
-        <span class="fw-bold text-uppercase">Loja Pet</span>
-        <h1 class="display-5 fw-bold mt-2">Produtos para o cuidado diario</h1>
-        <p class="mb-0">Escolha um item, acompanhe o carrinho e finalize seu pedido.</p>
+    <!-- HERO -->
+    <section style="background: linear-gradient(135deg, #4F8F78, #6FAF98); border-radius: 12px;"
+             class="text-white p-5 mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <span class="badge mb-2" style="background: rgba(255,255,255,0.2); font-size:0.85rem;">🐾 LudoPet Store</span>
+                <h1 class="fw-bold" style="font-size: 2rem;">Tudo que seu pet merece</h1>
+                <p style="color: rgba(255,255,255,0.85); max-width: 480px;">
+                    Produtos selecionados com carinho para o bem-estar e felicidade do seu companheiro.
+                </p>
+            </div>
+            <div class="col-md-4 text-end d-none d-md-block">
+                <span style="font-size: 5rem;">🐶</span>
+            </div>
+        </div>
     </section>
 
-    <h2>Cadastrar Produto</h2>
-
-    <div class="produto-form mb-4">
-        <input id="nome" placeholder="Nome" class="form-control mb-2">
-        <input id="descricao" placeholder="Descricao" class="form-control mb-2">
-        <input id="preco" type="number" step="0.01" min="0" placeholder="Preco" class="form-control mb-2">
-
-        <label for="imagem" class="form-label">Imagem do produto</label>
-        <div class="upload-preview mb-3">
-            <img id="previewImagem" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Previa da imagem do produto">
-            <input id="imagem" type="file" accept="image/*" class="form-control" onchange="mostrarPreviewImagem()">
-        </div>
-
-        <button id="btnCadastrar" class="btn btn-primary" onclick="cadastrar()">Cadastrar</button>
-        <button id="btnCancelarEdicao" class="btn btn-outline-secondary d-none" onclick="cancelarEdicao()">Cancelar edicao</button>
+    <!-- FILTROS -->
+    <div class="d-flex gap-2 flex-wrap mb-4">
+        <button class="filtro-btn ativo" onclick="filtrar('todos', this)">Todos</button>
+        <button class="filtro-btn" onclick="filtrar('brinquedos', this)">🎾 Brinquedos</button>
+        <button class="filtro-btn" onclick="filtrar('camas', this)">🛏 Camas</button>
+        <button class="filtro-btn" onclick="filtrar('higiene', this)">🧴 Higiene</button>
+        <button class="filtro-btn" onclick="filtrar('petisco', this)">🦴 Petiscos</button>
+        <button class="filtro-btn" onclick="filtrar('racoes', this)">🍖 Rações</button>
     </div>
 
-    <h2>Produtos</h2>
-    <input
-            type="text"
-            id="pesquisa"
-            class="form-control mb-3"
-            placeholder="Pesquisar produto..."
-            onkeyup="filtrarProdutos()"
-    >
+    <!-- PRODUTOS -->
     <div id="produtos"></div>
 
-    <h2 id="carrinhoTitulo" class="mt-5">Carrinho</h2>
-    <div id="carrinho" class="p-3 bg-white rounded"></div>
-    <button class="btn btn-success mt-3" onclick="finalizarCompra()">Finalizar Compra</button>
+    <!-- CARRINHO -->
+    <div class="mt-5 mb-5" style="background:white; border-radius:12px; padding:24px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+        <h5 class="fw-bold mb-3">🛒 Carrinho</h5>
+        <div id="carrinho"></div>
+    </div>
+
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 
 <script>
     let carrinho = [];
-    let produtosGlobais = [];
-    let produtoEditando = null;
+    let todosProdutos = [];
 
-    function cadastrar() {
-        const nome = document.getElementById("nome").value.trim();
-        const descricao = document.getElementById("descricao").value.trim();
-        const preco = document.getElementById("preco").value;
-        const imagem = document.getElementById("imagem").files[0];
+    function filtrar(categoria, btn) {
+        document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('ativo'));
+        btn.classList.add('ativo');
 
-        if (!nome || !preco) {
-            alert("Preencha nome e preco!");
+        if (categoria === 'todos') {
+            renderProdutos(todosProdutos);
+        } else {
+            renderProdutos(todosProdutos.filter(p => p.imagemUrl && p.imagemUrl.includes(categoria)));
+        }
+    }
+
+    function renderProdutos(lista) {
+        const div = document.getElementById("produtos");
+        div.innerHTML = "";
+
+        if (lista.length === 0) {
+            div.innerHTML = "<p class='text-muted'>Nenhum produto encontrado.</p>";
             return;
         }
 
-        const dados = new FormData();
-        dados.append("nome", nome);
-        dados.append("descricao", descricao);
-        dados.append("preco", preco);
+        div.style.display = "grid";
+        div.style.gridTemplateColumns = "repeat(auto-fill, minmax(200px, 1fr))";
+        div.style.gap = "20px";
 
-        if (imagem) {
-            dados.append("imagem", imagem);
-        }
-
-        let url = "/api/produtos";
-        let metodo = "POST";
-
-        if (produtoEditando !== null) {
-            url += "/" + produtoEditando;
-            metodo = "PUT";
-        }
-
-        fetch(url, {
-            method: metodo,
-            body: dados
-        })
-            .then(resposta => {
-                if (!resposta.ok) {
-                    throw new Error("Erro ao salvar produto");
-                }
-
-                alert(produtoEditando !== null ? "Produto atualizado!" : "Produto cadastrado!");
-                limparFormulario();
-                carregarProdutos();
-            })
-            .catch(() => alert("Nao foi possivel salvar o produto. Verifique os dados e a imagem."));
-    }
-
-    function mostrarPreviewImagem() {
-        const arquivo = document.getElementById("imagem").files[0];
-        const preview = document.getElementById("previewImagem");
-
-        if (!arquivo) {
-            preview.src = produtoEditando ? preview.src : "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-            return;
-        }
-
-        preview.src = URL.createObjectURL(arquivo);
-    }
-
-    function limparFormulario() {
-        produtoEditando = null;
-        document.getElementById("nome").value = "";
-        document.getElementById("descricao").value = "";
-        document.getElementById("preco").value = "";
-        document.getElementById("imagem").value = "";
-        document.getElementById("previewImagem").src = "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-        document.getElementById("btnCadastrar").textContent = "Cadastrar";
-        document.getElementById("btnCancelarEdicao").classList.add("d-none");
-    }
-
-    function cancelarEdicao() {
-        limparFormulario();
+        lista.forEach(produto => {
+            div.innerHTML += `
+                <div style="background:white; border-radius:12px; overflow:hidden;
+                            box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:0.3s;
+                            display:flex; flex-direction:column;"
+                     onmouseover="this.style.transform='translateY(-4px)'"
+                     onmouseout="this.style.transform='translateY(0)'">
+                    <img src="${produto.imagemUrl}" alt="${produto.nome}"
+                         style="width:100%; height:160px; object-fit:cover;"
+                         onerror="this.src='/img/produtos/padrao.png'">
+                    <div style="padding:14px; flex:1; display:flex; flex-direction:column; justify-content:space-between;">
+                        <div>
+                            <h6 style="font-weight:700; color:#1F2937; margin-bottom:4px;">${produto.nome}</h6>
+                            <p style="font-size:0.82rem; color:#64748B; margin-bottom:8px;">${produto.descricao}</p>
+                        </div>
+                        <div>
+                            <div style="color:#4F8F78; font-weight:800; font-size:1.1rem; margin-bottom:10px;">
+                                R$ ${produto.preco.toFixed(2)}
+                            </div>
+                            <button onclick="comprar(${produto.id}, '${produto.nome}', ${produto.preco})"
+                                    style="width:100%; background:#4F8F78; color:white; border:none;
+                                           border-radius:8px; padding:8px; font-weight:600; cursor:pointer;
+                                           transition:0.2s;"
+                                    onmouseover="this.style.background='#3F735F'"
+                                    onmouseout="this.style.background='#4F8F78'">
+                                🛒 Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
     }
 
     function atualizarCarrinho() {
         const div = document.getElementById("carrinho");
 
         if (carrinho.length === 0) {
-            div.innerHTML = '<p class="text-muted mb-0">Carrinho vazio.</p>';
+            div.innerHTML = "<p class='text-muted'>Carrinho vazio</p>";
             return;
         }
 
         let total = 0;
-
         div.innerHTML = carrinho.map((p, i) => {
-            const preco = Number(p.preco || 0);
-            total += preco;
+            total += p.preco;
             return `
-                <div class="cart-line">
-                    <span><strong>${p.nome}</strong><br><small>${p.descricao || "Produto selecionado"}</small></span>
-                    <span>R$ ${preco.toFixed(2)}</span>
-                    <button class="btn btn-sm btn-outline-danger ms-2" onclick="remover(${i})">Remover</button>
+                <div style="display:flex; justify-content:space-between; align-items:center;
+                            padding:10px 0; border-bottom:1px solid #F1F5F9;">
+                    <span style="color:#334155;">${p.nome}</span>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span style="color:#4F8F78; font-weight:700;">R$ ${p.preco.toFixed(2)}</span>
+                        <button onclick="remover(${i})"
+                                style="background:none; border:1px solid #FDA4AF; color:#F43F5E;
+                                       border-radius:6px; padding:2px 8px; cursor:pointer; font-size:0.8rem;">
+                            remover
+                        </button>
+                    </div>
                 </div>
             `;
         }).join("");
 
-        div.innerHTML += `<hr><strong>Total: R$ ${total.toFixed(2)}</strong>`;
+        div.innerHTML += `
+            <div style="display:flex; justify-content:space-between; margin-top:16px; font-size:1.1rem;">
+                <strong>Total</strong>
+                <strong style="color:#4F8F78;">R$ ${total.toFixed(2)}</strong>
+            </div>
+            <button onclick="finalizarCompra()"
+                    style="margin-top:16px; width:100%; background:#4F8F78; color:white;
+                           border:none; border-radius:10px; padding:12px; font-weight:700;
+                           font-size:1rem; cursor:pointer; transition:0.2s;"
+                    onmouseover="this.style.background='#3F735F'"
+                    onmouseout="this.style.background='#4F8F78'">
+                ✅ Finalizar Compra
+            </button>
+        `;
     }
 
-    function comprar(nome, preco, descricao = "", imagemUrl = "") {
-        fetch("/api/carrinho", {
+    function comprar(id, nome, preco) {
+        fetch("http://localhost:8081/api/carrinho", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                nomeProduto: nome,
-                preco: preco
-            })
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nomeProduto: nome, preco: preco })
         });
-
-        carrinho.push({ nome, preco: Number(preco || 0), descricao, imagemUrl });
+        carrinho.push({ id, nome, preco });
         atualizarCarrinho();
     }
 
@@ -298,135 +268,46 @@
         atualizarCarrinho();
     }
 
-    function deletarProduto(id) {
-        fetch(`/api/produtos/${id}`, {
-            method: "DELETE"
-        })
-            .then(() => {
-                alert("Produto removido!");
-                carregarProdutos();
-            });
-    }
-
-    function editarProduto(produto) {
-        produtoEditando = produto.id;
-        document.getElementById("nome").value = produto.nome || "";
-        document.getElementById("descricao").value = produto.descricao || "";
-        document.getElementById("preco").value = produto.preco || "";
-        document.getElementById("imagem").value = "";
-        document.getElementById("previewImagem").src = produto.imagemUrl || "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-        document.getElementById("btnCadastrar").textContent = "Atualizar";
-        document.getElementById("btnCancelarEdicao").classList.remove("d-none");
-        window.scrollTo(0, 0);
-    }
-
-    function filtrarProdutos() {
-        const texto = document.getElementById("pesquisa").value.toLowerCase();
-        const produtosFiltrados = produtosGlobais.filter(produto =>
-            produto.nome && produto.nome.toLowerCase().includes(texto)
-        );
-
-        renderizarProdutos(produtosFiltrados);
-    }
-
     function finalizarCompra() {
-        fetch("/api/pedidos", {
+        if (carrinho.length === 0) { alert("Carrinho vazio!"); return; }
+
+        const total = carrinho.reduce((t, p) => t + p.preco, 0);
+
+        fetch("http://localhost:8081/api/pedidos", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                total: carrinho.reduce((t, p) => t + Number(p.preco || 0), 0),
-                produtos: carrinho
+                total: total,
+                produtos: carrinho.map(p => ({ id: p.id }))
             })
         })
-            .then(() => {
-                alert("Pedido realizado com sucesso!");
+            .then(r => r.json())
+            .then(data => {
+                // Mensagem ligada ao kit adoção 🐾
+                alert(`✅ Pedido #${data.id} confirmado!\n\nTotal: R$ ${total.toFixed(2)}\n\n🐾 Dica LudoPet: Se você acabou de adotar um pet, confira nosso Kit Boas-Vindas! Temos tudo que seu novo companheiro precisa para se sentir em casa. 💚`);
+                fetch("http://localhost:8081/api/carrinho/limpar", { method: "DELETE" });
                 carrinho = [];
                 atualizarCarrinho();
-            });
+            })
+            .catch(() => alert("Erro ao finalizar pedido."));
     }
 
     function carregarProdutos() {
-        fetch("/api/produtos")
+        fetch("http://localhost:8081/api/produtos")
             .then(r => r.json())
             .then(data => {
-                produtosGlobais = data;
-                renderizarProdutos(data);
+                todosProdutos = data;
+                renderProdutos(data);
             });
-    }
-
-    function renderizarProdutos(produtos) {
-        const div = document.getElementById("produtos");
-        div.innerHTML = "";
-
-        produtos.forEach(produto => {
-            const card = document.createElement("div");
-            card.className = "card-custom";
-
-            const imagem = document.createElement("img");
-            imagem.src = produto.imagemUrl || "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-            imagem.alt = produto.nome || "Produto";
-            card.appendChild(imagem);
-
-            const nome = document.createElement("h3");
-            nome.textContent = produto.nome || "";
-            card.appendChild(nome);
-
-            const descricao = document.createElement("p");
-            descricao.textContent = produto.descricao || "";
-            card.appendChild(descricao);
-
-            const preco = document.createElement("div");
-            preco.className = "preco";
-            preco.textContent = `R$ ${Number(produto.preco || 0).toFixed(2)}`;
-            card.appendChild(preco);
-
-            const btnComprar = document.createElement("button");
-            btnComprar.className = "btn btn-success w-100 mt-2";
-            btnComprar.textContent = "Comprar";
-            btnComprar.onclick = () => comprar(produto.nome, produto.preco, produto.descricao, produto.imagemUrl);
-            card.appendChild(btnComprar);
-
-            const btnEditar = document.createElement("button");
-            btnEditar.className = "btn btn-warning w-100 mt-2";
-            btnEditar.textContent = "Editar";
-            btnEditar.onclick = () => editarProduto(produto);
-            card.appendChild(btnEditar);
-
-            const btnExcluir = document.createElement("button");
-            btnExcluir.className = "btn btn-danger w-100 mt-2";
-            btnExcluir.textContent = "Excluir";
-            btnExcluir.onclick = () => deletarProduto(produto.id);
-            card.appendChild(btnExcluir);
-
-            div.appendChild(card);
-        });
-    }
-
-    function adicionarProdutoDaUrl() {
-        const params = new URLSearchParams(window.location.search);
-        const nome = params.get("add");
-
-        if (!nome) {
-            return;
-        }
-
-        const preco = Number(params.get("preco") || 0);
-        const descricao = params.get("descricao") || "";
-        const imagem = params.get("imagem") || "";
-
-        comprar(nome, preco, descricao, imagem);
-
-        const carrinhoTitulo = document.getElementById("carrinhoTitulo");
-        carrinhoTitulo.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     carregarProdutos();
     atualizarCarrinho();
-    adicionarProdutoDaUrl();
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </body>
 </html>
