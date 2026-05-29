@@ -7,22 +7,37 @@
     <title>Loja Pet - LudoPet</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #F8FAFC;
+        /* Estilos específicos para a estética de catálogo Neo-Brutalista Soft */
+        .loja-hero {
+            background: var(--verde-principal) !important; /* Azul Royal LudoPet */
+            border-radius: var(--radius-lg);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
         }
-
-        h2 {
-            color: #4F8F78;
+        .loja-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 70% at 80% 30%, rgba(255, 212, 59, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .loja-hero h1 {
+            font-family: 'Fraunces', serif !important;
+            color: var(--white) !important;
         }
 
         .produto-form {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            background: var(--white);
+            border: 1px solid var(--cinza-claro);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-md);
         }
 
         .upload-preview {
@@ -31,94 +46,99 @@
             align-items: center;
             flex-wrap: wrap;
         }
-
         .upload-preview img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #E2E8F0;
-            background: #F8FAFC;
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            border: 2px solid #E2E8F0;
+            background: var(--fundo-claro);
         }
 
+        /* Ajuste da grade para parecer um catálogo profissional de vitrine */
         #produtos {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 20px 0;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 28px;
+            padding: 24px 0;
         }
 
         .card-custom {
-            background: white;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: 0.3s;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--cinza-claro);
+            padding: 20px;
+            text-align: left; /* Alinhamento à esquerda estilo e-commerce gringo */
+            box-shadow: var(--shadow-sm);
+            transition: transform .2s, box-shadow .2s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
         }
-
         .card-custom:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--verde-logo);
         }
 
-        .card-custom img {
+        /* Envelopamento da foto do catálogo */
+        .card-custom-img-wrapper {
             width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            background: #F1F5F9;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--fundo-claro);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--cinza-claro);
+            margin-bottom: 16px;
+        }
+        .card-custom img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+        .card-custom:hover img {
+            transform: scale(1.05); /* Leve zoom interativo na foto */
         }
 
         .card-custom h3 {
-            font-size: 1.15rem;
-            margin-top: 12px;
-            min-height: 44px;
+            font-family: 'Plus Jakarta Sans', sans-serif !important; /* Fonte limpa nos itens do catálogo */
+            font-size: 1.05rem !important;
+            font-weight: 800 !important;
+            color: var(--texto) !important;
+            margin-bottom: 6px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 44px; /* Trava para os títulos ficarem sempre alinhados */
+        }
+        .card-custom p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 38px;
         }
 
         .preco {
-            color: #4F8F78;
-            font-weight: bold;
-        }
-
-        .btn {
-            border-radius: 10px;
-        }
-
-        .btn-primary {
-            background-color: #6FAF98;
-            border-color: #6FAF98;
-        }
-
-        .btn-primary:hover {
-            background-color: #4F8F78;
-            border-color: #4F8F78;
-        }
-
-        .btn-success {
-            background-color: #4F8F78;
-            border-color: #4F8F78;
-        }
-
-        .btn-success:hover {
-            background-color: #3F735F;
-            border-color: #3F735F;
-        }
-
-        .btn-warning {
-            background-color: #F97316;
-            border-color: #F97316;
-            color: white;
-        }
-
-        .btn-warning:hover {
-            background-color: #EA580C;
-            border-color: #EA580C;
-            color: white;
-        }
-
-        .loja-hero {
-            background: #4F8F78;
-            border-radius: 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--texto) !important;
+            font-weight: 800;
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            margin-top: auto; /* Joga o preço sempre para o rodapé do card */
         }
 
         .cart-line {
@@ -126,307 +146,343 @@
             justify-content: space-between;
             gap: 12px;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #E2E8F0;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--cinza-claro);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .cart-line small {
+            color: var(--muted);
+        }
+
+        #carrinho {
+            border: 1px solid var(--cinza-claro);
+            box-shadow: var(--shadow-md);
+            padding: 24px !important;
         }
     </style>
 </head>
 
-<body>
+<body class="bg-light" style="font-family: 'Plus Jakarta Sans', sans-serif;">
 
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
-<main class="container mt-4">
+<main class="container mt-4" style="animation: pgIn .4s ease both;">
 
-    <section class="loja-hero text-white p-5 mb-4">
-        <span class="fw-bold text-uppercase">Loja Pet</span>
-        <h1 class="display-5 fw-bold mt-2">Produtos para o cuidado diario</h1>
-        <p class="mb-0">Escolha um item, acompanhe o carrinho e finalize seu pedido.</p>
+    <section class="loja-hero text-white p-5 mb-5">
+        <span class="hero-badge" style="background: rgba(255,255,255,0.15)">🛍️ Catálogo Oficial</span>
+        <h1 class="display-5 fw-bold mt-3">Produtos para o cuidado diário</h1>
+        <p class="lead mb-0" style="color: rgba(255,255,255,0.85); font-size: 1rem; font-weight: 600;">Escolha um item, acompanhe o carrinho e finalize seu pedido com rapidez.</p>
     </section>
 
-    <h2>Cadastrar Produto</h2>
+    <h2 class="mb-3" style="font-family: 'Fraunces', serif; font-weight: 900; color: var(--verde-escuro); font-size: 1.8rem;">Cadastrar Produto <small style="font-size: 11px; color: var(--coral); font-family: 'Plus Jakarta Sans'; vertical-align: middle;">(Modo Simulação)</small></h2>
 
-    <div class="produto-form mb-4">
-        <input id="nome" placeholder="Nome" class="form-control mb-2">
-        <input id="descricao" placeholder="Descricao" class="form-control mb-2">
-        <input id="preco" type="number" step="0.01" min="0" placeholder="Preco" class="form-control mb-2">
-
-        <label for="imagem" class="form-label">Imagem do produto</label>
-        <div class="upload-preview mb-3">
-            <img id="previewImagem" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Previa da imagem do produto">
-            <input id="imagem" type="file" accept="image/*" class="form-control" onchange="mostrarPreviewImagem()">
+    <div class="produto-form mb-5">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label" style="font-size: .73rem; font-weight: 800; color: var(--verde-principal); text-transform: uppercase; letter-spacing: .06em;">Nome do Produto</label>
+                <input id="nome" placeholder="Ex: Ração Golden Adulto 15kg" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" style="font-size: .73rem; font-weight: 800; color: var(--verde-principal); text-transform: uppercase; letter-spacing: .06em;">Preço (R$)</label>
+                <input id="preco" type="number" step="0.01" min="0" placeholder="0.00" class="form-control">
+            </div>
+            <div class="col-12">
+                <label class="form-label" style="font-size: .73rem; font-weight: 800; color: var(--verde-principal); text-transform: uppercase; letter-spacing: .06em;">Descrição Curta</label>
+                <input id="descricao" placeholder="Diga o que torna esse produto especial para os pets..." class="form-control">
+            </div>
         </div>
 
-        <button id="btnCadastrar" class="btn btn-primary" onclick="cadastrar()">Cadastrar</button>
-        <button id="btnCancelarEdicao" class="btn btn-outline-secondary d-none" onclick="cancelarEdicao()">Cancelar edicao</button>
+        <label class="form-label mt-3" style="font-size: .73rem; font-weight: 800; color: var(--verde-principal); text-transform: uppercase; letter-spacing: .06em;">Imagem do produto</label>
+        <div class="upload-preview mb-4">
+            <img id="previewImagem" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Prévia da imagem">
+            <input id="imagem" type="file" accept="image/*" class="form-control" style="flex: 1; min-width: 200px;" onchange="mostrarPreviewImagem()">
+        </div>
+
+        <div class="d-flex gap-2">
+            <button id="btnCadastrar" class="btn btn-split b-primary-split" onclick="cadastrar()">Cadastrar no Catálogo</button>
+            <button id="btnCancelarEdicao" class="btn btn-split b-secondary-split d-none" onclick="cancelarEdicao()">Cancelar edição</button>
+        </div>
     </div>
 
-    <h2>Produtos</h2>
-    <input
-            type="text"
-            id="pesquisa"
-            class="form-control mb-3"
-            placeholder="Pesquisar produto..."
-            onkeyup="filtrarProdutos()"
-    >
+    <h2 class="mb-3" style="font-family: 'Fraunces', serif; font-weight: 900; color: var(--verde-escuro); font-size: 1.8rem;">Produtos Disponíveis</h2>
+    <div class="position-relative mb-4">
+        <input
+                type="text"
+                id="pesquisa"
+                class="form-control"
+                style="padding-left: 40px !important;"
+                placeholder="Pesquisar no catálogo..."
+                onkeyup="filtrarProdutos()"
+        >
+        <i class="bi bi-search position-absolute" style="left: 15px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.95rem;"></i>
+    </div>
+
     <div id="produtos"></div>
 
-    <h2 id="carrinhoTitulo" class="mt-5">Carrinho</h2>
-    <div id="carrinho" class="p-3 bg-white rounded"></div>
-    <button class="btn btn-success mt-3" onclick="finalizarCompra()">Finalizar Compra</button>
+    <h2 id="carrinhoTitulo" class="mt-5 mb-3" style="font-family: 'Fraunces', serif; font-weight: 900; color: var(--verde-escuro); font-size: 1.8rem;">Seu Carrinho</h2>
+    <div id="carrinho" class="p-4 bg-white rounded-3"></div>
+    <button class="btn btn-split b-primary-split mt-3 px-5" style="height: 50px;" onclick="finalizarCompra()">
+        <i class="bi bi-check-circle-fill me-2"></i> Finalizar Compra
+    </button>
 </main>
 
-<footer th:replace="~{fragments/footer :: footer}"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></header>
 
-<script>
-    let carrinho = [];
-    let produtosGlobais = [];
-    let produtoEditando = null;
+    <script>
+        let carrinho = [];
+        let produtoEditando = null;
 
-    function cadastrar() {
-        const nome = document.getElementById("nome").value.trim();
-        const descricao = document.getElementById("descricao").value.trim();
-        const preco = document.getElementById("preco").value;
-        const imagem = document.getElementById("imagem").files[0];
-
-        if (!nome || !preco) {
-            alert("Preencha nome e preco!");
-            return;
-        }
-
-        const dados = new FormData();
-        dados.append("nome", nome);
-        dados.append("descricao", descricao);
-        dados.append("preco", preco);
-
-        if (imagem) {
-            dados.append("imagem", imagem);
-        }
-
-        let url = "/api/produtos";
-        let metodo = "POST";
-
-        if (produtoEditando !== null) {
-            url += "/" + produtoEditando;
-            metodo = "PUT";
-        }
-
-        fetch(url, {
-            method: metodo,
-            body: dados
-        })
-            .then(resposta => {
-                if (!resposta.ok) {
-                    throw new Error("Erro ao salvar produto");
-                }
-
-                alert(produtoEditando !== null ? "Produto atualizado!" : "Produto cadastrado!");
-                limparFormulario();
-                carregarProdutos();
-            })
-            .catch(() => alert("Nao foi possivel salvar o produto. Verifique os dados e a imagem."));
-    }
-
-    function mostrarPreviewImagem() {
-        const arquivo = document.getElementById("imagem").files[0];
-        const preview = document.getElementById("previewImagem");
-
-        if (!arquivo) {
-            preview.src = produtoEditando ? preview.src : "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-            return;
-        }
-
-        preview.src = URL.createObjectURL(arquivo);
-    }
-
-    function limparFormulario() {
-        produtoEditando = null;
-        document.getElementById("nome").value = "";
-        document.getElementById("descricao").value = "";
-        document.getElementById("preco").value = "";
-        document.getElementById("imagem").value = "";
-        document.getElementById("previewImagem").src = "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-        document.getElementById("btnCadastrar").textContent = "Cadastrar";
-        document.getElementById("btnCancelarEdicao").classList.add("d-none");
-    }
-
-    function cancelarEdicao() {
-        limparFormulario();
-    }
-
-    function atualizarCarrinho() {
-        const div = document.getElementById("carrinho");
-
-        if (carrinho.length === 0) {
-            div.innerHTML = '<p class="text-muted mb-0">Carrinho vazio.</p>';
-            return;
-        }
-
-        let total = 0;
-
-        div.innerHTML = carrinho.map((p, i) => {
-            const preco = Number(p.preco || 0);
-            total += preco;
-            return `
-                <div class="cart-line">
-                    <span><strong>${p.nome}</strong><br><small>${p.descricao || "Produto selecionado"}</small></span>
-                    <span>R$ ${preco.toFixed(2)}</span>
-                    <button class="btn btn-sm btn-outline-danger ms-2" onclick="remover(${i})">Remover</button>
-                </div>
-            `;
-        }).join("");
-
-        div.innerHTML += `<hr><strong>Total: R$ ${total.toFixed(2)}</strong>`;
-    }
-
-    function comprar(nome, preco, descricao = "", imagemUrl = "") {
-        fetch("/api/carrinho", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                nomeProduto: nome,
-                preco: preco
-            })
-        });
-
-        carrinho.push({ nome, preco: Number(preco || 0), descricao, imagemUrl });
-        atualizarCarrinho();
-    }
-
-    function remover(index) {
-        carrinho.splice(index, 1);
-        atualizarCarrinho();
-    }
-
-    function deletarProduto(id) {
-        fetch(`/api/produtos/${id}`, {
-            method: "DELETE"
-        })
-            .then(() => {
-                alert("Produto removido!");
-                carregarProdutos();
-            });
-    }
-
-    function editarProduto(produto) {
-        produtoEditando = produto.id;
-        document.getElementById("nome").value = produto.nome || "";
-        document.getElementById("descricao").value = produto.descricao || "";
-        document.getElementById("preco").value = produto.preco || "";
-        document.getElementById("imagem").value = "";
-        document.getElementById("previewImagem").src = produto.imagemUrl || "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-        document.getElementById("btnCadastrar").textContent = "Atualizar";
-        document.getElementById("btnCancelarEdicao").classList.remove("d-none");
-        window.scrollTo(0, 0);
-    }
-
-    function filtrarProdutos() {
-        const texto = document.getElementById("pesquisa").value.toLowerCase();
-        const produtosFiltrados = produtosGlobais.filter(produto =>
-            produto.nome && produto.nome.toLowerCase().includes(texto)
-        );
-
-        renderizarProdutos(produtosFiltrados);
-    }
-
-    function finalizarCompra() {
-        fetch("/api/pedidos", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
+        // LISTA DE PRODUTOS FIXA (Para parecer um catálogo imediatamente, sem precisar de banco)
+        let produtosGlobais = [
+            {
+                id: 1,
+                nome: "Ração Golden Formula Adultos",
+                descricao: "Nutrição premium completa e balanceada para cães adultos de médio e grande porte.",
+                preco: "129.90",
+                imagemUrl: "/img/produtos/racoes/racao-golden-adulto.jpg"
             },
-            body: JSON.stringify({
-                total: carrinho.reduce((t, p) => t + Number(p.preco || 0), 0),
-                produtos: carrinho
-            })
-        })
-            .then(() => {
-                alert("Pedido realizado com sucesso!");
-                carrinho = [];
-                atualizarCarrinho();
-            });
-    }
+            {
+                id: 2,
+                nome: "Bola de Brinquedo Interativa",
+                descricao: "Garante diversão, gasto de energia saudável e alta resistência contra mordidas.",
+                preco: "29.90",
+                imagemUrl: "/img/produtos/brinquedos/bola-de-brinquedo.jpg"
+            },
+            {
+                id: 3,
+                nome: "Sofá Pet Premium Soft",
+                descricao: "Máximo conforto, tecido antialérgico e isolamento térmico perfeito para o descanso.",
+                preco: "199.90",
+                imagemUrl: "/img/produtos/camas/sofa-pet.webp"
+            },
+            {
+                id: 4,
+                nome: "Shampoo Anti Pulgas e Carrapatos",
+                descricao: "Higiene profunda, proteção de longa duração e perfume extremamente agradável.",
+                preco: "39.90",
+                imagemUrl: "/img/produtos/higiene/shampoo-anti-pulgas.webp"
+            }
+        ];
 
-    function carregarProdutos() {
-        fetch("/api/produtos")
-            .then(r => r.json())
-            .then(data => {
-                produtosGlobais = data;
-                renderizarProdutos(data);
-            });
-    }
+        function cadastrar() {
+            const nome = document.getElementById("nome").value.trim();
+            const descricao = document.getElementById("descricao").value.trim();
+            const preco = document.getElementById("preco").value;
+            const arquivoImagem = document.getElementById("imagem").files[0];
 
-    function renderizarProdutos(produtos) {
-        const div = document.getElementById("produtos");
-        div.innerHTML = "";
+            if (!nome || !preco) {
+                alert("Preencha nome e preço!");
+                return;
+            }
 
-        produtos.forEach(produto => {
-            const card = document.createElement("div");
-            card.className = "card-custom";
+            // Gera uma URL temporária para a imagem enviada via upload para simular no catálogo
+            let imgSimulada = "https://cdn-icons-png.flaticon.com/512/616/616408.png";
+            if (arquivoImagem) {
+                imgSimulada = URL.createObjectURL(arquivoImagem);
+            } else if (produtoEditando) {
+                const prodAntigo = produtosGlobais.find(p => p.id === produtoEditando);
+                if (prodAntigo) imgSimulada = prodAntigo.imagemUrl;
+            }
 
-            const imagem = document.createElement("img");
-            imagem.src = produto.imagemUrl || "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-            imagem.alt = produto.nome || "Produto";
-            card.appendChild(imagem);
+            if (produtoEditando !== null) {
+                // Modo Edição no Array Local
+                produtosGlobais = produtosGlobais.map(p => {
+                    if (p.id === produtoEditando) {
+                        return { id: p.id, nome, descricao, preco: Number(preco).toFixed(2), imagemUrl: imgSimulada };
+                    }
+                    return p;
+                });
+                alert("Produto atualizado no catálogo!");
+            } else {
+                // Modo Cadastro no Array Local
+                const novoProd = {
+                    id: Date.now(), // Gera um ID único falso
+                    nome,
+                    descricao,
+                    preco: Number(preco).toFixed(2),
+                    imagemUrl: imgSimulada
+                };
+                produtosGlobais.push(novoProd);
+                alert("Produto adicionado temporariamente ao catálogo!");
+            }
 
-            const nome = document.createElement("h3");
-            nome.textContent = produto.nome || "";
-            card.appendChild(nome);
-
-            const descricao = document.createElement("p");
-            descricao.textContent = produto.descricao || "";
-            card.appendChild(descricao);
-
-            const preco = document.createElement("div");
-            preco.className = "preco";
-            preco.textContent = `R$ ${Number(produto.preco || 0).toFixed(2)}`;
-            card.appendChild(preco);
-
-            const btnComprar = document.createElement("button");
-            btnComprar.className = "btn btn-success w-100 mt-2";
-            btnComprar.textContent = "Comprar";
-            btnComprar.onclick = () => comprar(produto.nome, produto.preco, produto.descricao, produto.imagemUrl);
-            card.appendChild(btnComprar);
-
-            const btnEditar = document.createElement("button");
-            btnEditar.className = "btn btn-warning w-100 mt-2";
-            btnEditar.textContent = "Editar";
-            btnEditar.onclick = () => editarProduto(produto);
-            card.appendChild(btnEditar);
-
-            const btnExcluir = document.createElement("button");
-            btnExcluir.className = "btn btn-danger w-100 mt-2";
-            btnExcluir.textContent = "Excluir";
-            btnExcluir.onclick = () => deletarProduto(produto.id);
-            card.appendChild(btnExcluir);
-
-            div.appendChild(card);
-        });
-    }
-
-    function adicionarProdutoDaUrl() {
-        const params = new URLSearchParams(window.location.search);
-        const nome = params.get("add");
-
-        if (!nome) {
-            return;
+            limparFormulario();
+            renderizarProdutos(produtosGlobais);
         }
 
-        const preco = Number(params.get("preco") || 0);
-        const descricao = params.get("descricao") || "";
-        const imagem = params.get("imagem") || "";
+        function mostrarPreviewImagem() {
+            const arquivo = document.getElementById("imagem").files[0];
+            const preview = document.getElementById("previewImagem");
 
-        comprar(nome, preco, descricao, imagem);
+            if (!arquivo) {
+                preview.src = produtoEditando ? preview.src : "https://cdn-icons-png.flaticon.com/512/616/616408.png";
+                return;
+            }
 
-        const carrinhoTitulo = document.getElementById("carrinhoTitulo");
-        carrinhoTitulo.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+            preview.src = URL.createObjectURL(arquivo);
+        }
 
-    carregarProdutos();
-    atualizarCarrinho();
-    adicionarProdutoDaUrl();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        function limparFormulario() {
+            produtoEditando = null;
+            document.getElementById("nome").value = "";
+            document.getElementById("descricao").value = "";
+            document.getElementById("preco").value = "";
+            document.getElementById("imagem").value = "";
+            document.getElementById("previewImagem").src = "https://cdn-icons-png.flaticon.com/512/616/616408.png";
+            document.getElementById("btnCadastrar").textContent = "Cadastrar no Catálogo";
+            document.getElementById("btnCancelarEdicao").classList.add("d-none");
+        }
+
+        function cancelarEdicao() {
+            limparFormulario();
+        }
+
+        function atualizarCarrinho() {
+            const div = document.getElementById("carrinho");
+
+            if (carrinho.length === 0) {
+                div.innerHTML = '<p class="text-muted mb-0"><i class="bi bi-cart-x me-2"></i>Seu carrinho está vazio neste momento.</p>';
+                return;
+            }
+
+            let total = 0;
+
+            div.innerHTML = carrinho.map((p, i) => {
+                const preco = Number(p.preco || 0);
+                total += preco;
+                return `
+                    <div class="cart-line">
+                        <span><strong>${p.nome}</strong><br><small>${p.descricao || "Produto selecionado"}</small></span>
+                        <span style="font-weight: 700; color: var(--texto);">R$ ${preco.toFixed(2)}</span>
+                        <button class="btn btn-sm btn-outline-danger px-3" style="border-radius: 8px;" onclick="remover(${i})"><i class="bi bi-trash3-fill"></i></button>
+                    </div>
+                `;
+            }).join("");
+
+            div.innerHTML += `<div class="mt-3 text-end" style="font-size: 1.2rem; font-family: 'Plus Jakarta Sans', sans-serif;"><strong>Total do Pedido: <span style="color: var(--verde-principal)">R$ ${total.toFixed(2)}</span></strong></div>`;
+        }
+
+        function comprar(nome, preco, descricao = "", imagemUrl = "") {
+            carrinho.push({ nome, preco: Number(preco || 0), descricao, imagemUrl });
+            atualizarCarrinho();
+        }
+
+        function remover(index) {
+            carrinho.splice(index, 1);
+            atualizarCarrinho();
+        }
+
+        function deletarProduto(id) {
+            if (!confirm("Tem certeza que deseja remover este produto do catálogo falso?")) return;
+            produtosGlobais = produtosGlobais.filter(p => p.id !== id);
+            renderizarProdutos(produtosGlobais);
+        }
+
+        function editarProduto(produto) {
+            produtoEditando = produto.id;
+            document.getElementById("nome").value = produto.nome || "";
+            document.getElementById("descricao").value = produto.descricao || "";
+            document.getElementById("preco").value = produto.preco || "";
+            document.getElementById("imagem").value = "";
+            document.getElementById("previewImagem").src = produto.imagemUrl || "https://cdn-icons-png.flaticon.com/512/616/616408.png";
+            document.getElementById("btnCadastrar").textContent = "Atualizar Item";
+            document.getElementById("btnCancelarEdicao").classList.remove("d-none");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function filtrarProdutos() {
+            const texto = document.getElementById("pesquisa").value.toLowerCase();
+            const produtosFiltrados = produtosGlobais.filter(produto =>
+                produto.nome && produto.nome.toLowerCase().includes(texto)
+            );
+
+            renderizarProdutos(produtosFiltrados);
+        }
+
+        function finalizarCompra() {
+            if(carrinho.length === 0) {
+                alert("Adicione produtos antes de finalizar!");
+                return;
+            }
+            alert("Simulação de pedido concluída com sucesso!");
+            carrinho = [];
+            atualizarCarrinho();
+        }
+
+        function renderizarProdutos(produtos) {
+            const div = document.getElementById("produtos");
+            div.innerHTML = "";
+
+            produtos.forEach(produto => {
+                const card = document.createElement("div");
+                card.className = "card-custom";
+
+                // Envelopamento da foto estilo vitrine
+                const imgWrapper = document.createElement("div");
+                imgWrapper.className = "card-custom-img-wrapper";
+
+                const imagem = document.createElement("img");
+                imagem.src = produto.imagemUrl || "https://cdn-icons-png.flaticon.com/512/616/616408.png";
+                imagem.alt = produto.nome || "Produto";
+                // Caso a imagem local falte, injeta uma genérica bonita do Unsplash automaticamente
+                imagem.onerror = function() {
+                    this.src = "https://images.unsplash.com/photo-1516715094727-ec48be335d79?q=80&w=300&auto=format&fit=crop";
+                };
+
+                imgWrapper.appendChild(imagem);
+                card.appendChild(imgWrapper);
+
+                const nome = document.createElement("h3");
+                nome.textContent = produto.nome || "";
+                card.appendChild(nome);
+
+                const descricao = document.createElement("p");
+                descricao.textContent = produto.descricao || "";
+                card.appendChild(descricao);
+
+                const preco = document.createElement("div");
+                preco.className = "preco";
+                preco.textContent = `R$ ${Number(produto.preco || 0).toFixed(2)}`;
+                card.appendChild(preco);
+
+                /* Botão Comprar - Amarelo LudoPet pro catálogo acender */
+                const btnComprar = document.createElement("button");
+                btnComprar.className = "btn btn-split b-primary-split w-100 mt-2";
+                btnComprar.innerHTML = '<i class="bi bi-cart-plus-fill me-2"></i> Adicionar ao Carrinho';
+                btnComprar.onclick = () => comprar(produto.nome, produto.preco, produto.descricao, produto.imagemUrl);
+                card.appendChild(btnComprar);
+
+                /* Painel Administrativo em Linha */
+                const adminPanel = document.createElement("div");
+                adminPanel.className = "d-flex gap-2 mt-2";
+
+                const btnEditar = document.createElement("button");
+                btnEditar.className = "btn btn-split b-secondary-split w-50";
+                btnEditar.style.height = "38px";
+                btnEditar.style.fontSize = "0.78rem";
+                btnEditar.style.padding = "4px 8px";
+                btnEditar.innerHTML = '<i class="bi bi-pencil-square"></i> Editar';
+                btnEditar.onclick = () => editarProduto(produto);
+                adminPanel.appendChild(btnEditar);
+
+                const btnExcluir = document.createElement("button");
+                btnExcluir.className = "btn btn-outline-danger w-50";
+                btnExcluir.style.borderRadius = "11px";
+                btnExcluir.style.fontSize = "0.78rem";
+                btnExcluir.innerHTML = '<i class="bi bi-trash3"></i> Excluir';
+                btnExcluir.onclick = () => deletarProduto(produto.id);
+                adminPanel.appendChild(btnExcluir);
+
+                card.appendChild(adminPanel);
+                div.appendChild(card);
+            });
+        }
+
+        // Inicializa a tela com o Array de produtos estáticos
+        renderizarProdutos(produtosGlobais);
+        atualizarCarrinho();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

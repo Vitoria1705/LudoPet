@@ -6,37 +6,64 @@
     <title>Login - LudoPet</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body class="auth-page">
+<body class="auth-page-split">
 
-<main class="auth-shell">
-    <section class="auth-panel">
-        <a href="/" class="auth-brand">
-            <img src="/img/logo/logo.jpeg" alt="LudoPet">
+<main class="auth-wrap-split">
+
+    <div class="auth-l-split">
+        <a th:href="@{/}" class="auth-brand-logo">
+            <img th:src="@{/img/logo/logo.png}" alt="LudoPet" onerror="this.style.display='none'">
+            <span style="font-family: 'Fraunces', serif; font-weight: 900; color: #fff; font-size: 1.5rem; margin-left: 8px;"><span style="color: var(--amarelo);"></span></span>
         </a>
 
-        <span class="section-kicker">Area do usuario</span>
-        <h1>Entrar na LudoPet</h1>
-        <p class="text-muted">Acesse sua conta para acompanhar pedidos, cadastros e solicitacoes.</p>
+        <h2>Faça parte da <em>rede</em> LudoPet</h2>
+        <p>Uma plataforma dedicada a unir quem quer adotar, apoiar e cuidar melhor dos pets em São Luís.</p>
 
-        <form action="/login" method="post" class="mt-4">
-            <label class="form-label" for="email">Email</label>
-            <input id="email" type="email" name="email" class="form-control mb-3" placeholder="seuemail@exemplo.com" required>
+        <div class="auth-feats-split">
+            <div class="af-split"><span class="af-ic-split"></span><span class="af-tx-split">Adote animais com segurança</span></div>
+            <div class="af-split"><span class="af-ic-split"></span><span class="af-tx-split">Ache pets perdidos pelo mapa</span></div>
+            <div class="af-split"><span class="af-ic-split"></span><span class="af-tx-split">Compre na loja e ajude abrigos</span></div>
+        </div>
+    </div>
 
-            <label class="form-label" for="senha">Senha</label>
-            <input id="senha" type="password" name="senha" class="form-control mb-3" placeholder="Digite sua senha" required>
+    <div class="auth-r-split">
+        <div class="auth-box-split">
 
-            <button type="submit" class="btn btn-success btn-lg w-100">Entrar</button>
-        </form>
+            <div class="auth-tabs-split">
+                <button class="atab-split on" onclick="location.href='/login'">Entrar</button>
+                <button class="atab-split" onclick="location.href='/cadastro'">Cadastrar</button>
+            </div>
 
-        <p th:if="${erro}" th:text="${erro}" class="alert alert-danger mt-3 mb-0"></p>
+            <h2>Bem-vindo de volta!</h2>
+            <p class="sub-split">Entre com seu e-mail e senha.</p>
 
-        <p class="text-center mt-4 mb-0">
-            Ainda nao tem conta?
-            <a href="/cadastro">Criar cadastro</a>
-        </p>
-    </section>
+            <form th:action="@{/login}" method="post">
+                <div class="fg-split">
+                    <label for="email">E-mail</label>
+                    <input id="email" type="email" name="email" placeholder="seuemail@exemplo.com" required>
+                </div>
+
+                <div class="fg-split mt-3">
+                    <label for="senha">Senha</label>
+                    <input id="senha" type="password" name="senha" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-split b-primary-split b-full-split mt-4">Entrar →</button>
+            </form>
+
+            <div th:if="${erro}" class="alert alert-danger mt-3 mb-0" style="border-radius: 11px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.85rem; font-weight: 600;">
+                <i class="bi bi-exclamation-triangle-fill"></i> <span th:text="${erro}">Erro</span>
+            </div>
+
+            <p style="text-align:center; margin-top:24px; font-size:.84rem; color:var(--muted); font-family: 'Plus Jakarta Sans', sans-serif;">
+                Sem conta? <a th:href="@{/cadastro}" style="color:var(--coral); font-weight:700; text-decoration:none;">Cadastre-se</a>
+            </p>
+        </div>
+    </div>
 </main>
 
 </body>
