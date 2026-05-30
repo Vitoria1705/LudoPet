@@ -21,7 +21,9 @@
             <a href="/novo-animal-perdido" class="btn btn-success">
                 Cadastrar pet perdido
             </a>
-            <a th:href="@{/animais-perdidos}" class="btn btn-outline-secondary">Ver mural de perdidos</a>
+            <a href="/cadastro-pet-perdido" class="btn btn-success">
+                Cadastrar pet perdido
+            </a>
         </div>
     </section>
 
@@ -72,7 +74,7 @@
             <article class="card lost-card h-100"
                      th:attr="data-search=${#strings.toLowerCase(animal.nome + ' ' + animal.raca + ' ' + animal.cor + ' ' + animal.cidade)}">
 
-                <img <img th:src="${#strings.isEmpty(animal.foto) ? '/img/padrao.png' : animal.foto}"
+                <img th:src="${#strings.isEmpty(animal.foto) ? '/img/padrao.png' : animal.foto}"
                      class="lost-card-img"
                      th:alt="|Foto de ${animal.nome}|">
 
