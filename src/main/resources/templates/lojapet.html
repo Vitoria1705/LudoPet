@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Loja Pet - LudoPet</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <style>
-<<<<<<< HEAD
-        /* Estilos específicos para a estética de catálogo Neo-Brutalista Soft */
+        /* Estilos base do catálogo unificado */
         .loja-hero {
-            background: var(--verde-principal) !important; /* Azul Royal LudoPet */
-            border-radius: var(--radius-lg);
+            background: #2563EB !important; /* Azul Royal LudoPet */
+            border-radius: var(--radius-lg, 16px);
             position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         .loja-hero::before {
             content: '';
@@ -27,748 +27,391 @@
             background: radial-gradient(ellipse 70% 70% at 80% 30%, rgba(255, 212, 59, 0.15) 0%, transparent 70%);
             pointer-events: none;
         }
-        .loja-hero h1 {
-            font-family: 'Fraunces', serif !important;
-            color: var(--white) !important;
-        }
 
-        .produto-form {
-            background: var(--white);
-            border: 1px solid var(--cinza-claro);
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            box-shadow: var(--shadow-md);
-=======
-        body { font-family: Arial, sans-serif; background: #F8FAFC; }
-
-        h2 { color: #4F8F78; }
-
-        .loja-hero {
-            background: #4F8F78;
-            border-radius: 8px;
->>>>>>> bb047ebfa1be491c16648fffa37b51bc6a3318f3
-        }
-
-        /* FILTROS */
-        .filtros {
+        /* Abas de Categorias Modernas */
+        .loja-tabs {
             display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
+            gap: 12px;
+            border-bottom: 2px solid #E2E8F0;
+            padding-bottom: 12px;
+            margin-bottom: 32px;
         }
-<<<<<<< HEAD
-        .upload-preview img {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            padding: 8px;
-            border-radius: var(--radius-sm);
-            border: 2px solid #E2E8F0;
-            background: var(--fundo-claro);
+        .loja-tab-btn {
+            background: transparent;
+            border: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #64748B;
+            padding: 8px 16px;
+            position: relative;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .loja-tab-btn:hover { color: #2563EB; }
+        .loja-tab-btn.active {
+            color: #2563EB;
+        }
+        .loja-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -14px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #2563EB;
+            border-radius: 2px;
         }
 
-        /* Ajuste da grade para parecer um catálogo profissional de vitrine */
-        #produtos {
+        /* Vitrine de Cards */
+        .produtos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 28px;
-            padding: 24px 0;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
         }
 
         .card-custom {
-            background: var(--white);
-            border-radius: var(--radius-md);
-            border: 1px solid var(--cinza-claro);
-            padding: 20px;
-            text-align: left; /* Alinhamento à esquerda estilo e-commerce gringo */
-            box-shadow: var(--shadow-sm);
-            transition: transform .2s, box-shadow .2s;
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
-            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .card-custom:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--verde-logo);
-        }
-=======
-
-        .filtro-btn {
-            border: 2px solid #4F8F78;
-            color: #4F8F78;
-            background: white;
-            border-radius: 20px;
-            padding: 6px 18px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: 0.2s;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: #2563EB;
         }
 
-        .filtro-btn:hover, .filtro-btn.ativo {
-            background: #4F8F78;
-            color: white;
-        }
-
-        /* PRODUTOS */
-        #produtos {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 10px 0;
-        }
-
-        .card-custom {
-            background: white;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: 0.3s;
-        }
-
-        .card-custom:hover { transform: translateY(-5px); }
->>>>>>> bb047ebfa1be491c16648fffa37b51bc6a3318f3
-
-        /* Envelopamento da foto do catálogo */
         .card-custom-img-wrapper {
             width: 100%;
-<<<<<<< HEAD
-            height: 200px;
+            height: 180px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--fundo-claro);
-            border-radius: var(--radius-sm);
+            background: #F8FAFC;
+            border-radius: 8px;
             overflow: hidden;
-            border: 1px solid var(--cinza-claro);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
         .card-custom img {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 85%;
+            max-height: 85%;
             object-fit: contain;
-            transition: transform 0.3s;
-        }
-        .card-custom:hover img {
-            transform: scale(1.05); /* Leve zoom interativo na foto */
         }
 
         .card-custom h3 {
-            font-family: 'Plus Jakarta Sans', sans-serif !important; /* Fonte limpa nos itens do catálogo */
-            font-size: 1.05rem !important;
-            font-weight: 800 !important;
-            color: var(--texto) !important;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0F172A;
             margin-bottom: 6px;
-            line-height: 1.4;
+            min-height: 40px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            min-height: 44px; /* Trava para os títulos ficarem sempre alinhados */
         }
         .card-custom p {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--muted);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
+            color: #64748B;
             line-height: 1.5;
             margin-bottom: 12px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            min-height: 38px;
+            min-height: 36px;
         }
+
+        .card-tag {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 8px;
+            border-radius: 6px;
+            width: fit-content;
+            margin-bottom: 8px;
+        }
+        .tag-produto { background: #EFF6FF; color: #2563EB; }
+        .tag-kit { background: #FEF3C7; color: #D97706; }
 
         .preco {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--texto) !important;
+            font-size: 1.3rem;
             font-weight: 800;
-            font-size: 1.4rem;
-            margin-bottom: 16px;
-            margin-top: auto; /* Joga o preço sempre para o rodapé do card */
+            color: #0F172A;
+            margin-bottom: 14px;
+            margin-top: auto;
         }
 
-        .cart-line {
+        /* Carrinho de Compras Lateral Real */
+        .checkout-box {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 24px;
+            position: sticky;
+            top: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+        .cart-item-row {
             display: flex;
             justify-content: space-between;
-            gap: 12px;
             align-items: center;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--cinza-claro);
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: 12px 0;
+            border-bottom: 1px solid #F1F5F9;
         }
-        .cart-line small {
-            color: var(--muted);
-        }
-
-        #carrinho {
-            border: 1px solid var(--cinza-claro);
-            box-shadow: var(--shadow-md);
-            padding: 24px !important;
-=======
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .card-custom h5 {
-            font-size: 1rem;
-            margin-top: 10px;
-            min-height: 40px;
-        }
-
-        .preco { color: #4F8F78; font-weight: bold; font-size: 1.1rem; }
-
-        .btn-primary {
-            background-color: #6FAF98;
-            border-color: #6FAF98;
-            border-radius: 10px;
-        }
-
-        .btn-primary:hover {
-            background-color: #4F8F78;
-            border-color: #4F8F78;
-        }
-
-        .btn-success {
-            background-color: #4F8F78;
-            border-color: #4F8F78;
-            border-radius: 10px;
-        }
-
-        /* CARRINHO */
-        .carrinho-box {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
->>>>>>> bb047ebfa1be491c16648fffa37b51bc6a3318f3
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #64748B;
+            margin-bottom: 8px;
         }
     </style>
 </head>
 
-<body class="bg-light" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+<body class="bg-light">
 
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
-<main class="container mt-4" style="animation: pgIn .4s ease both;">
+<main class="container my-5" style="animation: pgIn .4s ease both;">
 
-<<<<<<< HEAD
     <section class="loja-hero text-white p-5 mb-5">
-        <span class="hero-badge" style="background: rgba(255,255,255,0.15)">🛍️ Catálogo Oficial</span>
-        <h1 class="display-5 fw-bold mt-3">Produtos para o cuidado diário</h1>
-        <p class="lead mb-0" style="color: rgba(255,255,255,0.85); font-size: 1rem; font-weight: 600;">Escolha um item, acompanhe o carrinho e finalize seu pedido com rapidez.</p>
+        <span class="badge mb-2" style="background: rgba(255,255,255,0.2); font-family: 'Plus Jakarta Sans'; font-weight: 700;">🛍️ LudoPet Store</span>
+        <h1 class="display-5 fw-bold mt-2" style="font-family: 'Fraunces', serif; font-weight: 900;">Catálogo e Kits de Adoção</h1>
+        <p class="lead mb-0" style="color: rgba(255,255,255,0.85); font-size: 1rem; font-weight: 600;">Encontre produtos essenciais diários e kits completos estruturados para a chegada do seu novo amigo de quatro patas.</p>
     </section>
 
-    <h2 class="mb-3" style="font-family: 'Fraunces', serif; font-weight: 900; color: var(--verde-escuro); font-size: 1.8rem;">Cadastrar Produto <small style="font-size: 11px; color: var(--coral); font-family: 'Plus Jakarta Sans'; vertical-align: middle;">(Modo Simulação)</small></h2>
+    <div class="row g-4">
+        <div class="col-lg-8">
 
-    <div class="produto-form mb-5">
-        <div class="row g-3">
-            <div class="col-md-6">
-                <label class="form-label" style="font-size: .73rem; font-weight: 800; color: var(--verde-principal); text-transform: uppercase; letter-spacing: .06em;">Nome do Produto</label>
-                <input id="nome" placeholder="Ex: Ração Golden Adulto 15kg" class="form-control">
+            <div class="loja-tabs">
+                <button class="loja-tab-btn active" onclick="filtrarCatalogo('todos', this)">Todos os Itens</button>
+                <button class="loja-tab-btn" onclick="filtrarCatalogo('venda', this)">🛍️ Produtos à Venda</button>
+                <button class="loja-tab-btn" onclick="filtrarCatalogo('kit', this)">🎁 Kits do Adotante</button>
             </div>
-            <div class="col-md-6">
-                <label class="form-label" style="font-size: .73rem; font-weight: 800; color: var(--verde-principal); text-transform: uppercase; letter-spacing: .06em;">Preço (R$)</label>
-                <input id="preco" type="number" step="0.01" min="0" placeholder="0.00" class="form-control">
-            </div>
-            <div class="col-12">
-                <label class="form-label" style="font-size: .73rem; font-weight: 800; color: var(--verde-principal); text-transform: uppercase; letter-spacing: .06em;">Descrição Curta</label>
-                <input id="descricao" placeholder="Diga o que torna esse produto especial para os pets..." class="form-control">
-            </div>
+
+            <div id="gridProdutos" class="produtos-grid"></div>
         </div>
 
-        <label class="form-label mt-3" style="font-size: .73rem; font-weight: 800; color: var(--verde-principal); text-transform: uppercase; letter-spacing: .06em;">Imagem do produto</label>
-        <div class="upload-preview mb-4">
-            <img id="previewImagem" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Prévia da imagem">
-            <input id="imagem" type="file" accept="image/*" class="form-control" style="flex: 1; min-width: 200px;" onchange="mostrarPreviewImagem()">
-        </div>
+        <div class="col-lg-4">
+            <div class="checkout-box">
+                <h4 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.25rem; color: #0F172A;" class="mb-4">
+                    <i class="bi bi-bag-heart-fill text-primary me-2"></i>Seu Carrinho
+                </h4>
 
-        <div class="d-flex gap-2">
-            <button id="btnCadastrar" class="btn btn-split b-primary-split" onclick="cadastrar()">Cadastrar no Catálogo</button>
-            <button id="btnCancelarEdicao" class="btn btn-split b-secondary-split d-none" onclick="cancelarEdicao()">Cancelar edição</button>
+                <div id="listaCarrinho" class="mb-4" style="max-height: 280px; overflow-y: auto;">
+                </div>
+
+                <div class="pt-3 border-top" style="border-color: #E2E8F0 !important;">
+                    <div class="summary-line">
+                        <span>Subtotal</span>
+                        <span id="cartSubtotal" style="color: #0F172A; font-weight: 600;">R$ 0,00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Frete (São Luís)</span>
+                        <span class="text-success" style="font-weight: 700;">GRÁTIS</span>
+                    </div>
+                    <hr style="color: #E2E8F0;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <strong style="font-size: 1.05rem; color: #0F172A;">Total do Pedido</strong>
+                        <strong id="cartTotal" style="font-size: 1.4rem; color: #2563EB;">R$ 0,00</strong>
+                    </div>
+                </div>
+
+                <button onclick="finalizarCompraCompleta()" class="btn w-100" style="background: #FFD43B; color: #1D4ED8; font-weight: 800; padding: 14px; border-radius: 12px; box-shadow: 0 4px 14px rgba(255, 212, 59, 0.4); border: none; transition: all 0.2s;">
+                    <i class="bi bi-credit-card-2-back-fill me-2"></i> Fechar Pedido
+                </button>
+                <small class="text-muted d-block text-center mt-3" style="font-size: 0.75rem;"><i class="bi bi-shield-lock-fill me-1"></i> Ambiente de compra simulado com segurança.</small>
+            </div>
         </div>
     </div>
 
-    <h2 class="mb-3" style="font-family: 'Fraunces', serif; font-weight: 900; color: var(--verde-escuro); font-size: 1.8rem;">Produtos Disponíveis</h2>
-    <div class="position-relative mb-4">
-        <input
-                type="text"
-                id="pesquisa"
-                class="form-control"
-                style="padding-left: 40px !important;"
-                placeholder="Pesquisar no catálogo..."
-                onkeyup="filtrarProdutos()"
-        >
-        <i class="bi bi-search position-absolute" style="left: 15px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.95rem;"></i>
-    </div>
-
-    <div id="produtos"></div>
-
-    <h2 id="carrinhoTitulo" class="mt-5 mb-3" style="font-family: 'Fraunces', serif; font-weight: 900; color: var(--verde-escuro); font-size: 1.8rem;">Seu Carrinho</h2>
-    <div id="carrinho" class="p-4 bg-white rounded-3"></div>
-    <button class="btn btn-split b-primary-split mt-3 px-5" style="height: 50px;" onclick="finalizarCompra()">
-        <i class="bi bi-check-circle-fill me-2"></i> Finalizar Compra
-    </button>
-=======
-    <!-- HERO -->
-    <section style="background: linear-gradient(135deg, #4F8F78, #6FAF98); border-radius: 12px;"
-             class="text-white p-5 mb-4">
-        <div class="row align-items-center">
-            <div class="col-md-8">
-                <span class="badge mb-2" style="background: rgba(255,255,255,0.2); font-size:0.85rem;">🐾 LudoPet Store</span>
-                <h1 class="fw-bold" style="font-size: 2rem;">Tudo que seu pet merece</h1>
-                <p style="color: rgba(255,255,255,0.85); max-width: 480px;">
-                    Produtos selecionados com carinho para o bem-estar e felicidade do seu companheiro.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FILTROS -->
-    <div class="d-flex gap-2 flex-wrap mb-4">
-        <button class="filtro-btn ativo" onclick="filtrar('todos', this)">Todos</button>
-        <button class="filtro-btn" onclick="filtrar('brinquedos', this)"> Brinquedos</button>
-        <button class="filtro-btn" onclick="filtrar('camas', this)"> Camas</button>
-        <button class="filtro-btn" onclick="filtrar('higiene', this)"> Higiene</button>
-        <button class="filtro-btn" onclick="filtrar('petisco', this)"> Petiscos</button>
-        <button class="filtro-btn" onclick="filtrar('racoes', this)"> Rações</button>
-    </div>
-
-    <!-- PRODUTOS -->
-    <div id="produtos"></div>
-
-    <!-- CARRINHO -->
-    <div class="mt-5 mb-5" style="background:white; border-radius:12px; padding:24px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
-        <h5 class="fw-bold mb-3">🛒 Carrinho</h5>
-        <div id="carrinho"></div>
-    </div>
-
->>>>>>> bb047ebfa1be491c16648fffa37b51bc6a3318f3
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></header>
 
-<<<<<<< HEAD
     <script>
         let carrinho = [];
-        let produtoEditando = null;
+        let categoriaAtual = 'todos';
 
-        // LISTA DE PRODUTOS FIXA (Para parecer um catálogo imediatamente, sem precisar de banco)
-        let produtosGlobais = [
+        const produtosE_Kits = [
             {
-                id: 1,
-                nome: "Ração Golden Formula Adultos",
-                descricao: "Nutrição premium completa e balanceada para cães adultos de médio e grande porte.",
-                preco: "129.90",
-                imagemUrl: "/img/produtos/racoes/racao-golden-adulto.jpg"
+                id: 101,
+                tipo: "venda",
+                nome: "Ração PremieR Cães Adultos 15kg",
+                descricao: "Nutrição de alta performance, pelagem bonita e saudável para raças médias e grandes.",
+                preco: 189.90,
+                imagemUrl: "https://images.unsplash.com/photo-1589924691106-073b19f59392?q=80&w=300&auto=format&fit=crop"
             },
             {
-                id: 2,
-                nome: "Bola de Brinquedo Interativa",
-                descricao: "Garante diversão, gasto de energia saudável e alta resistência contra mordidas.",
-                preco: "29.90",
-                imagemUrl: "/img/produtos/brinquedos/bola-de-brinquedo.jpg"
+                id: 102,
+                tipo: "venda",
+                nome: "Arranhador Torre Cat Confort",
+                descricao: "Arranhador completo com brinquedo suspenso e plataforma revestida de sisal premium.",
+                preco: 84.90,
+                imagemUrl: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=300&auto=format&fit=crop"
             },
             {
-                id: 3,
-                nome: "Sofá Pet Premium Soft",
-                descricao: "Máximo conforto, tecido antialérgico e isolamento térmico perfeito para o descanso.",
-                preco: "199.90",
-                imagemUrl: "/img/produtos/camas/sofa-pet.webp"
+                id: 103,
+                tipo: "venda",
+                nome: "Shampoo Neutro Hidratante 500ml",
+                descricao: "Fórmula hipoalergênica ideal para banhos frequentes, deixando o pelo macio.",
+                preco: 32.90,
+                imagemUrl: "https://images.unsplash.com/photo-1608454367599-c1139e64bf87?q=80&w=300&auto=format&fit=crop"
             },
             {
-                id: 4,
-                nome: "Shampoo Anti Pulgas e Carrapatos",
-                descricao: "Higiene profunda, proteção de longa duração e perfume extremamente agradável.",
-                preco: "39.90",
-                imagemUrl: "/img/produtos/higiene/shampoo-anti-pulgas.webp"
+                id: 201,
+                tipo: "kit",
+                nome: "Kit Boas-Vindas Cão Adotado",
+                descricao: "Combo essencial: Cama Soft G, comedouro duplo, coleira regulável, ração e brinquedo de corda.",
+                preco: 249.90,
+                imagemUrl: "https://images.unsplash.com/photo-1516715094727-ec48be335d79?q=80&w=300&auto=format&fit=crop"
+            },
+            {
+                id: 202,
+                tipo: "kit",
+                nome: "Kit Conforto Gato Adotado",
+                descricao: "Tudo para o felino: Caixa de areia, pá higiênica, comedouro, caminha toca e arranhador p.",
+                preco: 179.90,
+                imagemUrl: "https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=300&auto=format&fit=crop"
             }
         ];
 
-        function cadastrar() {
-            const nome = document.getElementById("nome").value.trim();
-            const descricao = document.getElementById("descricao").value.trim();
-            const preco = document.getElementById("preco").value;
-            const arquivoImagem = document.getElementById("imagem").files[0];
+        function renderizarCatalogo(lista) {
+            const div = document.getElementById("gridProdutos");
+            div.innerHTML = "";
 
-            if (!nome || !preco) {
-                alert("Preencha nome e preço!");
-                return;
-            }
+            lista.forEach(item => {
+                const isKit = item.tipo === 'kit';
 
-            // Gera uma URL temporária para a imagem enviada via upload para simular no catálogo
-            let imgSimulada = "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-            if (arquivoImagem) {
-                imgSimulada = URL.createObjectURL(arquivoImagem);
-            } else if (produtoEditando) {
-                const prodAntigo = produtosGlobais.find(p => p.id === produtoEditando);
-                if (prodAntigo) imgSimulada = prodAntigo.imagemUrl;
-            }
+                div.innerHTML += `
+                    <div class="card-custom">
+                        <div class="card-custom-img-wrapper">
+                            <img src="${item.imagemUrl}" alt="${item.nome}">
+                        </div>
+                        <div>
+                            <span class="card-tag ${isKit ? 'tag-kit' : 'tag-produto'}">
+                                ${isKit ? '🎁 Kit Adotante' : '🛍️ À Venda'}
+                            </span>
+                            <h3>${item.nome}</h3>
+                            <p>${item.descricao}</p>
+                        </div>
+                        <div class="preco">R$ ${item.preco.toFixed(2)}</div>
+                        <button onclick="adicionarAoCarrinho(${item.id})" class="btn w-100" style="background: #2563EB; color: white; font-weight: 700; border-radius: 8px; padding: 10px;">
+                            <i class="bi bi-cart-plus-fill me-2"></i> Adicionar
+                        </button>
+                    </div>
+                `;
+            });
+        }
 
-            if (produtoEditando !== null) {
-                // Modo Edição no Array Local
-                produtosGlobais = produtosGlobais.map(p => {
-                    if (p.id === produtoEditando) {
-                        return { id: p.id, nome, descricao, preco: Number(preco).toFixed(2), imagemUrl: imgSimulada };
-                    }
-                    return p;
-                });
-                alert("Produto atualizado no catálogo!");
+        function filtrarCatalogo(tipo, botao) {
+            document.querySelectorAll('.loja-tab-btn').forEach(b => b.classList.remove('active'));
+            botao.classList.add('active');
+            categoriaAtual = tipo;
+
+            if (tipo === 'todos') {
+                renderizarCatalogo(produtosE_Kits);
             } else {
-                // Modo Cadastro no Array Local
-                const novoProd = {
-                    id: Date.now(), // Gera um ID único falso
-                    nome,
-                    descricao,
-                    preco: Number(preco).toFixed(2),
-                    imagemUrl: imgSimulada
-                };
-                produtosGlobais.push(novoProd);
-                alert("Produto adicionado temporariamente ao catálogo!");
+                renderizarCatalogo(produtosE_Kits.filter(p => p.tipo === tipo));
             }
-
-            limparFormulario();
-            renderizarProdutos(produtosGlobais);
         }
 
-        function mostrarPreviewImagem() {
-            const arquivo = document.getElementById("imagem").files[0];
-            const preview = document.getElementById("previewImagem");
-
-            if (!arquivo) {
-                preview.src = produtoEditando ? preview.src : "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-                return;
+        function adicionarAoCarrinho(id) {
+            const item = produtosE_Kits.find(p => p.id === id);
+            if (item) {
+                carrinho.push(item);
+                fetch("http://localhost:8081/api/carrinho", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ nomeProduto: item.nome, preco: item.preco })
+                }).catch(() => {}); // Consome erro silenciosamente caso API local esteja offline
+                atualizarVisualCarrinho();
             }
-
-            preview.src = URL.createObjectURL(arquivo);
         }
 
-        function limparFormulario() {
-            produtoEditando = null;
-            document.getElementById("nome").value = "";
-            document.getElementById("descricao").value = "";
-            document.getElementById("preco").value = "";
-            document.getElementById("imagem").value = "";
-            document.getElementById("previewImagem").src = "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-            document.getElementById("btnCadastrar").textContent = "Cadastrar no Catálogo";
-            document.getElementById("btnCancelarEdicao").classList.add("d-none");
+        function removerDoCarrinho(index) {
+            carrinho.splice(index, 1);
+            atualizarVisualCarrinho();
         }
 
-        function cancelarEdicao() {
-            limparFormulario();
-        }
-
-        function atualizarCarrinho() {
-            const div = document.getElementById("carrinho");
+        function atualizarVisualCarrinho() {
+            const container = document.getElementById("listaCarrinho");
+            const subtotalTxt = document.getElementById("cartSubtotal");
+            const totalTxt = document.getElementById("cartTotal");
 
             if (carrinho.length === 0) {
-                div.innerHTML = '<p class="text-muted mb-0"><i class="bi bi-cart-x me-2"></i>Seu carrinho está vazio neste momento.</p>';
+                container.innerHTML = `
+                    <div class="text-center py-4 text-muted">
+                        <i class="bi bi-cart-x" style="font-size: 2.5rem;"></i>
+                        <p class="mt-2 mb-0" style="font-size: 0.85rem; font-weight: 600;">Seu carrinho está vazio.</p>
+                    </div>
+                `;
+                subtotalTxt.textContent = "R$ 0,00";
+                totalTxt.textContent = "R$ 0,00";
                 return;
             }
 
-            let total = 0;
-
-            div.innerHTML = carrinho.map((p, i) => {
-                const preco = Number(p.preco || 0);
-                total += preco;
+            let soma = 0;
+            container.innerHTML = carrinho.map((item, index) => {
+                soma += item.preco;
                 return `
-                    <div class="cart-line">
-                        <span><strong>${p.nome}</strong><br><small>${p.descricao || "Produto selecionado"}</small></span>
-                        <span style="font-weight: 700; color: var(--texto);">R$ ${preco.toFixed(2)}</span>
-                        <button class="btn btn-sm btn-outline-danger px-3" style="border-radius: 8px;" onclick="remover(${i})"><i class="bi bi-trash3-fill"></i></button>
+                    <div class="cart-item-row">
+                        <div style="max-width: 70%;">
+                            <strong style="font-size: 0.85rem; color: #0F172A; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.nome}</strong>
+                            <span style="font-size: 0.75rem;" class="text-muted">${item.tipo === 'kit' ? '🎁 Combo Especial' : '🛍️ Item Avulso'}</span>
+                        </div>
+                        <div class="text-end">
+                            <span style="font-size: 0.88rem; font-weight: 700; color: #0F172A; display: block;">R$ ${item.preco.toFixed(2)}</span>
+                            <button onclick="removerDoCarrinho(${index})" style="background: none; border: none; color: #EF4444; font-size: 0.75rem; padding: 0; font-weight: 600;">Remover</button>
+                        </div>
                     </div>
                 `;
             }).join("");
 
-            div.innerHTML += `<div class="mt-3 text-end" style="font-size: 1.2rem; font-family: 'Plus Jakarta Sans', sans-serif;"><strong>Total do Pedido: <span style="color: var(--verde-principal)">R$ ${total.toFixed(2)}</span></strong></div>`;
+            subtotalTxt.textContent = `R$ ${soma.toFixed(2)}`;
+            totalTxt.textContent = `R$ ${soma.toFixed(2)}`;
         }
 
-        function comprar(nome, preco, descricao = "", imagemUrl = "") {
-            carrinho.push({ nome, preco: Number(preco || 0), descricao, imagemUrl });
-            atualizarCarrinho();
-        }
-
-        function remover(index) {
-            carrinho.splice(index, 1);
-            atualizarCarrinho();
-        }
-
-        function deletarProduto(id) {
-            if (!confirm("Tem certeza que deseja remover este produto do catálogo falso?")) return;
-            produtosGlobais = produtosGlobais.filter(p => p.id !== id);
-            renderizarProdutos(produtosGlobais);
-        }
-
-        function editarProduto(produto) {
-            produtoEditando = produto.id;
-            document.getElementById("nome").value = produto.nome || "";
-            document.getElementById("descricao").value = produto.descricao || "";
-            document.getElementById("preco").value = produto.preco || "";
-            document.getElementById("imagem").value = "";
-            document.getElementById("previewImagem").src = produto.imagemUrl || "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-            document.getElementById("btnCadastrar").textContent = "Atualizar Item";
-            document.getElementById("btnCancelarEdicao").classList.remove("d-none");
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function filtrarProdutos() {
-            const texto = document.getElementById("pesquisa").value.toLowerCase();
-            const produtosFiltrados = produtosGlobais.filter(produto =>
-                produto.nome && produto.nome.toLowerCase().includes(texto)
-            );
-
-            renderizarProdutos(produtosFiltrados);
-        }
-
-        function finalizarCompra() {
-            if(carrinho.length === 0) {
-                alert("Adicione produtos antes de finalizar!");
+        function finalizarCompraCompleta() {
+            if (carrinho.length === 0) {
+                alert("Adicione pelo menos um item ou kit ao carrinho antes de fechar o pedido!");
                 return;
             }
-            alert("Simulação de pedido concluída com sucesso!");
-            carrinho = [];
-            atualizarCarrinho();
-        }
 
-        function renderizarProdutos(produtos) {
-            const div = document.getElementById("produtos");
-            div.innerHTML = "";
+            const totalPedido = carrinho.reduce((acc, p) => acc + p.preco, 0);
 
-            produtos.forEach(produto => {
-                const card = document.createElement("div");
-                card.className = "card-custom";
-
-                // Envelopamento da foto estilo vitrine
-                const imgWrapper = document.createElement("div");
-                imgWrapper.className = "card-custom-img-wrapper";
-
-                const imagem = document.createElement("img");
-                imagem.src = produto.imagemUrl || "https://cdn-icons-png.flaticon.com/512/616/616408.png";
-                imagem.alt = produto.nome || "Produto";
-                // Caso a imagem local falte, injeta uma genérica bonita do Unsplash automaticamente
-                imagem.onerror = function() {
-                    this.src = "https://images.unsplash.com/photo-1516715094727-ec48be335d79?q=80&w=300&auto=format&fit=crop";
-                };
-
-                imgWrapper.appendChild(imagem);
-                card.appendChild(imgWrapper);
-
-                const nome = document.createElement("h3");
-                nome.textContent = produto.nome || "";
-                card.appendChild(nome);
-
-                const descricao = document.createElement("p");
-                descricao.textContent = produto.descricao || "";
-                card.appendChild(descricao);
-
-                const preco = document.createElement("div");
-                preco.className = "preco";
-                preco.textContent = `R$ ${Number(produto.preco || 0).toFixed(2)}`;
-                card.appendChild(preco);
-
-                /* Botão Comprar - Amarelo LudoPet pro catálogo acender */
-                const btnComprar = document.createElement("button");
-                btnComprar.className = "btn btn-split b-primary-split w-100 mt-2";
-                btnComprar.innerHTML = '<i class="bi bi-cart-plus-fill me-2"></i> Adicionar ao Carrinho';
-                btnComprar.onclick = () => comprar(produto.nome, produto.preco, produto.descricao, produto.imagemUrl);
-                card.appendChild(btnComprar);
-
-                /* Painel Administrativo em Linha */
-                const adminPanel = document.createElement("div");
-                adminPanel.className = "d-flex gap-2 mt-2";
-
-                const btnEditar = document.createElement("button");
-                btnEditar.className = "btn btn-split b-secondary-split w-50";
-                btnEditar.style.height = "38px";
-                btnEditar.style.fontSize = "0.78rem";
-                btnEditar.style.padding = "4px 8px";
-                btnEditar.innerHTML = '<i class="bi bi-pencil-square"></i> Editar';
-                btnEditar.onclick = () => editarProduto(produto);
-                adminPanel.appendChild(btnEditar);
-
-                const btnExcluir = document.createElement("button");
-                btnExcluir.className = "btn btn-outline-danger w-50";
-                btnExcluir.style.borderRadius = "11px";
-                btnExcluir.style.fontSize = "0.78rem";
-                btnExcluir.innerHTML = '<i class="bi bi-trash3"></i> Excluir';
-                btnExcluir.onclick = () => deletarProduto(produto.id);
-                adminPanel.appendChild(btnExcluir);
-
-                card.appendChild(adminPanel);
-                div.appendChild(card);
-            });
-        }
-
-        // Inicializa a tela com o Array de produtos estáticos
-        renderizarProdutos(produtosGlobais);
-        atualizarCarrinho();
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-=======
-<script>
-    let carrinho = [];
-    let todosProdutos = [];
-
-    function filtrar(categoria, btn) {
-        document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('ativo'));
-        btn.classList.add('ativo');
-
-        if (categoria === 'todos') {
-            renderProdutos(todosProdutos);
-        } else {
-            renderProdutos(todosProdutos.filter(p => p.imagemUrl && p.imagemUrl.includes(categoria)));
-        }
-    }
-
-    function renderProdutos(lista) {
-        const div = document.getElementById("produtos");
-        div.innerHTML = "";
-
-        if (lista.length === 0) {
-            div.innerHTML = "<p class='text-muted'>Nenhum produto encontrado.</p>";
-            return;
-        }
-
-        div.style.display = "grid";
-        div.style.gridTemplateColumns = "repeat(auto-fill, minmax(200px, 1fr))";
-        div.style.gap = "20px";
-
-        lista.forEach(produto => {
-            div.innerHTML += `
-                <div style="background:white; border-radius:12px; overflow:hidden;
-                            box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:0.3s;
-                            display:flex; flex-direction:column;"
-                     onmouseover="this.style.transform='translateY(-4px)'"
-                     onmouseout="this.style.transform='translateY(0)'">
-                    <img src="${produto.imagemUrl}" alt="${produto.nome}"
-                         style="width:100%; height:160px; object-fit:cover;"
-                         onerror="this.src='/img/produtos/padrao.png'">
-                    <div style="padding:14px; flex:1; display:flex; flex-direction:column; justify-content:space-between;">
-                        <div>
-                            <h6 style="font-weight:700; color:#1F2937; margin-bottom:4px;">${produto.nome}</h6>
-                            <p style="font-size:0.82rem; color:#64748B; margin-bottom:8px;">${produto.descricao}</p>
-                        </div>
-                        <div>
-                            <div style="color:#4F8F78; font-weight:800; font-size:1.1rem; margin-bottom:10px;">
-                                R$ ${produto.preco.toFixed(2)}
-                            </div>
-                            <button onclick="comprar(${produto.id}, '${produto.nome}', ${produto.preco})"
-                                    style="width:100%; background:#4F8F78; color:white; border:none;
-                                           border-radius:8px; padding:8px; font-weight:600; cursor:pointer;
-                                           transition:0.2s;"
-                                    onmouseover="this.style.background='#3F735F'"
-                                    onmouseout="this.style.background='#4F8F78'">
-                                🛒 Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-    }
-
-    function atualizarCarrinho() {
-        const div = document.getElementById("carrinho");
-
-        if (carrinho.length === 0) {
-            div.innerHTML = "<p class='text-muted'>Carrinho vazio</p>";
-            return;
-        }
-
-        let total = 0;
-        div.innerHTML = carrinho.map((p, i) => {
-            total += p.preco;
-            return `
-                <div style="display:flex; justify-content:space-between; align-items:center;
-                            padding:10px 0; border-bottom:1px solid #F1F5F9;">
-                    <span style="color:#334155;">${p.nome}</span>
-                    <div style="display:flex; align-items:center; gap:12px;">
-                        <span style="color:#4F8F78; font-weight:700;">R$ ${p.preco.toFixed(2)}</span>
-                        <button onclick="remover(${i})"
-                                style="background:none; border:1px solid #FDA4AF; color:#F43F5E;
-                                       border-radius:6px; padding:2px 8px; cursor:pointer; font-size:0.8rem;">
-                            remover
-                        </button>
-                    </div>
-                </div>
-            `;
-        }).join("");
-
-        div.innerHTML += `
-            <div style="display:flex; justify-content:space-between; margin-top:16px; font-size:1.1rem;">
-                <strong>Total</strong>
-                <strong style="color:#4F8F78;">R$ ${total.toFixed(2)}</strong>
-            </div>
-            <button onclick="finalizarCompra()"
-                    style="margin-top:16px; width:100%; background:#4F8F78; color:white;
-                           border:none; border-radius:10px; padding:12px; font-weight:700;
-                           font-size:1rem; cursor:pointer; transition:0.2s;"
-                    onmouseover="this.style.background='#3F735F'"
-                    onmouseout="this.style.background='#4F8F78'">
-                ✅ Finalizar Compra
-            </button>
-        `;
-    }
-
-    function comprar(id, nome, preco) {
-        fetch("http://localhost:8081/api/carrinho", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ nomeProduto: nome, preco: preco })
-        });
-        carrinho.push({ id, nome, preco });
-        atualizarCarrinho();
-    }
-
-    function remover(index) {
-        carrinho.splice(index, 1);
-        atualizarCarrinho();
-    }
-
-    function finalizarCompra() {
-        if (carrinho.length === 0) { alert("Carrinho vazio!"); return; }
-
-        const total = carrinho.reduce((t, p) => t + p.preco, 0);
-
-        fetch("http://localhost:8081/api/pedidos", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                total: total,
-                produtos: carrinho.map(p => ({ id: p.id }))
+            fetch("http://localhost:8081/api/pedidos", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    total: totalPedido,
+                    produtos: carrinho.map(p => ({ id: p.id }))
+                })
             })
-        })
-            .then(r => r.json())
-            .then(data => {
-                // Mensagem ligada ao kit adoção 🐾
-                alert(`✅ Pedido #${data.id} confirmado!\n\nTotal: R$ ${total.toFixed(2)}\n\n🐾 Dica LudoPet: Se você acabou de adotar um pet, confira nosso Kit Boas-Vindas! Temos tudo que seu novo companheiro precisa para se sentir em casa. 💚`);
-                fetch("http://localhost:8081/api/carrinho/limpar", { method: "DELETE" });
+            .then(() => {
+                alert(`🎉 Pedido Confirmado com Sucesso!\n\nValor Total: R$ ${totalPedido.toFixed(2)}\n\n🐾 Parabéns por apoiar o LudoPet! Se você adquiriu um dos nossos Kits do Adotante, o abrigo parceiro será notificado para preparar os itens de boas-vindas do seu pet.`);
                 carrinho = [];
-                atualizarCarrinho();
+                atualizarVisualCarrinho();
             })
-            .catch(() => alert("Erro ao finalizar pedido."));
-    }
-
-    function carregarProdutos() {
-        fetch("http://localhost:8081/api/produtos")
-            .then(r => r.json())
-            .then(data => {
-                todosProdutos = data;
-                renderProdutos(data);
+            .catch(() => {
+                alert(`🎉 [Simulação] Pedido Confirmado com Sucesso!\n\nValor Total: R$ ${totalPedido.toFixed(2)}\n\nObrigado por comprar no LudoPet!`);
+                carrinho = [];
+                atualizarVisualCarrinho();
             });
-    }
+        }
 
-    carregarProdutos();
-    atualizarCarrinho();
-</script>
+        // Inicialização
+        renderizarCatalogo(produtosE_Kits);
+        atualizarVisualCarrinho();
+    </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
->>>>>>> bb047ebfa1be491c16648fffa37b51bc6a3318f3
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" th:href="@{/css/style.css}">
 </body>
 </html>
