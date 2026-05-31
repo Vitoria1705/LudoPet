@@ -119,10 +119,10 @@ h2 {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-        90deg,
-        rgba(15, 23, 42, 0.85) 0%,
-        rgba(15, 23, 42, 0.4) 60%,
-        rgba(0, 0, 0, 0.15) 100%
+            90deg,
+            rgba(15, 23, 42, 0.85) 0%,
+            rgba(15, 23, 42, 0.4) 60%,
+            rgba(0, 0, 0, 0.15) 100%
     );
     pointer-events: none;
 }
@@ -602,18 +602,18 @@ tr:hover td {
 @media (max-width: 768px) {
     .navbar { padding: 12px 16px !important; }
     .nav-links { display: none; }
-    
+
     .home-carousel .carousel-item img { height: 320px; }
     .home-carousel-caption h1 { font-size: 28px !important; }
     .home-carousel-caption .lead { font-size: 14px; }
-    
+
     .highlight-section {
         flex-direction: column;
         align-items: stretch;
         padding: 24px;
         text-align: center;
     }
-    
+
     .pet-facts, .lost-info { grid-template-columns: 1fr; }
     .page-hero, .form-shell, .search-panel, .detail-panel, .auth-panel { padding: 24px; }
     table { display: block; overflow-x: auto; }
@@ -621,39 +621,39 @@ tr:hover td {
     ESTILO EXCLUSIVO: TELAS DE AUTENTICAÇÃO LUDOPET (LOGIN & CADASTRO)
     ========================================================================== */
 
- /* Container geral ocupando toda a tela */
- .auth-page-split {
-     font-family: 'Plus Jakarta Sans', sans-serif !important;
-     background: #F5F0E8 !important; /* Mantém o Creme Confortável original no Login */
-     margin: 0;
-     padding: 0;
-     min-height: 100vh;
- }
+/* Container geral ocupando toda a tela */
+.auth-page-split {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    background: #F5F0E8 !important; /* Mantém o Creme Confortável original no Login */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
 
- .auth-wrap-split {
-     min-height: 100vh;
-     display: grid;
-     grid-template-columns: 1fr 1fr; /* Divide a tela em 50% / 50% */
- }
+.auth-wrap-split {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide a tela em 50% / 50% */
+}
 
- /* ── COLUNA DA ESQUERDA: BANNER AZUL ROYAL ── */
- .auth-l-split {
-     background: #2563EB !important; /* Azul Royal LudoPet */
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     padding: 80px 60px;
-     position: relative;
-     overflow: hidden;
- }
+/* ── COLUNA DA ESQUERDA: BANNER AZUL ROYAL ── */
+.auth-l-split {
+    background: #2563EB !important; /* Azul Royal LudoPet */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+}
 
- .auth-l-split::before {
-     content: '';
-     position: absolute;
-     inset: 0;
-     background: radial-gradient(ellipse 70% 70% at 30% 70%, rgba(255, 212, 59, 0.15) 0%, transparent 70%);
-     pointer-events: none;
- }
+.auth-l-split::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 70% at 30% 70%, rgba(255, 212, 59, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
 
 .auth-brand-logo {
     position: absolute;
@@ -674,230 +674,230 @@ tr:hover td {
     display: block;
 }
 
- .auth-l-split h2 {
-     font-family: 'Fraunces', serif !important;
-     font-size: clamp(1.9rem, 3vw, 2.7rem) !important;
-     color: #FFFFFF !important;
-     font-weight: 900 !important;
-     line-height: 1.1;
-     margin-bottom: 18px;
-     position: relative;
- }
+.auth-l-split h2 {
+    font-family: 'Fraunces', serif !important;
+    font-size: clamp(1.9rem, 3vw, 2.7rem) !important;
+    color: #FFFFFF !important;
+    font-weight: 900 !important;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    position: relative;
+}
 
- .auth-l-split h2 em {
-     color: #FFD43B !important; /* Amarelo LudoPet */
-     font-style: normal;
- }
+.auth-l-split h2 em {
+    color: #FFD43B !important; /* Amarelo LudoPet */
+    font-style: normal;
+}
 
- .auth-l-split p {
-     color: rgba(255, 255, 255, 0.8) !important;
-     line-height: 1.72;
-     font-size: .94rem;
-     position: relative;
- }
+.auth-l-split p {
+    color: rgba(255, 255, 255, 0.8) !important;
+    line-height: 1.72;
+    font-size: .94rem;
+    position: relative;
+}
 
- .auth-feats-split {
-     margin-top: 44px;
-     display: flex;
-     flex-direction: column;
-     gap: 12px;
-     position: relative;
- }
+.auth-feats-split {
+    margin-top: 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+}
 
- .af-split {
-     display: flex;
-     align-items: center;
-     gap: 14px;
-     background: rgba(255, 255, 255, 0.08);
-     border: 1px solid rgba(255, 255, 255, 0.15);
-     border-radius: 13px;
-     padding: 13px 17px;
- }
+.af-split {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 13px;
+    padding: 13px 17px;
+}
 
- .af-ic-split {
-     font-size: 1.25rem;
- }
+.af-ic-split {
+    font-size: 1.25rem;
+}
 
- .af-tx-split {
-     color: #FFFFFF !important;
-     font-size: .86rem;
-     font-weight: 600;
- }
+.af-tx-split {
+    color: #FFFFFF !important;
+    font-size: .86rem;
+    font-weight: 600;
+}
 
- /* ── COLUNA DA DIREITA: FORMULÁRIO GERAL ── */
- .auth-r-split {
-     background: #F5F0E8 !important; /* Fundo Creme padrão para o Login */
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     padding: 60px 44px;
- }
+/* ── COLUNA DA DIREITA: FORMULÁRIO GERAL ── */
+.auth-r-split {
+    background: #F5F0E8 !important; /* Fundo Creme padrão para o Login */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 44px;
+}
 
- /* 🚨 REGRAS EXCLUSIVAS PARA A TELA DE CADASTRO 🚨 */
- .register-specific,
- .register-specific .auth-page-split,
- .register-specific .auth-r-split {
-     background-color: #FFFFFF !important; /* Altera o fundo para BRANCO PURO apenas no cadastro */
- }
+/* 🚨 REGRAS EXCLUSIVAS PARA A TELA DE CADASTRO 🚨 */
+.register-specific,
+.register-specific .auth-page-split,
+.register-specific .auth-r-split {
+    background-color: #FFFFFF !important; /* Altera o fundo para BRANCO PURO apenas no cadastro */
+}
 
- .auth-box-split {
-     width: 100%;
- }
+.auth-box-split {
+    width: 100%;
+}
 
- /* Abas de Navegação Superiores */
- .auth-tabs-split {
-     display: flex;
-     background: #E8E2D8; /* Fundo bege clássico do modelo */
-     border-radius: 13px;
-     padding: 4px;
-     margin-bottom: 32px;
-     border: 1px solid #E2E8F0;
- }
+/* Abas de Navegação Superiores */
+.auth-tabs-split {
+    display: flex;
+    background: #E8E2D8; /* Fundo bege clássico do modelo */
+    border-radius: 13px;
+    padding: 4px;
+    margin-bottom: 32px;
+    border: 1px solid #E2E8F0;
+}
 
- /* Garante abas levemente mais claras no fundo branco do cadastro */
- .register-specific .auth-tabs-split {
-     background: #F1F5F9 !important;
- }
+/* Garante abas levemente mais claras no fundo branco do cadastro */
+.register-specific .auth-tabs-split {
+    background: #F1F5F9 !important;
+}
 
- .atab-split {
-     flex: 1;
-     padding: 10px;
-     border-radius: 10px;
-     text-align: center;
-     font-weight: 800;
-     font-size: .86rem;
-     color: #64748B;
-     background: transparent;
-     cursor: pointer;
-     transition: all .2s;
-     border: none;
- }
+.atab-split {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 800;
+    font-size: .86rem;
+    color: #64748B;
+    background: transparent;
+    cursor: pointer;
+    transition: all .2s;
+    border: none;
+}
 
- .atab-split.on {
-     background: #FFFFFF;
-     color: #2563EB;
-     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
- }
+.atab-split.on {
+    background: #FFFFFF;
+    color: #2563EB;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+}
 
- .auth-box-split h2 {
-     font-family: 'Fraunces', serif !important;
-     font-size: 2.1rem !important;
-     font-weight: 900 !important;
-     margin-bottom: 5px;
-     color: #2563EB !important;
- }
+.auth-box-split h2 {
+    font-family: 'Fraunces', serif !important;
+    font-size: 2.1rem !important;
+    font-weight: 900 !important;
+    margin-bottom: 5px;
+    color: #2563EB !important;
+}
 
- .auth-box-split .sub-split {
-     color: #64748B !important;
-     font-size: .86rem;
-     margin-bottom: 26px;
- }
+.auth-box-split .sub-split {
+    color: #64748B !important;
+    font-size: .86rem;
+    margin-bottom: 26px;
+}
 
- /* Inputs, Selects e Labels Customizados */
- .auth-form-brutal .fg-split, .fg-split {
-     display: flex;
-     flex-direction: column;
-     gap: 6px;
- }
+/* Inputs, Selects e Labels Customizados */
+.auth-form-brutal .fg-split, .fg-split {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
 
- .auth-form-brutal label, label, .form-label {
-     font-size: .73rem !important;
-     font-weight: 800 !important;
-     color: #2563EB !important; /* Labels em Azul Royal */
-     text-transform: uppercase;
-     letter-spacing: .06em;
-     margin-bottom: 4px;
- }
+.auth-form-brutal label, label, .form-label {
+    font-size: .73rem !important;
+    font-weight: 800 !important;
+    color: #2563EB !important; /* Labels em Azul Royal */
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 4px;
+}
 
- /* Padronização de Inputs, Selects e Classes Bootstrap */
- .auth-form-brutal input,
- .auth-form-brutal select,
- .auth-form-brutal .form-control,
- .auth-form-brutal .form-select,
- input, select, .form-control, .form-select {
-     padding: 12px 15px !important;
-     border: 2px solid #E2E8F0 !important;
-     border-radius: 11px !important;
-     font-family: 'Plus Jakarta Sans', sans-serif !important;
-     font-size: .88rem !important;
-     background: #FFFFFF !important;
-     color: #0F172A !important;
-     outline: none !important;
-     height: 48px !important; /* Mantém a altura simétrica */
-     box-shadow: none !important;
- }
+/* Padronização de Inputs, Selects e Classes Bootstrap */
+.auth-form-brutal input,
+.auth-form-brutal select,
+.auth-form-brutal .form-control,
+.auth-form-brutal .form-select,
+input, select, .form-control, .form-select {
+    padding: 12px 15px !important;
+    border: 2px solid #E2E8F0 !important;
+    border-radius: 11px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: .88rem !important;
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    outline: none !important;
+    height: 48px !important; /* Mantém a altura simétrica */
+    box-shadow: none !important;
+}
 
- /* Correção para as bordas dos inputs no fundo creme do Login */
- .auth-wrap-split:not(.register-specific) input,
- .auth-wrap-split:not(.register-specific) .form-control {
-     border-color: #E0D8CC !important;
- }
+/* Correção para as bordas dos inputs no fundo creme do Login */
+.auth-wrap-split:not(.register-specific) input,
+.auth-wrap-split:not(.register-specific) .form-control {
+    border-color: #E0D8CC !important;
+}
 
- .auth-form-brutal input:focus,
- .auth-form-brutal select:focus,
- .auth-form-brutal .form-select:focus,
- input:focus, select:focus, .form-select:focus, .form-control:focus {
-     border-color: #2563EB !important;
-     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1) !important;
- }
+.auth-form-brutal input:focus,
+.auth-form-brutal select:focus,
+.auth-form-brutal .form-select:focus,
+input:focus, select:focus, .form-select:focus, .form-control:focus {
+    border-color: #2563EB !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1) !important;
+}
 
- /* ── BOTÕES BRUTALISTAS CORRIGIDOS ── */
- .btn-split {
-     padding: 12px 32px !important;
-     border-radius: 11px !important;
-     font-weight: 800 !important;
-     font-size: 0.88rem !important;
-     display: inline-flex !important;
-     align-items: center;
-     justify-content: center;
-     border: none !important;
-     cursor: pointer !important;
-     transition: all .2s !important;
-     height: 48px !important;
- }
+/* ── BOTÕES BRUTALISTAS CORRIGIDOS ── */
+.btn-split {
+    padding: 12px 32px !important;
+    border-radius: 11px !important;
+    font-weight: 800 !important;
+    font-size: 0.88rem !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all .2s !important;
+    height: 48px !important;
+}
 
- /* Botão Principal: Amarelo LudoPet com Texto Azul */
- .b-primary-split, .btn-success {
-     background: #FFD43B !important;
-     color: #1D4ED8 !important;
-     box-shadow: 0 4px 16px rgba(255, 212, 59, 0.3) !important;
- }
- .b-primary-split:hover, .btn-success:hover {
-     background: #F0C800 !important;
-     transform: translateY(-1px);
- }
+/* Botão Principal: Amarelo LudoPet com Texto Azul */
+.b-primary-split, .btn-success {
+    background: #FFD43B !important;
+    color: #1D4ED8 !important;
+    box-shadow: 0 4px 16px rgba(255, 212, 59, 0.3) !important;
+}
+.b-primary-split:hover, .btn-success:hover {
+    background: #F0C800 !important;
+    transform: translateY(-1px);
+}
 
- /* Botão Secundário: Fundo Branco com Texto e Borda Azul */
- .b-secondary-split, .btn-outline-secondary {
-     background: #FFFFFF !important;
-     border: 2px solid #E2E8F0 !important;
-     color: #2563EB !important;
-     text-decoration: none !important;
- }
- .b-secondary-split:hover, .btn-outline-secondary:hover {
-     background: #F1F5F9 !important;
-     border-color: #2563EB !important;
-     transform: translateY(-1px);
- }
+/* Botão Secundário: Fundo Branco com Texto e Borda Azul */
+.b-secondary-split, .btn-outline-secondary {
+    background: #FFFFFF !important;
+    border: 2px solid #E2E8F0 !important;
+    color: #2563EB !important;
+    text-decoration: none !important;
+}
+.b-secondary-split:hover, .btn-outline-secondary:hover {
+    background: #F1F5F9 !important;
+    border-color: #2563EB !important;
+    transform: translateY(-1px);
+}
 
- .b-full-split {
-     width: 100%;
- }
+.b-full-split {
+    width: 100%;
+}
 
- .auth-box-split p a {
-     color: #2563EB !important;
-     font-weight: 700;
-     text-decoration: none;
- }
- .auth-box-split p a:hover { text-decoration: underline !important; }
+.auth-box-split p a {
+    color: #2563EB !important;
+    font-weight: 700;
+    text-decoration: none;
+}
+.auth-box-split p a:hover { text-decoration: underline !important; }
 
- /* ── Responsividade ── */
- @media(max-width: 900px) {
-     .auth-wrap-split { grid-template-columns: 1fr; }
-     .auth-feats-split, .auth-l-split { display: none !important; }
-     .auth-r-split { padding: 44px 20px; }
-     .register-specific .auth-r-split { background: #FFFFFF !important; }
- }
+/* ── Responsividade ── */
+@media(max-width: 900px) {
+    .auth-wrap-split { grid-template-columns: 1fr; }
+    .auth-feats-split, .auth-l-split { display: none !important; }
+    .auth-r-split { padding: 44px 20px; }
+    .register-specific .auth-r-split { background: #FFFFFF !important; }
+}
 /* Força a logo a ter um tamanho fixo e elegante nas telas de login/cadastro */
 .auth-brand img {
     width: 140px !important;       /* Largura máxima idêntica ao modelo */
@@ -909,3 +909,4 @@ tr:hover td {
     padding: 4px !important;
     display: inline-block !important;
 }
+/*espero que peue acor  */
