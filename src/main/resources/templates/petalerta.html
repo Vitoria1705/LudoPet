@@ -21,9 +21,6 @@
             <a href="/novo-animal-perdido" class="btn btn-success">
                 Cadastrar pet perdido
             </a>
-            <a href="/cadastro-pet-perdido" class="btn btn-success">
-                Cadastrar pet perdido
-            </a>
         </div>
     </section>
 
@@ -58,6 +55,12 @@
         <div>
             <span class="section-kicker">Banco de imagens</span>
             <h2 class="mb-0">Pets perdidos cadastrados</h2>
+            <a href="/animais-perdidos"
+               class="btn btn-outline-success rounded-pill mt-3">
+
+                Ver animais perdidos
+
+            </a>
         </div>
         <span class="text-muted" th:text="|${#lists.size(pets)} registros|">0 registros</span>
     </div>

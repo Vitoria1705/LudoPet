@@ -1,128 +1,77 @@
-<footer th:fragment="footer"
-        style="
-        background: linear-gradient(135deg, #4FAF7B, #3E8F63);
-        color: white;
-        font-family: 'Poppins', sans-serif;
-        margin-top: 80px;
-        ">
+<footer th:fragment="footer" class="footer-ludopet">
 
     <div class="container py-5">
 
-        <div class="row gy-4">
+        <div class="row gy-5">
 
-            <!-- LOGO / SOBRE -->
-            <div class="col-md-4">
+            <!-- LOGO -->
+            <div class="col-lg-4">
 
-                <h2 style="
-                font-weight: 700;
-                margin-bottom: 20px;
-                ">
+                <h2 class="footer-logo">
                     🐾 LudoPet
                 </h2>
 
-                <p style="
-                color: #edfdf4;
-                line-height: 1.8;
-                ">
-                    O LudoPet conecta pessoas e pets,
-                    incentivando adoção responsável,
-                    proteção animal e cuidados essenciais
-                    para o bem-estar dos nossos companheiros.
+                <p class="footer-text">
+                    Plataforma criada para conectar pets e pessoas,
+                    incentivando adoção responsável, proteção animal
+                    e cuidado com quem faz parte da família.
                 </p>
+
+                <div class="d-flex gap-3 mt-4">
+
+                    <a href="#" class="social-icon">
+                        Instagram
+                    </a>
+
+                    <a href="#" class="social-icon">
+                        WhatsApp
+                    </a>
+
+                    <a href="#" class="social-icon">
+                        GitHub
+                    </a>
+
+                </div>
 
             </div>
 
             <!-- LINKS -->
-            <div class="col-md-4">
+            <div class="col-lg-4">
 
-                <h4 style="
-                font-weight: 600;
-                margin-bottom: 20px;
-                ">
+                <h5 class="footer-title">
                     Navegação
-                </h4>
+                </h5>
 
-                <ul class="list-unstyled">
+                <ul class="footer-links">
 
-                    <li class="mb-2">
-                        <a href="/"
-                           class="footer-link">
-                            🏠 Início
-                        </a>
-                    </li>
+                    <li><a href="/">Início</a></li>
 
-                    <li class="mb-2">
-                        <a href="/adocao"
-                           class="footer-link">
-                            🐶 Adoção
-                        </a>
-                    </li>
+                    <li><a href="/adocao">Adoção</a></li>
 
-                    <li class="mb-2">
-                        <a href="/pet-alerta"
-                           class="footer-link">
-                            🚨 Pet Alerta
-                        </a>
-                    </li>
+                    <li><a href="/petalerta">Pet Alerta</a></li>
 
-                    <li class="mb-2">
-                        <a href="/loja"
-                           class="footer-link">
-                            🛍 Loja Pet
-                        </a>
-                    </li>
+                    <li><a href="/lojapet">Loja Pet</a></li>
 
-                    <li class="mb-2">
-                        <a href="/quiz"
-                           class="footer-link">
-                            🧠 Quiz
-                        </a>
-                    </li>
+                    <li><a href="/forum">Fórum</a></li>
 
                 </ul>
 
             </div>
 
             <!-- CONTATO -->
-            <div class="col-md-4">
+            <div class="col-lg-4">
 
-                <h4 style="
-                font-weight: 600;
-                margin-bottom: 20px;
-                ">
+                <h5 class="footer-title">
                     Contato
-                </h4>
+                </h5>
 
-                <p class="mb-2">
-                    📍 São Luís - Maranhão
-                </p>
+                <div class="footer-contact">
 
-                <p class="mb-2">
-                    📞 (98) 99999-9999
-                </p>
+                    <p>📍 São Luís - Maranhão</p>
 
-                <p class="mb-2">
-                    📧 contatoludopet@gmail.com
-                </p>
+                    <p>📞 (98) 99999-9999</p>
 
-                <!-- REDES -->
-                <div class="mt-4">
-
-                    <span style="font-size: 1.5rem;">
-                        🌐
-                    </span>
-
-                    <span style="font-size: 1.5rem;">
-                        📷
-                    </span>
-
-                    <span style="font-size: 1.5rem;">
-                        💬
-                    </span>
-
-                    <span style="font-size: 1.5rem;">
-                        🎵
-                    </span>
+                    <p>📧 contatoludopet@gmail.com</p>
 
                 </div>
 
@@ -132,40 +81,10 @@
 
     </div>
 
-    <!-- LINHA -->
-    <div style="
-    border-top: 1px solid rgba(255,255,255,0.2);
-    "></div>
+    <div class="footer-bottom">
 
-    <!-- COPYRIGHT -->
-    <div style="
-    text-align:center;
-    padding: 20px;
-    background-color: rgba(0,0,0,0.1);
-    ">
-
-        © 2026 LudoPet 🐾 • Feito com amor para os pets
+        © 2026 LudoPet • Todos os direitos reservados
 
     </div>
-
-    <!-- ESTILO LINKS -->
-    <style>
-
-        .footer-link {
-
-            color: #edfdf4;
-            text-decoration: none;
-            transition: 0.3s;
-
-        }
-
-        .footer-link:hover {
-
-            color: #ffffff;
-            padding-left: 5px;
-
-        }
-
-    </style>
 
 </footer>
