@@ -34,14 +34,27 @@
             </div>
 
             <div class="adoption-steps">
-                <div><strong>1</strong><span>Confira os dados do pet</span></div>
-                <div><strong>2</strong><span>Preencha seu contato</span></div>
-                <div><strong>3</strong><span>A equipe acompanha o pedido</span></div>
+
+                <div>
+                    <strong>1</strong>
+                    <span>Conheça melhor o pet</span>
+                </div>
+
+                <div>
+                    <strong>2</strong>
+                    <span>Envie sua solicitação</span>
+                </div>
+
+                <div>
+                    <strong>3</strong>
+                    <span>Nossa equipe entrará em contato</span>
+                </div>
+
             </div>
 
             <a class="btn btn-success btn-lg w-100"
-               th:href="@{/form-adocao/{id}(id=${animal.id})}">
-                Preencher formulario de adocao
+               th:href="@{/formulario-adocao/{id}(id=${animal.id})}">
+                Quero adotar
             </a>
         </div>
     </section>

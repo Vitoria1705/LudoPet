@@ -19,6 +19,7 @@ public class Parceiro {
 
     private String descricao;
 
+    
     // GETTERS E SETTERS
 
     public Long getId() {

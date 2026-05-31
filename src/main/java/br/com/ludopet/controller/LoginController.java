@@ -36,7 +36,7 @@ public class LoginController {
         String resultado =
                 loginService.autenticar(email, senha);
 
-        if(resultado.equals("Login realizado")) {
+        if (resultado.equals("Login realizado")) {
 
             Usuario usuario =
                     usuarioRepository.findByEmail(email);
@@ -56,6 +56,7 @@ public class LoginController {
 
         return "login";
     }
+
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

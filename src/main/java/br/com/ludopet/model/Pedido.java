@@ -1,9 +1,11 @@
 package br.com.ludopet.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name = "pedidos")
 public class Pedido {
 
     @Id
@@ -12,26 +14,28 @@ public class Pedido {
 
     private Double total;
 
-    @OneToMany
+    private LocalDateTime dataPedido;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "pedido_produtos",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "produtos_id")
+    )
     private List<Produto> produtos;
 
-    public Long getId() {
-        return id;
+    @PrePersist
+    public void prePersist() {
+        this.dataPedido = LocalDateTime.now();
     }
 
-    public Double getTotal() {
-        return total;
-    }
+    public Long getId() { return id; }
 
-    public void setTotal(Double total) {
-        this.total = total;
-    }
+    public Double getTotal() { return total; }
+    public void setTotal(Double total) { this.total = total; }
 
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
+    public List<Produto> getProdutos() { return produtos; }
+    public void setProdutos(List<Produto> produtos) { this.produtos = produtos; }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
+    public LocalDateTime getDataPedido() { return dataPedido; }
 }

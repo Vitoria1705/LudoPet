@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rede Parceira - LudoPet</title>
 
@@ -10,6 +11,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+=======
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+>>>>>>> bb047ebfa1be491c16648fffa37b51bc6a3318f3
 
     <style>
         /* Estilos e refinamentos exclusivos para a Rede Parceira e Patrocínios */
@@ -52,6 +57,7 @@
             margin-bottom: 6px;
         }
 
+<<<<<<< HEAD
         /* Grid de cards do catálogo de parceiros */
         .parceiro-card {
             background: var(--white);
@@ -103,6 +109,35 @@
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
 <main class="container mt-5" style="animation: pgIn .4s ease both;">
+=======
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body style="background-color: #f7f9fb;">
+
+<header th:replace="~{fragments/navbar :: navbar}"></header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="py-5"
+             style="background: linear-gradient(135deg, #4FAF7B, #66c593);">
+
+        <div class="container text-center text-white">
+
+            <h1 class="fw-bold display-5 mb-3">
+                Rede Parceiras 🐾
+            </h1>
+
+            <p class="lead col-md-8 mx-auto">
+                Conheça clínicas veterinárias, ONGs e petshops
+                parceiros que ajudam o LudoPet
+                a cuidar e proteger os animais.
+            </p>
+
+        </div>
+>>>>>>> bb047ebfa1be491c16648fffa37b51bc6a3318f3
 
     <section class="rede-hero text-white p-5 mb-5">
         <span class="hero-badge" style="background: rgba(255,255,255,0.15)">🏥 Ecossistema LudoPet</span>
@@ -110,6 +145,7 @@
         <p class="lead mb-0" style="color: rgba(255,255,255,0.85); font-size: 1rem; font-weight: 600;">Conheça as clínicas, hospitais veterinários e ONGs em São Luís que apoiam o cuidado animal junto conosco.</p>
     </section>
 
+<<<<<<< HEAD
     <div class="patrocinio-banner">
         <div>
             <h3>Sua empresa apoia a causa pet?</h3>
@@ -129,6 +165,73 @@
                 <h4 th:text="${parceiro.nome}">Nome do Parceiro</h4>
                 <div>
                     <span class="status-pill mb-3 d-inline-block" th:text="${parceiro.tipo}">Tipo</span>
+=======
+    <!-- PARCEIROS -->
+    <section class="container py-5">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold"
+                style="color: #4FAF7B;">
+                Parceiros LudoPet
+            </h2>
+
+            <p class="text-muted">
+                Empresas e instituições parceiras da plataforma.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4"
+                 th:each="parceiro : ${parceiros}">
+
+                <div class="card border-0 shadow-sm h-100 rounded-4">
+
+                    <div class="card-body p-4 d-flex flex-column">
+
+                        <span class="badge bg-success mb-3"
+                              th:text="${parceiro.tipo}">
+                            Tipo
+                        </span>
+
+                        <h4 class="fw-bold"
+                            th:text="${parceiro.nome}">
+                            Nome
+                        </h4>
+
+                        <p class="text-muted mb-2">
+                            📍
+                            <span th:text="${parceiro.endereco}">
+                                Endereço
+                            </span>
+                        </p>
+
+                        <p th:text="${parceiro.descricao}">
+                            Descrição
+                        </p>
+
+                        <p class="fw-semibold mt-auto">
+                            📞
+                            <span th:text="${parceiro.telefone}">
+                                Telefone
+                            </span>
+                        </p>
+
+                        <a class="btn btn-success rounded-pill w-100 mt-3"
+                           th:href="'https://wa.me/55' + ${#strings.replace(parceiro.telefone, '(', '')
+                           .replace(')', '')
+                           .replace('-', '')
+                           .replace(' ', '')}">
+
+                            Entrar em contato
+
+                        </a>
+
+                    </div>
+
+>>>>>>> bb047ebfa1be491c16648fffa37b51bc6a3318f3
                 </div>
                 <p th:text="${parceiro.descricao}">Descrição institucional do parceiro.</p>
 
@@ -200,12 +303,49 @@
             </div>
         </div>
 
+<<<<<<< HEAD
     </div>
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+=======
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="container py-5">
+
+        <div class="card border-0 shadow rounded-4 p-5 text-center">
+
+            <h2 class="fw-bold mb-3">
+                Quer ser parceiro do LudoPet?
+            </h2>
+
+            <p class="text-muted mb-4">
+                Clínicas, ONGs, petshops e empresas podem
+                colaborar com a proteção animal.
+            </p>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+                <a href="/forum"
+                   class="btn btn-success btn-lg rounded-pill px-4">
+
+                    Entrar em contato
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+>>>>>>> bb047ebfa1be491c16648fffa37b51bc6a3318f3
 
 </body>
 </html>

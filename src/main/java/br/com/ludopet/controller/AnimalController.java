@@ -8,7 +8,10 @@ import br.com.ludopet.repository.AdocaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -16,7 +19,7 @@ import java.util.List;
 public class AnimalController {
 
     @Autowired
-    private AnimalRepository animalRepository;
+    private AnimalRepository repository;
 
     @Autowired
     private AdocaoRepository adocaoRepository;
@@ -26,7 +29,7 @@ public class AnimalController {
     public String listarAnimais(Model model) {
 
         List<Animal> animais =
-                animalRepository
+                repository
                         .findByStatus("disponivel");
 
         model.addAttribute(
@@ -38,13 +41,25 @@ public class AnimalController {
     }
 
     // 🐶 VER DETALHES
+    @GetMapping("/pet/{id}")
+    public String detalhesPet(@PathVariable Long id,
+                              Model model) {
+
+        Animal animal = repository.findById(id)
+                .orElseThrow();
+
+        model.addAttribute("animal", animal);
+
+        return "detalhes";
+    }
+
     @GetMapping("/detalhes/{id}")
     public String verDetalhes(
             @PathVariable Long id,
             Model model) {
 
         Animal animal =
-                animalRepository
+                repository
                         .findById(id)
                         .orElse(null);
 
@@ -66,7 +81,7 @@ public class AnimalController {
             Model model) {
 
         Animal animal =
-                animalRepository
+                repository
                         .findFirstByNomeIgnoreCase(nome)
                         .orElse(null);
 
@@ -89,7 +104,7 @@ public class AnimalController {
             Model model) {
 
         Animal animal =
-                animalRepository
+                repository
                         .findById(id)
                         .orElse(null);
 
@@ -102,7 +117,7 @@ public class AnimalController {
                 animal
         );
 
-        return "form_adocao";
+        return "formulario-adocao";
     }
 
     // 🐶 SALVAR ADOÇÃO (POST)
@@ -137,7 +152,7 @@ public class AnimalController {
     public String listarTodosAnimais(Model model) {
 
         List<Animal> animais =
-                animalRepository.findAll();
+                repository.findAll();
 
         model.addAttribute(
                 "animais",
@@ -147,3 +162,4 @@ public class AnimalController {
         return "adocao";
     }
 }
+

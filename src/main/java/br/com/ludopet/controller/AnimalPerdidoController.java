@@ -45,6 +45,11 @@ public class AnimalPerdidoController {
 
         return "form_animal_perdido";
     }
+    @GetMapping("/cadastro-pet-perdido")
+    public String cadastroPetPerdido(Model model) {
+        model.addAttribute("animal", new AnimalPerdido());
+        return "cadastroPetPerdido";
+    }
 
     //  SALVAR
     @PostMapping("/salvar-animal-perdido")
