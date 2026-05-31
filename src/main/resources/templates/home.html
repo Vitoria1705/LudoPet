@@ -30,6 +30,9 @@
         <div class="carousel-item">
             <img th:src="@{/img/banner/banner3.png}" class="d-block w-100" alt="Adoção e apoio para animais">
         </div>
+        <div class="carousel-item">
+            <img th:src="@{/img/banner/banner4.png}" class="d-block w-100" alt="Adoção e apoio para animais">
+        </div>
     </div>
 
     <div class="carousel-caption home-carousel-caption text-start">
@@ -99,7 +102,55 @@
             </div>
         </div>
     </section>
+    <!-- ═══════════════════════════════════════════════
+         BANNERS ROTATIVOS (APENAS IMAGENS)
+    ════════════════════════════════════════════════ -->
+    </div> <!-- Fechamento da div anterior que você enviou -->
 
+    <!-- ═══════════════════════════════════════════════
+         BANNERS ROTATIVOS PROPORCIONAL (1891x577)
+    ════════════════════════════════════════════════ -->
+    <section class="my-5" style="animation: pgIn .4s ease both; margin-top: 40px !important;">
+        <div id="bannerRotativoLudoPet" class="carousel slide carousel-fade" data-bs-ride="carousel" style="border-radius: var(--radius-lg, 16px); overflow: hidden; box-shadow: var(--shadow-md, 0 4px 15px rgba(0,0,0,0.05)); border: 1px solid var(--cinza-claro, #E2E8F0);">
+
+            <!-- Indicadores (Bolinhas de navegação) -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#bannerRotativoLudoPet" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="width: 10px; height: 10px; border-radius: 50%; margin: 0 5px;"></button>
+                <button type="button" data-bs-target="#bannerRotativoLudoPet" data-bs-slide-to="1" aria-label="Slide 2" style="width: 10px; height: 10px; border-radius: 50%; margin: 0 5px;"></button>
+                <button type="button" data-bs-target="#bannerRotativoLudoPet" data-bs-slide-to="2" aria-label="Slide 3" style="width: 10px; height: 10px; border-radius: 50%; margin: 0 5px;"></button>
+            </div>
+
+            <!-- Imagens do Carrossel -->
+            <div class="carousel-inner">
+
+                <!-- Banner 1 -->
+                <div class="carousel-item active" data-bs-interval="4000">
+                    <img th:src="@{/img/banner/adotebanner.png}" class="d-block w-100" alt="Campanha LudoPet 1" style="aspect-ratio: 1891 / 577; width: 100%; height: auto; object-fit: cover;">
+                </div>
+
+                <!-- Banner 2 -->
+                <div class="carousel-item" data-bs-interval="4000">
+                    <img th:src="@{/img/banner/ludobanner.png}" class="d-block w-100" alt="Campanha LudoPet 2" style="aspect-ratio: 1891 / 577; width: 100%; height: auto; object-fit: cover;">
+                </div>
+
+                <!-- Banner 3 -->
+                <div class="carousel-item" data-bs-interval="4000">
+                    <img th:src="@{/img/banner/promobanner.png}" class="d-block w-100" alt="Campanha LudoPet 3" style="aspect-ratio: 1891 / 577; width: 100%; height: auto; object-fit: cover;">
+                </div>
+
+            </div>
+
+            <!-- Controles de Seta -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#bannerRotativoLudoPet" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: rgba(15, 23, 42, 0.2); padding: 18px; border-radius: 50%;"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#bannerRotativoLudoPet" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: rgba(15, 23, 42, 0.2); padding: 18px; border-radius: 50%;"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+        </div>
+    </section>
     <!-- ═══════════════════════════════════════════════
          VITRINE DE ADOÇÃO
     ════════════════════════════════════════════════ -->
