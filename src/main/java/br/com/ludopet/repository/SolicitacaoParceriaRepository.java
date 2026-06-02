@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SolicitacaoParceraRepository extends JpaRepository<SolicitacaoParceria, Long> {
+public interface SolicitacaoParceriaRepository extends JpaRepository<SolicitacaoParceria, Long> {
 
     // busca todas por status (ex: "PENDENTE", "APROVADO")
     List<SolicitacaoParceria> findByStatusOrderByCriadoEmDesc(String status);

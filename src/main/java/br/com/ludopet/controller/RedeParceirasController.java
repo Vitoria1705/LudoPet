@@ -3,7 +3,7 @@ package br.com.ludopet.controller;
 import br.com.ludopet.model.Parceiro;
 import br.com.ludopet.model.SolicitacaoParceria;
 import br.com.ludopet.repository.ParceiroRepository;
-import br.com.ludopet.repository.SolicitacaoParceraRepository;
+import br.com.ludopet.repository.SolicitacaoParceriaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +15,10 @@ import java.util.List;
 public class RedeParceirasController {
 
     private final ParceiroRepository parceiroRepository;
-    private final SolicitacaoParceraRepository solicitacaoRepo;
+    private final SolicitacaoParceriaRepository solicitacaoRepo;
 
     public RedeParceirasController(ParceiroRepository parceiroRepository,
-                                   SolicitacaoParceraRepository solicitacaoRepo) {
+                                   SolicitacaoParceriaRepository solicitacaoRepo) {
         this.parceiroRepository = parceiroRepository;
         this.solicitacaoRepo    = solicitacaoRepo;
     }
