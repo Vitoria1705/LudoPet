@@ -4,202 +4,648 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Rede Parceiras - LudoPet</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <style>
-
+        /* ── Hero ── */
         .rede-hero {
-            background: #4FAF7B;
-            border-radius: 20px;
+            background: linear-gradient(135deg, #2563EB 0%, #1a9e6e 100%);
+            border-radius: 24px;
+            padding: 52px 48px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 28px;
+            box-shadow: 0 8px 32px rgba(37,99,235,0.18);
         }
-
         .rede-hero::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: radial-gradient(
-                    ellipse 70% 70% at 80% 30%,
-                    rgba(255, 212, 59, 0.15) 0%,
-                    transparent 70%
-            );
+            top: -60px; right: -60px;
+            width: 260px; height: 260px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            pointer-events: none;
         }
-
+        .rede-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px; left: 30%;
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            background: rgba(255,212,59,0.08);
+            pointer-events: none;
+        }
+        .rede-hero .eco-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.28);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 18px;
+        }
         .rede-hero h1 {
-            font-family: 'Fraunces', serif;
-            color: white;
+            font-family: 'Fraunces', serif !important;
+            font-size: clamp(2rem, 4vw, 2.8rem) !important;
+            color: #fff !important;
+            font-weight: 900 !important;
+            margin-bottom: 10px;
+        }
+        .rede-hero .lead {
+            color: rgba(255,255,255,0.85);
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
         }
 
+        /* ── Banner Patrocínio ── */
         .patrocinio-banner {
-            background: white;
-            border: 2px dashed #4FAF7B;
+            background: #fff;
+            border: 2px dashed #93C5FD;
             border-radius: 20px;
-            padding: 36px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-
+            padding: 28px 36px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 24px;
-
-            margin-bottom: 48px;
+            margin-bottom: 36px;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.06);
         }
-
         .patrocinio-banner h3 {
-            font-family: 'Fraunces', serif;
-            color: #2d6a4f;
-            font-size: 1.6rem;
-            margin-bottom: 6px;
+            font-family: 'Fraunces', serif !important;
+            font-size: 1.35rem !important;
+            color: #1D4ED8 !important;
+            font-weight: 900 !important;
+            margin-bottom: 4px;
         }
-
-        .parceiro-card {
-            background: white;
-            border-radius: 16px;
-            border: 1px solid #eaeaea;
-            padding: 24px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-
-            transition: .2s;
-
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .parceiro-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-            border-color: #4FAF7B;
-        }
-
-        .parceiro-card h4 {
-            font-family: 'Fraunces', serif;
-            margin-bottom: 8px;
-        }
-
-        .parceiro-info {
-            font-size: 0.9rem;
-            margin-bottom: 6px;
-
-            display: flex;
+        .patrocinio-banner p { color: #64748B; font-size: .9rem; margin: 0; }
+        .btn-patrocinar {
+            background: #FFD43B !important;
+            color: #1D4ED8 !important;
+            border: none !important;
+            border-radius: 999px !important;
+            padding: 12px 28px !important;
+            font-weight: 800 !important;
+            font-size: .9rem !important;
+            white-space: nowrap;
+            transition: background .15s, transform .15s;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
         }
+        .btn-patrocinar:hover { background: #F0C800 !important; transform: translateY(-2px); }
 
+        /* ── Barra de Filtros ── */
+        .filtros-section {
+            background: #fff;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 18px;
+            padding: 20px 24px;
+            margin-bottom: 36px;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.04);
+        }
+        .filtros-label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: #94A3B8;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .filtros-grupo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 12px;
+        }
+        .filtros-grupo:last-child { margin-bottom: 0; }
+
+        .filtro-btn {
+            padding: 6px 15px;
+            border-radius: 999px;
+            border: 1.5px solid #E2E8F0;
+            background: #F8FAFC;
+            color: #64748B;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .15s;
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.4;
+        }
+        .filtro-btn:hover { background: #EFF6FF; border-color: #93C5FD; color: #2563EB; }
+        .filtro-btn.ativo  { background: #2563EB; border-color: #2563EB; color: #fff; }
+        .filtro-btn.ativo-bairro { background: #0F172A; border-color: #0F172A; color: #fff; }
+
+        /* contador de resultados */
+        .resultado-count {
+            font-size: 12px;
+            color: #94A3B8;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .resultado-count strong { color: #2563EB; }
+
+        /* ── Separador de Bairro ── */
+        .bairro-divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: .09em;
+            margin: 0 0 18px;
+        }
+        .bairro-divider .bairro-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #2563EB;
+            flex-shrink: 0;
+        }
+        .bairro-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #E2E8F0;
+        }
+        .bairro-section { margin-bottom: 44px; }
+        .bairro-section[data-hidden="true"] { display: none !important; }
+
+        /* ── Card Parceiro ── */
+        .parceiro-card {
+            background: #fff;
+            border-radius: 18px;
+            border: 1.5px solid #E2E8F0;
+            padding: 22px 24px 18px;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.04);
+            transition: transform .2s, box-shadow .2s, border-color .2s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .parceiro-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(37,99,235,0.12);
+            border-color: #93C5FD;
+        }
+        .parceiro-icon {
+            width: 42px; height: 42px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-bottom: 14px;
+        }
+        .icon-clinica { background: #EFF6FF; color: #2563EB; }
+        .icon-petshop { background: #E1F5EE; color: #0F6E56; }
+        .icon-ong     { background: #FAEEDA; color: #854F0B; }
+
+        .parceiro-nome {
+            font-family: 'Fraunces', serif !important;
+            font-size: 1rem !important;
+            font-weight: 900 !important;
+            color: #0F172A !important;
+            margin-bottom: 4px;
+            line-height: 1.25;
+        }
+        .parceiro-servicos {
+            font-size: .78rem;
+            color: #64748B;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .badge-horario {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+        .badge-24h   { background: #DCFCE7; color: #166534; }
+        .badge-horas { background: #F1F5F9; color: #475569; }
+
+        /* endereço clicável */
+        .parceiro-info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            font-size: .8rem;
+            color: #64748B;
+            font-weight: 600;
+            margin-bottom: 6px;
+            line-height: 1.4;
+            text-decoration: none;
+        }
+        .parceiro-info-row i { font-size: 13px; margin-top: 2px; flex-shrink: 0; color: #94A3B8; }
+        a.parceiro-info-row:hover { color: #2563EB; }
+        a.parceiro-info-row:hover i { color: #2563EB; }
+        a.parceiro-info-row .endereco-txt {
+            border-bottom: 1px dashed transparent;
+            transition: border-color .15s;
+        }
+        a.parceiro-info-row:hover .endereco-txt { border-color: #93C5FD; }
+
+        .parceiro-footer {
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px solid #F1F5F9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .rating-wrap {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #B45309;
+        }
+        .rating-wrap i { font-size: 13px; color: #F59E0B; }
+        .rating-count { font-weight: 500; color: #94A3B8; font-size: 11px; }
+
+        .btn-ligar {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #2563EB;
+            background: #EFF6FF;
+            border: none;
+            border-radius: 999px;
+            padding: 5px 12px;
+            text-decoration: none;
+            transition: background .15s;
+            white-space: nowrap;
+        }
+        .btn-ligar:hover { background: #DBEAFE; color: #1D4ED8; }
+        .btn-ligar i { font-size: 12px; }
+
+        /* vazio */
+        .vazio-msg {
+            display: none;
+            text-align: center;
+            padding: 48px 24px;
+            color: #94A3B8;
+        }
+        .vazio-msg i { font-size: 2.5rem; display: block; margin-bottom: 12px; }
+        .vazio-msg p { font-size: .9rem; font-weight: 600; margin: 0; }
+
+        .parceiro-col[data-hidden="true"] { display: none !important; }
+
+        @media (max-width: 768px) {
+            .rede-hero { padding: 36px 24px; }
+            .patrocinio-banner { flex-direction: column; text-align: center; }
+            .filtros-section { padding: 16px; }
+        }
     </style>
 </head>
 
-<body class="bg-light"
-      style="font-family: 'Plus Jakarta Sans', sans-serif;">
+<body class="bg-light" style="font-family: 'Nunito', sans-serif;">
 
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
-<main class="container mt-5">
+<main class="container mt-5 mb-5">
 
-    <section class="rede-hero text-white p-5 mb-5">
-
-        <span class="badge bg-light text-dark">
-            🏥 Ecossistema LudoPet
-        </span>
-
-        <h1 class="display-5 fw-bold mt-3">
-            Rede Parceiras
-        </h1>
-
-        <p class="lead mb-0"
-           style="color: rgba(255,255,255,0.85);">
-
-            Conheça clínicas, hospitais veterinários
-            e ONGs parceiras da LudoPet.
-
-        </p>
-
+    <!-- HERO -->
+    <section class="rede-hero mb-4">
+        <div class="eco-badge"><i class="bi bi-heart-pulse-fill"></i> Ecossistema LudoPet</div>
+        <h1>Rede Parceiras</h1>
+        <p class="lead">Conheça clínicas, hospitais veterinários e ONGs parceiras da LudoPet em São Luís — MA.</p>
     </section>
 
+    <!-- BANNER PATROCÍNIO -->
     <div class="patrocinio-banner">
-
         <div>
-
             <h3>Sua empresa apoia a causa pet?</h3>
-
-            <p class="text-muted mb-0">
-                Seja patrocinador oficial da LudoPet.
-            </p>
-
+            <p>Seja patrocinador oficial da LudoPet e alcance milhares de tutores.</p>
         </div>
-
-        <a href="mailto:parcerias@ludopet.com.br"
-           class="btn btn-success">
-
-            Quero Patrocinar
-
+        <a href="mailto:parcerias@ludopet.com.br" class="btn-patrocinar">
+            <i class="bi bi-star-fill"></i>Quero Patrocinar
         </a>
-
     </div>
 
-    <h2 class="mb-4 fw-bold">
-        Membros Cadastrados
-    </h2>
+    <!-- FILTROS -->
+    <div class="filtros-section">
 
-    <div class="row g-4">
+        <span class="filtros-label">Filtrar por tipo</span>
+        <div class="filtros-grupo">
+            <button class="filtro-btn ativo" onclick="filtrarTipo('todos', this)">🐾 Todos</button>
+            <button class="filtro-btn" onclick="filtrarTipo('clinica', this)">🏥 Clínica Veterinária</button>
+            <button class="filtro-btn" onclick="filtrarTipo('petshop', this)">✂️ Pet Shop</button>
+            <button class="filtro-btn" onclick="filtrarTipo('ong', this)">💛 ONG</button>
+        </div>
 
-        <div class="col-md-4"
-             th:each="parceiro : ${parceiros}">
+        <span class="filtros-label">Filtrar por bairro</span>
+        <div class="filtros-grupo">
+            <button class="filtro-btn" onclick="filtrarBairro('todos-bairros', this)">📍 Todos os bairros</button>
+            <button class="filtro-btn" onclick="filtrarBairro('renascenca', this)">Renascença</button>
+            <button class="filtro-btn" onclick="filtrarBairro('saofrancisco', this)">São Francisco</button>
+            <button class="filtro-btn" onclick="filtrarBairro('cohama', this)">Cohama</button>
+            <button class="filtro-btn" onclick="filtrarBairro('turu', this)">Turu</button>
+            <button class="filtro-btn" onclick="filtrarBairro('calhau', this)">Calhau</button>
+            <button class="filtro-btn" onclick="filtrarBairro('pontaareia', this)">Ponta d'Areia</button>
+            <button class="filtro-btn" onclick="filtrarBairro('centro', this)">Centro</button>
+            <button class="filtro-btn" onclick="filtrarBairro('vilaembratel', this)">Vila Embratel</button>
+            <button class="filtro-btn" onclick="filtrarBairro('parquevitoria', this)">Parque Vitória</button>
+        </div>
 
-            <div class="parceiro-card">
+        <div class="resultado-count" id="resultado-count">
+            Mostrando <strong id="qtd-visivel">8</strong> parceiros
+        </div>
+    </div>
 
-                <span class="badge bg-success mb-3"
-                      th:text="${parceiro.tipo}">
-                    Tipo
-                </span>
+    <!-- ══════════════════════════════════
+         RENASCENÇA
+    ══════════════════════════════════ -->
+    <div class="bairro-section" id="section-renascenca" data-bairro="renascenca">
+        <div class="bairro-divider"><span class="bairro-dot"></span> Jardim Renascença</div>
+        <div class="row g-4">
 
-                <h4 th:text="${parceiro.nome}">
-                    Nome
-                </h4>
-
-                <p th:text="${parceiro.descricao}">
-                    Descrição
-                </p>
-
-                <div class="mt-auto pt-3 border-top">
-
-                    <div class="parceiro-info">
-
+            <div class="col-lg-3 col-md-6 parceiro-col" data-bairro="renascenca" data-tipo="clinica">
+                <div class="parceiro-card">
+                    <div class="parceiro-icon icon-clinica"><i class="bi bi-heart-pulse-fill"></i></div>
+                    <h4 class="parceiro-nome">PetMania — Clínica Veterinária</h4>
+                    <p class="parceiro-servicos">Clínica Veterinária • Banho & Tosa • Farmácia</p>
+                    <span class="badge-horario badge-24h"><i class="bi bi-clock-fill"></i> Aberto 24h</span>
+                    <a class="parceiro-info-row"
+                       href="https://maps.google.com/?q=R.+Carutapera,+17+Jardim+Renascença+São+Luís+MA"
+                       target="_blank" rel="noopener">
                         <i class="bi bi-geo-alt-fill"></i>
-
-                        <span th:text="${parceiro.endereco}">
-                            Endereço
-                        </span>
-
+                        <span class="endereco-txt">R. Carutapera, 17 — Jardim Renascença</span>
+                    </a>
+                    <div class="parceiro-footer">
+                        <div class="rating-wrap"><i class="bi bi-star-fill"></i> 4.9 <span class="rating-count">(481)</span></div>
+                        <a class="btn-ligar" href="tel:+5598986252121"><i class="bi bi-telephone-fill"></i> (98) 98625-2121</a>
                     </div>
-
-                    <div class="parceiro-info">
-
-                        <i class="bi bi-telephone-fill"></i>
-
-                        <span th:text="${parceiro.telefone}">
-                            Telefone
-                        </span>
-
-                    </div>
-
                 </div>
+            </div>
 
+            <div class="col-lg-3 col-md-6 parceiro-col" data-bairro="renascenca" data-tipo="petshop">
+                <div class="parceiro-card">
+                    <div class="parceiro-icon icon-petshop"><i class="bi bi-scissors"></i></div>
+                    <h4 class="parceiro-nome">Pethiêa Renascença</h4>
+                    <p class="parceiro-servicos">Pet Shop • Hotel Pet • Veterinária • Taxi Pet</p>
+                    <span class="badge-horario badge-horas"><i class="bi bi-clock"></i> Seg–Sáb 7h–18h</span>
+                    <a class="parceiro-info-row"
+                       href="https://maps.google.com/?q=R.+dos+Guriatans+Jardim+Renascença+São+Luís+MA"
+                       target="_blank" rel="noopener">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span class="endereco-txt">R. dos Guriatans, Qd. 4 — Jardim Renascença</span>
+                    </a>
+                    <div class="parceiro-footer">
+                        <div class="rating-wrap"><i class="bi bi-star-fill"></i> 4.7 <span class="rating-count">(50)</span></div>
+                        <a class="btn-ligar" href="tel:+5598991361313"><i class="bi bi-telephone-fill"></i> (98) 99136-1313</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 parceiro-col" data-bairro="renascenca" data-tipo="clinica">
+                <div class="parceiro-card">
+                    <div class="parceiro-icon icon-clinica"><i class="bi bi-hospital-fill"></i></div>
+                    <h4 class="parceiro-nome">PetVille</h4>
+                    <p class="parceiro-servicos">Clínica Veterinária • Banho & Tosa • Dermatologia</p>
+                    <span class="badge-horario badge-horas"><i class="bi bi-clock"></i> Seg–Sáb 8h–17h</span>
+                    <a class="parceiro-info-row"
+                       href="https://maps.google.com/?q=R.+das+Samambaias+Jardim+Renascença+São+Luís+MA"
+                       target="_blank" rel="noopener">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span class="endereco-txt">R. das Samambaias — Jardim Renascença</span>
+                    </a>
+                    <div class="parceiro-footer">
+                        <div class="rating-wrap"><i class="bi bi-star-fill"></i> 4.8 <span class="rating-count">(76)</span></div>
+                        <a class="btn-ligar" href="tel:+5598991025633"><i class="bi bi-telephone-fill"></i> (98) 99102-5633</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 parceiro-col" data-bairro="renascenca" data-tipo="clinica">
+                <div class="parceiro-card">
+                    <div class="parceiro-icon icon-clinica"><i class="bi bi-heart-fill"></i></div>
+                    <h4 class="parceiro-nome">Miau Vet</h4>
+                    <p class="parceiro-servicos">Clínica Especializada em Felinos</p>
+                    <span class="badge-horario badge-horas"><i class="bi bi-clock"></i> Seg–Sex 9h–19h • Sáb 9h–16h</span>
+                    <a class="parceiro-info-row"
+                       href="https://maps.google.com/?q=R.+Mitra+10+Jardim+Renascença+São+Luís+MA"
+                       target="_blank" rel="noopener">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span class="endereco-txt">R. Mitra, 10 — Ed. Atrium Plaza Renascença II</span>
+                    </a>
+                    <div class="parceiro-footer">
+                        <div class="rating-wrap"><i class="bi bi-star-fill"></i> 4.3 <span class="rating-count">(4)</span></div>
+                        <a class="btn-ligar" href="tel:+5598984275357"><i class="bi bi-telephone-fill"></i> (98) 98427-5357</a>
+                    </div>
+                </div>
             </div>
 
         </div>
+    </div>
 
+    <!-- ══════════════════════════════════
+         SÃO FRANCISCO
+    ══════════════════════════════════ -->
+    <div class="bairro-section" id="section-saofrancisco" data-bairro="saofrancisco">
+        <div class="bairro-divider"><span class="bairro-dot"></span> São Francisco</div>
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-6 parceiro-col" data-bairro="saofrancisco" data-tipo="petshop">
+                <div class="parceiro-card">
+                    <div class="parceiro-icon icon-petshop"><i class="bi bi-basket2-fill"></i></div>
+                    <h4 class="parceiro-nome">Aqua Bird Pet Shop</h4>
+                    <p class="parceiro-servicos">Pet Shop • Rações • Acessórios</p>
+                    <span class="badge-horario badge-horas"><i class="bi bi-clock"></i> Seg–Sáb 8h–19h30 • Dom 8h–13h</span>
+                    <a class="parceiro-info-row"
+                       href="https://maps.google.com/?q=R.+das+Paparaubas+5+São+Francisco+São+Luís+MA"
+                       target="_blank" rel="noopener">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span class="endereco-txt">R. das Paparaubas, 5 — São Francisco</span>
+                    </a>
+                    <div class="parceiro-footer">
+                        <div class="rating-wrap"><i class="bi bi-star-fill"></i> 4.4 <span class="rating-count">(123)</span></div>
+                        <a class="btn-ligar" href="tel:+5598323545399"><i class="bi bi-telephone-fill"></i> (98) 3235-4539</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 parceiro-col" data-bairro="saofrancisco" data-tipo="clinica">
+                <div class="parceiro-card">
+                    <div class="parceiro-icon icon-clinica"><i class="bi bi-heart-pulse-fill"></i></div>
+                    <h4 class="parceiro-nome">ZooPatinhas</h4>
+                    <p class="parceiro-servicos">Clínica Veterinária • Banho & Tosa</p>
+                    <span class="badge-horario badge-horas"><i class="bi bi-clock"></i> Seg–Sex 8h–18h • Sáb 8h–17h</span>
+                    <a class="parceiro-info-row"
+                       href="https://maps.google.com/?q=Tv.+Nove+192+São+Francisco+São+Luís+MA"
+                       target="_blank" rel="noopener">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span class="endereco-txt">Tv. Nove, 192 — São Francisco</span>
+                    </a>
+                    <div class="parceiro-footer">
+                        <div class="rating-wrap"><i class="bi bi-star-fill"></i> 4.9 <span class="rating-count">(67)</span></div>
+                        <a class="btn-ligar" href="tel:+5598988113029"><i class="bi bi-telephone-fill"></i> (98) 98811-3029</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 parceiro-col" data-bairro="saofrancisco" data-tipo="clinica">
+                <div class="parceiro-card">
+                    <div class="parceiro-icon icon-clinica"><i class="bi bi-hospital-fill"></i></div>
+                    <h4 class="parceiro-nome">Late & Mia</h4>
+                    <p class="parceiro-servicos">Clínica Veterinária • Pet Shop • Banho & Tosa</p>
+                    <span class="badge-horario badge-horas"><i class="bi bi-clock"></i> Seg–Sáb 7h30–18h</span>
+                    <a class="parceiro-info-row"
+                       href="https://maps.google.com/?q=Tv.+Oito+606+São+Francisco+São+Luís+MA"
+                       target="_blank" rel="noopener">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span class="endereco-txt">Tv. Oito, 606 — São Francisco</span>
+                    </a>
+                    <div class="parceiro-footer">
+                        <div class="rating-wrap"><i class="bi bi-star-fill"></i> 4.2 <span class="rating-count">(45)</span></div>
+                        <a class="btn-ligar" href="tel:+5598322732810"><i class="bi bi-telephone-fill"></i> (98) 3227-3281</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 parceiro-col" data-bairro="saofrancisco" data-tipo="ong">
+                <div class="parceiro-card">
+                    <div class="parceiro-icon icon-ong"><i class="bi bi-people-fill"></i></div>
+                    <h4 class="parceiro-nome">ONG CIAEP</h4>
+                    <p class="parceiro-servicos">ONG • Resgate & Proteção Animal</p>
+                    <span class="badge-horario badge-horas"><i class="bi bi-clock"></i> Seg–Sex 8h–19h • Sáb 8h–14h30</span>
+                    <a class="parceiro-info-row"
+                       href="https://maps.google.com/?q=R.+Celso+Magalhães+183+Centro+São+Luís+MA"
+                       target="_blank" rel="noopener">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span class="endereco-txt">R. Celso Magalhães, 183 — Centro</span>
+                    </a>
+                    <div class="parceiro-footer">
+                        <div class="rating-wrap"><i class="bi bi-star-fill"></i> 5.0 <span class="rating-count">(5)</span></div>
+                        <a class="btn-ligar" href="tel:+5598324330572"><i class="bi bi-telephone-fill"></i> (98) 3243-0572</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════
+         BAIRROS SEM PARCEIROS AINDA
+         (seções prontas para receber cards futuramente)
+    ══════════════════════════════════ -->
+    <div class="bairro-section" id="section-cohama" data-bairro="cohama">
+        <div class="bairro-divider"><span class="bairro-dot"></span> Cohama</div>
+        <div class="row g-4" id="cards-cohama"></div>
+        <div class="vazio-msg" id="vazio-cohama" style="display:flex; flex-direction:column; align-items:center;">
+            <i class="bi bi-geo-alt" style="font-size:2.2rem; color:#CBD5E1; margin-bottom:10px;"></i>
+            <p style="color:#94A3B8; font-size:.88rem; font-weight:600;">Em breve parceiros neste bairro.</p>
+        </div>
+    </div>
+
+    <div class="bairro-section" id="section-turu" data-bairro="turu">
+        <div class="bairro-divider"><span class="bairro-dot"></span> Turu</div>
+        <div class="row g-4" id="cards-turu"></div>
+        <div class="vazio-msg" style="display:flex; flex-direction:column; align-items:center;">
+            <i class="bi bi-geo-alt" style="font-size:2.2rem; color:#CBD5E1; margin-bottom:10px;"></i>
+            <p style="color:#94A3B8; font-size:.88rem; font-weight:600;">Em breve parceiros neste bairro.</p>
+        </div>
+    </div>
+
+    <div class="bairro-section" id="section-calhau" data-bairro="calhau">
+        <div class="bairro-divider"><span class="bairro-dot"></span> Calhau</div>
+        <div class="row g-4"></div>
+        <div class="vazio-msg" style="display:flex; flex-direction:column; align-items:center;">
+            <i class="bi bi-geo-alt" style="font-size:2.2rem; color:#CBD5E1; margin-bottom:10px;"></i>
+            <p style="color:#94A3B8; font-size:.88rem; font-weight:600;">Em breve parceiros neste bairro.</p>
+        </div>
+    </div>
+
+    <div class="bairro-section" id="section-pontaareia" data-bairro="pontaareia">
+        <div class="bairro-divider"><span class="bairro-dot"></span> Ponta d'Areia</div>
+        <div class="row g-4"></div>
+        <div class="vazio-msg" style="display:flex; flex-direction:column; align-items:center;">
+            <i class="bi bi-geo-alt" style="font-size:2.2rem; color:#CBD5E1; margin-bottom:10px;"></i>
+            <p style="color:#94A3B8; font-size:.88rem; font-weight:600;">Em breve parceiros neste bairro.</p>
+        </div>
+    </div>
+
+    <div class="bairro-section" id="section-centro" data-bairro="centro">
+        <div class="bairro-divider"><span class="bairro-dot"></span> Centro</div>
+        <div class="row g-4"></div>
+        <div class="vazio-msg" style="display:flex; flex-direction:column; align-items:center;">
+            <i class="bi bi-geo-alt" style="font-size:2.2rem; color:#CBD5E1; margin-bottom:10px;"></i>
+            <p style="color:#94A3B8; font-size:.88rem; font-weight:600;">Em breve parceiros neste bairro.</p>
+        </div>
+    </div>
+
+    <div class="bairro-section" id="section-vilaembratel" data-bairro="vilaembratel">
+        <div class="bairro-divider"><span class="bairro-dot"></span> Vila Embratel</div>
+        <div class="row g-4"></div>
+        <div class="vazio-msg" style="display:flex; flex-direction:column; align-items:center;">
+            <i class="bi bi-geo-alt" style="font-size:2.2rem; color:#CBD5E1; margin-bottom:10px;"></i>
+            <p style="color:#94A3B8; font-size:.88rem; font-weight:600;">Em breve parceiros neste bairro.</p>
+        </div>
+    </div>
+
+    <div class="bairro-section" id="section-parquevitoria" data-bairro="parquevitoria">
+        <div class="bairro-divider"><span class="bairro-dot"></span> Parque Vitória</div>
+        <div class="row g-4"></div>
+        <div class="vazio-msg" style="display:flex; flex-direction:column; align-items:center;">
+            <i class="bi bi-geo-alt" style="font-size:2.2rem; color:#CBD5E1; margin-bottom:10px;"></i>
+            <p style="color:#94A3B8; font-size:.88rem; font-weight:600;">Em breve parceiros neste bairro.</p>
+        </div>
+    </div>
+
+    <!-- Bloco Thymeleaf — parceiros do banco -->
+    <div th:if="${parceiros != null and !#lists.isEmpty(parceiros)}">
+        <div class="bairro-divider"><span class="bairro-dot"></span> Outros Parceiros</div>
+        <div class="row g-4 mb-5">
+            <div class="col-lg-3 col-md-6 parceiro-col"
+                 th:each="parceiro : ${parceiros}"
+                 th:data-bairro="${parceiro.endereco != null ? parceiro.endereco : 'outros'}"
+                 data-tipo="clinica">
+                <div class="parceiro-card">
+                    <div class="parceiro-icon icon-clinica"><i class="bi bi-heart-pulse-fill"></i></div>
+                    <span class="badge bg-primary mb-2" style="font-size:10px;border-radius:999px;"
+                          th:text="${parceiro.tipo}">Tipo</span>
+                    <h4 class="parceiro-nome" th:text="${parceiro.nome}">Nome</h4>
+                    <p class="parceiro-servicos" th:text="${parceiro.descricao}">Descrição</p>
+                    <a class="parceiro-info-row"
+                       th:href="'https://maps.google.com/?q=' + ${#strings.replace(parceiro.endereco,' ','+')} + '+São+Luís+MA'"
+                       target="_blank" rel="noopener">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span class="endereco-txt" th:text="${parceiro.endereco}">Endereço</span>
+                    </a>
+                    <div class="parceiro-footer">
+                        <div class="rating-wrap"><i class="bi bi-star-fill"></i> —</div>
+                        <a class="btn-ligar" th:href="'tel:' + ${parceiro.telefone}">
+                            <i class="bi bi-telephone-fill"></i>
+                            <span th:text="${parceiro.telefone}">Telefone</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </main>
@@ -207,6 +653,55 @@
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Estado atual dos filtros
+    let tipoAtivo   = 'todos';
+    let bairroAtivo = 'todos-bairros';
+
+    function atualizarVisibilidade() {
+        let visivel = 0;
+
+        // cards individuais
+        document.querySelectorAll('.parceiro-col').forEach(col => {
+            const okTipo   = tipoAtivo   === 'todos'         || col.dataset.tipo   === tipoAtivo;
+            const okBairro = bairroAtivo === 'todos-bairros' || col.dataset.bairro === bairroAtivo;
+            const mostrar  = okTipo && okBairro;
+            col.classList.toggle('hidden', !mostrar);
+            if (mostrar) visivel++;
+        });
+
+        // seções de bairro
+        document.querySelectorAll('.bairro-section').forEach(sec => {
+            const bairroSec = sec.dataset.bairro;
+            const okBairro  = bairroAtivo === 'todos-bairros' || bairroSec === bairroAtivo;
+            sec.dataset.hidden = okBairro ? '' : 'true';
+        });
+
+        // contador
+        document.getElementById('qtd-visivel').textContent = visivel;
+    }
+
+    function filtrarTipo(tipo, btn) {
+        document.querySelectorAll('.tipo-filtro .filtro-btn').forEach(b => b.classList.remove('ativo'));
+        btn.classList.add('ativo');
+        tipoAtivo = tipo;
+        atualizarVisibilidade();
+    }
+
+    function filtrarBairro(bairro, btn) {
+        document.querySelectorAll('.filtros-grupo:last-of-type .filtro-btn').forEach(b => {
+            b.classList.remove('ativo');
+            b.classList.remove('ativo-bairro');
+        });
+        if (bairro === 'todos-bairros') {
+            btn.classList.add('ativo');
+        } else {
+            btn.classList.add('ativo-bairro');
+        }
+        bairroAtivo = bairro;
+        atualizarVisibilidade();
+    }
+</script>
 
 </body>
 </html>

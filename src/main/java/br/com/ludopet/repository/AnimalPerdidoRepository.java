@@ -6,9 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface AnimalPerdidoRepository //INTERFACE Um contrato que define métodos que devem ser usados
+public interface AnimalPerdidoRepository
         extends JpaRepository<AnimalPerdido, Long> {
 
-    List<AnimalPerdido> findByStatus(String status);//POLIMORFISMO( método pode funcionar de formas diferentes)
-
+    List<AnimalPerdido> findByStatus(String status);
 }

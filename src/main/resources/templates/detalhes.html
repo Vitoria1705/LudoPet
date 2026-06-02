@@ -3,61 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Detalhes do Animal - LudoPet</title>
+    <title th:text="|${animal.nome} - LudoPet|">Detalhes do Animal - LudoPet</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #F7F6F2;
+            color: #1a1a1a;
+        }
+
+        /* ── Back link ───────────────────────────────── */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #6B7280;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: #1B3FAB; }
+
+        .back-arrow {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1.5px solid #E5E7EB;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .back-link:hover .back-arrow { border-color: #1B3FAB; }
+
+        /* ── Main detail layout ──────────────────────── */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        /* ── Photo side ──────────────────────────────── */
+        .photo-col {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .pet-image-wrap {
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            background: #E5E7EB;
+            margin-bottom: 1rem;
+        }
+
+        .pet-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .pet-image-wrap:hover img { transform: scale(1.03); }
+
+        .photo-badge {
+            background: #EAF3DE;
+            color: #3B6D11;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ── Info side ───────────────────────────────── */
+        .info-col {}
+
+        .detail-kicker {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #1B3FAB;
+            margin-bottom: 0.4rem;
+        }
+
+        .detail-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            line-height: 1.1;
+            color: #0f1f5c;
+            margin-bottom: 0.75rem;
+        }
+
+        .detail-desc {
+            font-size: 15px;
+            color: #4B5563;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        /* ── Fact chips ──────────────────────────────── */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .fact-card {
+            background: #fff;
+            border: 1.5px solid #F3F4F6;
+            border-radius: 12px;
+            padding: 14px 16px;
+        }
+
+        .fact-label {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #9CA3AF;
+            margin-bottom: 4px;
+        }
+
+        .fact-value {
+            font-size: 15px;
+            font-weight: 500;
+            color: #111827;
+        }
+
+        /* ── Steps ───────────────────────────────────── */
+        .steps-section {
+            margin-bottom: 2rem;
+        }
+
+        .steps-heading {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #9CA3AF;
+            margin-bottom: 1rem;
+        }
+
+        .step-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .step-row:last-child { border-bottom: none; }
+
+        .step-num {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #1B3FAB;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 14px;
+            color: #374151;
+            padding-top: 5px;
+            line-height: 1.4;
+        }
+
+        /* ── CTA button ──────────────────────────────── */
+        .btn-adopt {
+            display: block;
+            width: 100%;
+            background: #1B3FAB;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 28px;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+            cursor: pointer;
+        }
+
+        .btn-adopt:hover {
+            background: #1532A0;
+            transform: translateY(-2px);
+            color: #fff;
+        }
+
+        .adopt-note {
+            font-size: 11px;
+            color: #9CA3AF;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* ── Responsive ──────────────────────────────── */
+        @media (max-width: 768px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .photo-col { position: static; }
+            .detail-name { font-size: 30px; }
+        }
+    </style>
 </head>
 <body>
 
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
 <main class="container py-5">
-    <a th:href="@{/adocao}" class="btn btn-outline-secondary mb-4">Voltar para adocao</a>
 
-    <section class="detail-layout">
-        <img th:src="@{'/img/' + ${animal.foto}}"
-             class="detail-photo"
-             th:alt="|Foto de ${animal.nome}|"
-             onerror="this.src='/img/padrao.png'">
+    <a th:href="@{/adocao}" class="back-link">
+        <span class="back-arrow">←</span>
+        Voltar para adoção
+    </a>
 
-        <div class="detail-panel">
-            <span class="section-kicker">Detalhes do animal</span>
-            <h1 th:text="${animal.nome}">Nome</h1>
-            <p class="lead" th:text="${animal.descricao}">Descricao do animal</p>
+    <div class="detail-grid">
 
-            <div class="pet-facts detail-facts">
-                <span><strong>Raca</strong><small th:text="${animal.raca}">SRD</small></span>
-                <span><strong>Idade</strong><small th:text="${animal.idade}">0</small></span>
-                <span><strong>Sexo</strong><small th:text="${animal.sexo}">Sexo</small></span>
-                <span><strong>Porte</strong><small th:text="${animal.porte}">Porte</small></span>
+        <!-- Left: Photo -->
+        <div class="photo-col">
+            <div class="pet-image-wrap">
+                <img th:src="@{'/img/' + ${animal.foto}}"
+                     th:alt="|Foto de ${animal.nome}|"
+                     onerror="this.src='/img/padrao.png'">
             </div>
-
-            <div class="adoption-steps">
-
-                <div>
-                    <strong>1</strong>
-                    <span>Conheça melhor o pet</span>
-                </div>
-
-                <div>
-                    <strong>2</strong>
-                    <span>Envie sua solicitação</span>
-                </div>
-
-                <div>
-                    <strong>3</strong>
-                    <span>Nossa equipe entrará em contato</span>
-                </div>
-
-            </div>
-
-            <a class="btn btn-success btn-lg w-100"
-               th:href="@{/formulario-adocao/{id}(id=${animal.id})}">
-                Quero adotar
-            </a>
+            <span class="photo-badge">
+                ✦ Disponível para adoção
+            </span>
         </div>
-    </section>
+
+        <!-- Right: Info -->
+        <div class="info-col">
+            <p class="detail-kicker">Detalhes do animal</p>
+            <h1 class="detail-name" th:text="${animal.nome}">Nome</h1>
+            <p class="detail-desc" th:text="${animal.descricao}">Descrição do animal aparece aqui.</p>
+
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <p class="fact-label">Raça</p>
+                    <p class="fact-value" th:text="${animal.raca}">SRD</p>
+                </div>
+                <div class="fact-card">
+                    <p class="fact-label">Idade</p>
+                    <p class="fact-value" th:text="${animal.idade}">—</p>
+                </div>
+                <div class="fact-card">
+                    <p class="fact-label">Sexo</p>
+                    <p class="fact-value" th:text="${animal.sexo}">—</p>
+                </div>
+                <div class="fact-card">
+                    <p class="fact-label">Porte</p>
+                    <p class="fact-value" th:text="${animal.porte}">—</p>
+                </div>
+            </div>
+
+            <div class="steps-section">
+                <p class="steps-heading">Como funciona a adoção</p>
+
+                <div class="step-row">
+                    <div class="step-num">1</div>
+                    <p class="step-text">Conheça melhor o pet e tire suas dúvidas</p>
+                </div>
+                <div class="step-row">
+                    <div class="step-num">2</div>
+                    <p class="step-text">Envie sua solicitação preenchendo o formulário</p>
+                </div>
+                <div class="step-row">
+                    <div class="step-num">3</div>
+                    <p class="step-text">Nossa equipe entrará em contato para os próximos passos</p>
+                </div>
+            </div>
+
+            <a class="btn-adopt"
+               th:href="@{/formulario-adocao/{id}(id=${animal.id})}">
+                Quero adotar <span th:text="${animal.nome}">este pet</span>
+            </a>
+            <p class="adopt-note">Gratuito · Processo 100% online</p>
+        </div>
+
+    </div>
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
