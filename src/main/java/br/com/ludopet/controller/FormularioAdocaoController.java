@@ -29,20 +29,14 @@ public class FormularioAdocaoController {
         Optional<Animal> animal = animalRepository.findById(id);
 
         if (animal.isPresent()) {
-
             model.addAttribute("animal", animal.get());
-
             return "formulario-adocao";
-
-        } else {
-
-            return "redirect:/adocao";
-
         }
 
+        return "redirect:/adocao";
     }
 
-    // SALVAR FORMULÁRIO
+    // 🔹 SALVAR FORMULÁRIO
     @PostMapping
     public String salvarFormulario(
             @RequestParam Long idAnimal,
@@ -61,8 +55,21 @@ public class FormularioAdocaoController {
 
         formularioRepository.save(form);
 
-        return "redirect:/adocao?sucesso";
-
+        // 👇 AQUI É O FLUXO CORRETO PRA CONFIRMAÇÃO
+        return "redirect:/formulario-adocao/confirmacao?idAnimal=" + idAnimal;
     }
 
+    // 🔹 PÁGINA DE CONFIRMAÇÃO
+    @GetMapping("/confirmacao")
+    public String confirmacao(@RequestParam Long idAnimal, Model model) {
+
+        Optional<Animal> animal = animalRepository.findById(idAnimal);
+
+        if (animal.isPresent()) {
+            model.addAttribute("animal", animal.get());
+            return "confirmacao-adocao";
+        }
+
+        return "redirect:/adocao";
+    }
 }

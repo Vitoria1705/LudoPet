@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,410 +7,753 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <style>
-        /* Estilos base do catálogo unificado */
-        .loja-hero {
-            background: #2563EB !important; /* Azul Royal LudoPet */
-            border-radius: var(--radius-lg, 16px);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        .loja-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 70% 70% at 80% 30%, rgba(255, 212, 59, 0.15) 0%, transparent 70%);
-            pointer-events: none;
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #F7F6F2;
+            color: #1a1a1a;
         }
 
-        /* Abas de Categorias Modernas */
+        /* ── HERO ──────────────────────────────────── */
+        .loja-hero {
+            background: #1B3FAB;
+            padding: 4rem 0;
+        }
+        .hero-kicker {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 0.5rem;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        .hero-sub {
+            font-size: 15px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+            max-width: 480px;
+            margin-bottom: 2rem;
+        }
+        .hero-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-end;
+        }
+        .stat-pill {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 12px;
+            padding: 14px 20px;
+            text-align: center;
+            min-width: 110px;
+        }
+        .stat-num {
+            font-size: 24px;
+            font-weight: 500;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 3px;
+        }
+        .stat-label {
+            font-size: 10px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ── CATEGORIAS ────────────────────────────── */
+        .section-kicker {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #1B3FAB;
+            display: block;
+            margin-bottom: 0.35rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #0f1f5c;
+            margin-bottom: 0.4rem;
+        }
+        .section-sub {
+            font-size: 14px;
+            color: #6B7280;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .cat-card {
+            background: #fff;
+            border: 1.5px solid #F3F4F6;
+            border-radius: 14px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            transition: border-color 0.2s, transform 0.15s;
+        }
+        .cat-card:hover { border-color: #1B3FAB; transform: translateY(-2px); }
+        .cat-icon-wrap {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+        .ic-amber { background: #FAEEDA; }
+        .ic-blue  { background: #E6F1FB; }
+        .ic-pink  { background: #FBEAF0; }
+        .ic-green { background: #EAF3DE; }
+        .cat-name { font-size: 14px; font-weight: 500; color: #111827; margin-bottom: 3px; }
+        .cat-count { font-size: 12px; color: #9CA3AF; }
+
+        /* ── ABAS DE FILTRO ────────────────────────── */
         .loja-tabs {
             display: flex;
-            gap: 12px;
-            border-bottom: 2px solid #E2E8F0;
-            padding-bottom: 12px;
-            margin-bottom: 32px;
+            gap: 8px;
+            border-bottom: 2px solid #E5E7EB;
+            padding-bottom: 0;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
         .loja-tab-btn {
             background: transparent;
             border: none;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: #64748B;
-            padding: 8px 16px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #9CA3AF;
+            padding: 10px 18px;
             position: relative;
-            transition: all 0.2s;
             cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: color 0.2s;
         }
-        .loja-tab-btn:hover { color: #2563EB; }
+        .loja-tab-btn:hover { color: #1B3FAB; }
         .loja-tab-btn.active {
-            color: #2563EB;
-        }
-        .loja-tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -14px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: #2563EB;
-            border-radius: 2px;
+            color: #1B3FAB;
+            border-bottom-color: #1B3FAB;
         }
 
-        /* Vitrine de Cards */
+        /* ── GRID DE PRODUTOS ──────────────────────── */
         .produtos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
         }
-
-        .card-custom {
-            background: #FFFFFF;
-            border: 1px solid #E2E8F0;
-            border-radius: 12px;
-            padding: 16px;
+        .prod-card {
+            background: #fff;
+            border: 1.5px solid #F3F4F6;
+            border-radius: 14px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: border-color 0.2s, transform 0.15s;
         }
-        .card-custom:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-color: #2563EB;
-        }
-
-        .card-custom-img-wrapper {
-            width: 100%;
-            height: 180px;
+        .prod-card:hover { border-color: #1B3FAB; transform: translateY(-3px); }
+        .prod-img-wrap {
+            height: 170px;
+            background: #F8FAFC;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #F8FAFC;
-            border-radius: 8px;
             overflow: hidden;
-            margin-bottom: 14px;
+            position: relative;
         }
-        .card-custom img {
-            max-width: 85%;
-            max-height: 85%;
-            object-fit: contain;
+        .prod-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
-
-        .card-custom h3 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 800;
-            color: #0F172A;
-            margin-bottom: 6px;
-            min-height: 40px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .card-custom p {
-            font-size: 0.82rem;
-            color: #64748B;
-            line-height: 1.5;
-            margin-bottom: 12px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            min-height: 36px;
-        }
-
-        .card-tag {
-            font-size: 0.7rem;
-            font-weight: 800;
+        .prod-card:hover .prod-img-wrap img { transform: scale(1.05); }
+        .prod-tag-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 10px;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 4px 8px;
-            border-radius: 6px;
-            width: fit-content;
-            margin-bottom: 8px;
+            letter-spacing: 0.4px;
+            padding: 4px 10px;
+            border-radius: 20px;
         }
-        .tag-produto { background: #EFF6FF; color: #2563EB; }
-        .tag-kit { background: #FEF3C7; color: #D97706; }
-
-        .preco {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #0F172A;
-            margin-bottom: 14px;
+        .tag-venda { background: #EAF3DE; color: #3B6D11; }
+        .tag-kit   { background: #FAEEDA; color: #854F0B; }
+        .prod-body {
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .prod-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #111827;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 40px;
+        }
+        .prod-desc {
+            font-size: 12px;
+            color: #9CA3AF;
+            margin-bottom: 12px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .prod-price {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1B3FAB;
+            margin-bottom: 12px;
             margin-top: auto;
         }
+        .btn-add {
+            background: #1B3FAB;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .btn-add:hover { background: #1532A0; }
 
-        /* Carrinho de Compras Lateral Real */
+        /* ── CARRINHO LATERAL ──────────────────────── */
         .checkout-box {
-            background: #FFFFFF;
-            border: 1px solid #E2E8F0;
-            border-radius: 16px;
-            padding: 24px;
+            background: #fff;
+            border: 1.5px solid #F3F4F6;
+            border-radius: 18px;
+            padding: 1.5rem;
             position: sticky;
             top: 24px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
+        .cart-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #0f1f5c;
+            margin-bottom: 1rem;
+        }
+        .cart-empty {
+            text-align: center;
+            padding: 2rem 0;
+            color: #9CA3AF;
+        }
+        .cart-empty i { font-size: 2.5rem; display: block; margin-bottom: 8px; }
+        .cart-empty p { font-size: 13px; margin: 0; }
         .cart-item-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #F1F5F9;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #F3F4F6;
+            gap: 8px;
+        }
+        .cart-item-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: #111827;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 140px;
+        }
+        .cart-item-type { font-size: 11px; color: #9CA3AF; }
+        .cart-item-price { font-size: 13px; font-weight: 600; color: #111827; white-space: nowrap; }
+        .btn-remove {
+            background: none;
+            border: none;
+            color: #EF4444;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 0;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
         }
         .summary-line {
             display: flex;
             justify-content: space-between;
-            font-size: 0.9rem;
-            color: #64748B;
-            margin-bottom: 8px;
+            font-size: 13px;
+            color: #6B7280;
+            margin-bottom: 6px;
+        }
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+        }
+        .summary-total strong { font-size: 15px; color: #111827; }
+        .summary-total span { font-size: 22px; font-weight: 600; color: #1B3FAB; }
+        .btn-checkout {
+            background: #FBBF24;
+            color: #1B3FAB;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+        .btn-checkout:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* ── PROMO BANNER ──────────────────────────── */
+        .promo-banner {
+            background: #0f1f5c;
+            border-radius: 18px;
+            padding: 2.5rem;
+        }
+        .promo-kicker {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 0.4rem;
+        }
+        .promo-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .promo-sub { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+        .promo-cupom { color: #FBBF24; font-weight: 600; }
+        .btn-promo {
+            background: #FBBF24;
+            color: #0f1f5c;
+            border: none;
+            border-radius: 10px;
+            padding: 13px 28px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-promo:hover { opacity: 0.9; }
+
+        /* ── PERKS ─────────────────────────────────── */
+        .perk-card {
+            background: #fff;
+            border: 1.5px solid #F3F4F6;
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .perk-icon {
+            width: 40px;
+            height: 40px;
+            background: #E6F1FB;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .perk-title { font-size: 13px; font-weight: 500; color: #111827; margin-bottom: 3px; }
+        .perk-sub { font-size: 12px; color: #9CA3AF; line-height: 1.4; }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 32px; }
+            .hero-stats { flex-direction: row; flex-wrap: wrap; align-items: stretch; }
+            .stat-pill { min-width: 80px; }
         }
     </style>
 </head>
-
-<body class="bg-light">
+<body>
 
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
-<main class="container my-5" style="animation: pgIn .4s ease both;">
-
-    <section class="loja-hero text-white p-5 mb-5">
-        <span class="badge mb-2" style="background: rgba(255,255,255,0.2); font-family: 'Plus Jakarta Sans'; font-weight: 700;">🛍️ LudoPet Store</span>
-        <h1 class="display-5 fw-bold mt-2" style="font-family: 'Fraunces', serif; font-weight: 900;">Catálogo e Kits de Adoção</h1>
-        <p class="lead mb-0" style="color: rgba(255,255,255,0.85); font-size: 1rem; font-weight: 600;">Encontre produtos essenciais diários e kits completos estruturados para a chegada do seu novo amigo de quatro patas.</p>
-    </section>
-
-    <div class="row g-4">
-        <div class="col-lg-8">
-
-            <div class="loja-tabs">
-                <button class="loja-tab-btn active" onclick="filtrarCatalogo('todos', this)">Todos os Itens</button>
-                <button class="loja-tab-btn" onclick="filtrarCatalogo('venda', this)">🛍️ Produtos à Venda</button>
-                <button class="loja-tab-btn" onclick="filtrarCatalogo('kit', this)">🎁 Kits do Adotante</button>
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="loja-hero">
+    <div class="container">
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-8">
+                <p class="hero-kicker">Bem-vindo à Loja Pet</p>
+                <h1 class="hero-title">Tudo que seu<br>pet merece</h1>
+                <p class="hero-sub">
+                    Produtos essenciais e kits completos para a chegada do seu novo amigo.
+                    Qualidade e carinho em cada item.
+                </p>
             </div>
-
-            <div id="gridProdutos" class="produtos-grid"></div>
-        </div>
-
-        <div class="col-lg-4">
-            <div class="checkout-box">
-                <h4 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.25rem; color: #0F172A;" class="mb-4">
-                    <i class="bi bi-bag-heart-fill text-primary me-2"></i>Seu Carrinho
-                </h4>
-
-                <div id="listaCarrinho" class="mb-4" style="max-height: 280px; overflow-y: auto;">
-                </div>
-
-                <div class="pt-3 border-top" style="border-color: #E2E8F0 !important;">
-                    <div class="summary-line">
-                        <span>Subtotal</span>
-                        <span id="cartSubtotal" style="color: #0F172A; font-weight: 600;">R$ 0,00</span>
+            <div class="col-lg-4">
+                <div class="hero-stats">
+                    <div class="stat-pill">
+                        <div class="stat-num">5</div>
+                        <div class="stat-label">Produtos</div>
                     </div>
-                    <div class="summary-line">
-                        <span>Frete (São Luís)</span>
-                        <span class="text-success" style="font-weight: 700;">GRÁTIS</span>
+                    <div class="stat-pill">
+                        <div class="stat-num">4.9</div>
+                        <div class="stat-label">Avaliação média</div>
                     </div>
-                    <hr style="color: #E2E8F0;">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <strong style="font-size: 1.05rem; color: #0F172A;">Total do Pedido</strong>
-                        <strong id="cartTotal" style="font-size: 1.4rem; color: #2563EB;">R$ 0,00</strong>
+                    <div class="stat-pill">
+                        <div class="stat-num">Grátis</div>
+                        <div class="stat-label">Frete em São Luís</div>
                     </div>
                 </div>
-
-                <button onclick="finalizarCompraCompleta()" class="btn w-100" style="background: #FFD43B; color: #1D4ED8; font-weight: 800; padding: 14px; border-radius: 12px; box-shadow: 0 4px 14px rgba(255, 212, 59, 0.4); border: none; transition: all 0.2s;">
-                    <i class="bi bi-credit-card-2-back-fill me-2"></i> Fechar Pedido
-                </button>
-                <small class="text-muted d-block text-center mt-3" style="font-size: 0.75rem;"><i class="bi bi-shield-lock-fill me-1"></i> Ambiente de compra simulado com segurança.</small>
             </div>
         </div>
     </div>
+</section>
 
-</main>
+<!-- ── CATEGORIAS ─────────────────────────────────────── -->
+<section class="py-5">
+    <div class="container">
+        <span class="section-kicker">Categorias</span>
+        <h2 class="section-title">O que você precisa?</h2>
+        <div class="row g-3 mb-2">
+            <div class="col-6 col-md-3">
+                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('todos', null)">
+                    <div class="cat-icon-wrap ic-amber">🍖</div>
+                    <div class="cat-name">Alimentação</div>
+                    <div class="cat-count">1 item</div>
+                </button>
+            </div>
+            <div class="col-6 col-md-3">
+                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('venda', null)">
+                    <div class="cat-icon-wrap ic-blue">🛁</div>
+                    <div class="cat-name">Higiene</div>
+                    <div class="cat-count">1 item</div>
+                </button>
+            </div>
+            <div class="col-6 col-md-3">
+                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('venda', null)">
+                    <div class="cat-icon-wrap ic-pink">🧸</div>
+                    <div class="cat-name">Brinquedos</div>
+                    <div class="cat-count">1 item</div>
+                </button>
+            </div>
+            <div class="col-6 col-md-3">
+                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('kit', null)">
+                    <div class="cat-icon-wrap ic-green">🎁</div>
+                    <div class="cat-name">Kits do Adotante</div>
+                    <div class="cat-count">2 kits</div>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
 
-<footer th:replace="~{fragments/footer :: footer}"></header>
+<!-- ── CATÁLOGO COMPLETO + CARRINHO ──────────────────── -->
+<section class="pb-5">
+    <div class="container">
+        <div class="row g-4">
 
-    <script>
-        let carrinho = [];
-        let categoriaAtual = 'todos';
+            <!-- Coluna produtos -->
+            <div class="col-lg-8">
+                <span class="section-kicker">Catálogo</span>
+                <h2 class="section-title mb-3">Todos os produtos</h2>
 
-        const produtosE_Kits = [
-            {
-                id: 101,
-                tipo: "venda",
-                nome: "Ração PremieR Cães Adultos 15kg",
-                descricao: "Nutrição de alta performance, pelagem bonita e saudável para raças médias e grandes.",
-                preco: 189.90,
-                imagemUrl: "https://images.unsplash.com/photo-1589924691106-073b19f59392?q=80&w=300&auto=format&fit=crop"
-            },
-            {
-                id: 102,
-                tipo: "venda",
-                nome: "Arranhador Torre Cat Confort",
-                descricao: "Arranhador completo com brinquedo suspenso e plataforma revestida de sisal premium.",
-                preco: 84.90,
-                imagemUrl: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=300&auto=format&fit=crop"
-            },
-            {
-                id: 103,
-                tipo: "venda",
-                nome: "Shampoo Neutro Hidratante 500ml",
-                descricao: "Fórmula hipoalergênica ideal para banhos frequentes, deixando o pelo macio.",
-                preco: 32.90,
-                imagemUrl: "https://images.unsplash.com/photo-1608454367599-c1139e64bf87?q=80&w=300&auto=format&fit=crop"
-            },
-            {
-                id: 201,
-                tipo: "kit",
-                nome: "Kit Boas-Vindas Cão Adotado",
-                descricao: "Combo essencial: Cama Soft G, comedouro duplo, coleira regulável, ração e brinquedo de corda.",
-                preco: 249.90,
-                imagemUrl: "https://images.unsplash.com/photo-1516715094727-ec48be335d79?q=80&w=300&auto=format&fit=crop"
-            },
-            {
-                id: 202,
-                tipo: "kit",
-                nome: "Kit Conforto Gato Adotado",
-                descricao: "Tudo para o felino: Caixa de areia, pá higiênica, comedouro, caminha toca e arranhador p.",
-                preco: 179.90,
-                imagemUrl: "https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=300&auto=format&fit=crop"
-            }
-        ];
+                <!-- Abas de filtro -->
+                <div class="loja-tabs">
+                    <button class="loja-tab-btn active" onclick="filtrarCatalogo('todos', this)">Todos os itens</button>
+                    <button class="loja-tab-btn" onclick="filtrarCatalogo('venda', this)">🛍️ Produtos à venda</button>
+                    <button class="loja-tab-btn" onclick="filtrarCatalogo('kit', this)">🎁 Kits do adotante</button>
+                </div>
 
-        function renderizarCatalogo(lista) {
-            const div = document.getElementById("gridProdutos");
-            div.innerHTML = "";
+                <!-- Grid dinâmico -->
+                <div id="gridProdutos" class="produtos-grid"></div>
+            </div>
 
-            lista.forEach(item => {
-                const isKit = item.tipo === 'kit';
+            <!-- Carrinho lateral -->
+            <div class="col-lg-4">
+                <div class="checkout-box">
+                    <h3 class="cart-title">
+                        <i class="bi bi-bag-heart" style="color:#1B3FAB; margin-right:8px;"></i>Seu carrinho
+                    </h3>
 
-                div.innerHTML += `
-                    <div class="card-custom">
-                        <div class="card-custom-img-wrapper">
-                            <img src="${item.imagemUrl}" alt="${item.nome}">
+                    <div id="listaCarrinho" style="max-height: 300px; overflow-y: auto;">
+                        <div class="cart-empty">
+                            <i class="bi bi-cart-x"></i>
+                            <p>Seu carrinho está vazio.</p>
                         </div>
-                        <div>
-                            <span class="card-tag ${isKit ? 'tag-kit' : 'tag-produto'}">
-                                ${isKit ? '🎁 Kit Adotante' : '🛍️ À Venda'}
-                            </span>
-                            <h3>${item.nome}</h3>
-                            <p>${item.descricao}</p>
+                    </div>
+
+                    <div class="pt-3 mt-2" style="border-top: 1px solid #F3F4F6;">
+                        <div class="summary-line">
+                            <span>Subtotal</span>
+                            <span id="cartSubtotal" style="color:#111827; font-weight:500;">R$ 0,00</span>
                         </div>
-                        <div class="preco">R$ ${item.preco.toFixed(2)}</div>
-                        <button onclick="adicionarAoCarrinho(${item.id})" class="btn w-100" style="background: #2563EB; color: white; font-weight: 700; border-radius: 8px; padding: 10px;">
-                            <i class="bi bi-cart-plus-fill me-2"></i> Adicionar
+                        <div class="summary-line">
+                            <span>Frete (São Luís)</span>
+                            <span style="color:#3B6D11; font-weight:600;">GRÁTIS</span>
+                        </div>
+                        <div class="summary-total">
+                            <strong>Total</strong>
+                            <span id="cartTotal">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-checkout" onclick="finalizarCompra()">
+                        <i class="bi bi-credit-card-2-back-fill me-2"></i>Fechar pedido
+                    </button>
+                    <p style="font-size:11px; color:#9CA3AF; text-align:center; margin-top:10px; margin-bottom:0;">
+                        <i class="bi bi-shield-lock me-1"></i>Ambiente seguro e simulado
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ── BANNER CUPOM ───────────────────────────────────── -->
+<section class="pb-5">
+    <div class="container">
+        <div class="promo-banner">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-8">
+                    <p class="promo-kicker">Oferta especial</p>
+                    <h3 class="promo-title">15% off na primeira compra</h3>
+                    <p class="promo-sub">
+                        Use o cupom <span class="promo-cupom">BEMVINDO</span> e ganhe desconto em qualquer produto.
+                        Válido para novos clientes.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <button class="btn-promo">Usar cupom agora</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── PERKS ──────────────────────────────────────────── -->
+<section class="pb-5">
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="perk-card">
+                    <div class="perk-icon">📦</div>
+                    <div>
+                        <div class="perk-title">Entrega rápida</div>
+                        <div class="perk-sub">São Luís em até 2 dias úteis após confirmação</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="perk-card">
+                    <div class="perk-icon">🔒</div>
+                    <div>
+                        <div class="perk-title">Pagamento seguro</div>
+                        <div class="perk-sub">Pix, cartão de crédito e boleto bancário</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="perk-card">
+                    <div class="perk-icon">💬</div>
+                    <div>
+                        <div class="perk-title">Suporte humano</div>
+                        <div class="perk-sub">Atendemos via WhatsApp em horário comercial</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<script>
+    let carrinho = [];
+
+    const produtosEKits = [
+        {
+            id: 101,
+            tipo: "venda",
+            nome: "Ração PremieR Cães Adultos 15kg",
+            descricao: "Nutrição de alta performance, pelagem bonita e saudável para raças médias e grandes.",
+            preco: 189.90,
+            imagemUrl: "https://images.unsplash.com/photo-1589924691106-073b19f59392?q=80&w=300&auto=format&fit=crop"
+        },
+        {
+            id: 102,
+            tipo: "venda",
+            nome: "Arranhador Torre Cat Confort",
+            descricao: "Arranhador completo com brinquedo suspenso e plataforma revestida de sisal premium.",
+            preco: 84.90,
+            imagemUrl: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=300&auto=format&fit=crop"
+        },
+        {
+            id: 103,
+            tipo: "venda",
+            nome: "Shampoo Neutro Hidratante 500ml",
+            descricao: "Fórmula hipoalergênica ideal para banhos frequentes, deixando o pelo macio.",
+            preco: 32.90,
+            imagemUrl: "https://images.unsplash.com/photo-1608454367599-c1139e64bf87?q=80&w=300&auto=format&fit=crop"
+        },
+        {
+            id: 201,
+            tipo: "kit",
+            nome: "Kit Boas-Vindas Cão Adotado",
+            descricao: "Combo essencial: Cama Soft G, comedouro duplo, coleira regulável, ração e brinquedo de corda.",
+            preco: 249.90,
+            imagemUrl: "https://images.unsplash.com/photo-1516715094727-ec48be335d79?q=80&w=300&auto=format&fit=crop"
+        },
+        {
+            id: 202,
+            tipo: "kit",
+            nome: "Kit Conforto Gato Adotado",
+            descricao: "Tudo para o felino: Caixa de areia, pá higiênica, comedouro, caminha toca e arranhador p.",
+            preco: 179.90,
+            imagemUrl: "https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=300&auto=format&fit=crop"
+        }
+    ];
+
+    function renderizarCatalogo(lista) {
+        const grid = document.getElementById("gridProdutos");
+        if (lista.length === 0) {
+            grid.innerHTML = '<p style="color:#9CA3AF; font-size:14px; padding:2rem 0;">Nenhum produto encontrado nesta categoria.</p>';
+            return;
+        }
+        grid.innerHTML = lista.map(item => {
+            const isKit = item.tipo === 'kit';
+            return `
+                <div class="prod-card">
+                    <div class="prod-img-wrap">
+                        <img src="${item.imagemUrl}" alt="${item.nome}" onerror="this.style.display='none'">
+                        <span class="prod-tag-badge ${isKit ? 'tag-kit' : 'tag-venda'}">
+                            ${isKit ? '🎁 Kit Adotante' : '🛍️ À Venda'}
+                        </span>
+                    </div>
+                    <div class="prod-body">
+                        <div class="prod-name">${item.nome}</div>
+                        <div class="prod-desc">${item.descricao}</div>
+                        <div class="prod-price">R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
+                        <button class="btn-add" onclick="adicionarAoCarrinho(${item.id})">
+                            <i class="bi bi-cart-plus me-2"></i>Adicionar ao carrinho
                         </button>
                     </div>
-                `;
-            });
-        }
+                </div>
+            `;
+        }).join('');
+    }
 
-        function filtrarCatalogo(tipo, botao) {
-            document.querySelectorAll('.loja-tab-btn').forEach(b => b.classList.remove('active'));
-            botao.classList.add('active');
-            categoriaAtual = tipo;
+    function filtrarCatalogo(tipo, botao) {
+        document.querySelectorAll('.loja-tab-btn').forEach(b => b.classList.remove('active'));
+        if (botao) botao.classList.add('active');
+        const lista = tipo === 'todos' ? produtosEKits : produtosEKits.filter(p => p.tipo === tipo);
+        renderizarCatalogo(lista);
+    }
 
-            if (tipo === 'todos') {
-                renderizarCatalogo(produtosE_Kits);
-            } else {
-                renderizarCatalogo(produtosE_Kits.filter(p => p.tipo === tipo));
-            }
-        }
-
-        function adicionarAoCarrinho(id) {
-            const item = produtosE_Kits.find(p => p.id === id);
-            if (item) {
-                carrinho.push(item);
-                fetch("http://localhost:8081/api/carrinho", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ nomeProduto: item.nome, preco: item.preco })
-                }).catch(() => {}); // Consome erro silenciosamente caso API local esteja offline
-                atualizarVisualCarrinho();
-            }
-        }
-
-        function removerDoCarrinho(index) {
-            carrinho.splice(index, 1);
-            atualizarVisualCarrinho();
-        }
-
-        function atualizarVisualCarrinho() {
-            const container = document.getElementById("listaCarrinho");
-            const subtotalTxt = document.getElementById("cartSubtotal");
-            const totalTxt = document.getElementById("cartTotal");
-
-            if (carrinho.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-4 text-muted">
-                        <i class="bi bi-cart-x" style="font-size: 2.5rem;"></i>
-                        <p class="mt-2 mb-0" style="font-size: 0.85rem; font-weight: 600;">Seu carrinho está vazio.</p>
-                    </div>
-                `;
-                subtotalTxt.textContent = "R$ 0,00";
-                totalTxt.textContent = "R$ 0,00";
-                return;
-            }
-
-            let soma = 0;
-            container.innerHTML = carrinho.map((item, index) => {
-                soma += item.preco;
-                return `
-                    <div class="cart-item-row">
-                        <div style="max-width: 70%;">
-                            <strong style="font-size: 0.85rem; color: #0F172A; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.nome}</strong>
-                            <span style="font-size: 0.75rem;" class="text-muted">${item.tipo === 'kit' ? '🎁 Combo Especial' : '🛍️ Item Avulso'}</span>
-                        </div>
-                        <div class="text-end">
-                            <span style="font-size: 0.88rem; font-weight: 700; color: #0F172A; display: block;">R$ ${item.preco.toFixed(2)}</span>
-                            <button onclick="removerDoCarrinho(${index})" style="background: none; border: none; color: #EF4444; font-size: 0.75rem; padding: 0; font-weight: 600;">Remover</button>
-                        </div>
-                    </div>
-                `;
-            }).join("");
-
-            subtotalTxt.textContent = `R$ ${soma.toFixed(2)}`;
-            totalTxt.textContent = `R$ ${soma.toFixed(2)}`;
-        }
-
-        function finalizarCompraCompleta() {
-            if (carrinho.length === 0) {
-                alert("Adicione pelo menos um item ou kit ao carrinho antes de fechar o pedido!");
-                return;
-            }
-
-            const totalPedido = carrinho.reduce((acc, p) => acc + p.preco, 0);
-
-            fetch("http://localhost:8081/api/pedidos", {
+    function adicionarAoCarrinho(id) {
+        const item = produtosEKits.find(p => p.id === id);
+        if (item) {
+            carrinho.push(item);
+            fetch("http://localhost:8081/api/carrinho", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    total: totalPedido,
-                    produtos: carrinho.map(p => ({ id: p.id }))
-                })
-            })
-            .then(() => {
-                alert(`🎉 Pedido Confirmado com Sucesso!\n\nValor Total: R$ ${totalPedido.toFixed(2)}\n\n🐾 Parabéns por apoiar o LudoPet! Se você adquiriu um dos nossos Kits do Adotante, o abrigo parceiro será notificado para preparar os itens de boas-vindas do seu pet.`);
-                carrinho = [];
-                atualizarVisualCarrinho();
-            })
-            .catch(() => {
-                alert(`🎉 [Simulação] Pedido Confirmado com Sucesso!\n\nValor Total: R$ ${totalPedido.toFixed(2)}\n\nObrigado por comprar no LudoPet!`);
-                carrinho = [];
-                atualizarVisualCarrinho();
-            });
+                body: JSON.stringify({ nomeProduto: item.nome, preco: item.preco })
+            }).catch(() => {});
+            atualizarCarrinho();
+        }
+    }
+
+    function removerDoCarrinho(index) {
+        carrinho.splice(index, 1);
+        atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+        const container = document.getElementById("listaCarrinho");
+        const subtotalEl = document.getElementById("cartSubtotal");
+        const totalEl = document.getElementById("cartTotal");
+
+        if (carrinho.length === 0) {
+            container.innerHTML = `
+                <div class="cart-empty">
+                    <i class="bi bi-cart-x"></i>
+                    <p>Seu carrinho está vazio.</p>
+                </div>`;
+            subtotalEl.textContent = "R$ 0,00";
+            totalEl.textContent = "R$ 0,00";
+            return;
         }
 
-        // Inicialização
-        renderizarCatalogo(produtosE_Kits);
-        atualizarVisualCarrinho();
-    </script>
+        let soma = 0;
+        container.innerHTML = carrinho.map((item, i) => {
+            soma += item.preco;
+            return `
+                <div class="cart-item-row">
+                    <div style="min-width:0; flex:1;">
+                        <div class="cart-item-name">${item.nome}</div>
+                        <div class="cart-item-type">${item.tipo === 'kit' ? '🎁 Kit especial' : '🛍️ Item avulso'}</div>
+                    </div>
+                    <div style="text-align:right; flex-shrink:0;">
+                        <div class="cart-item-price">R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
+                        <button class="btn-remove" onclick="removerDoCarrinho(${i})">Remover</button>
+                    </div>
+                </div>`;
+        }).join('');
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        const fmt = v => "R$ " + v.toFixed(2).replace('.', ',');
+        subtotalEl.textContent = fmt(soma);
+        totalEl.textContent = fmt(soma);
+    }
 
+    function finalizarCompra() {
+        if (carrinho.length === 0) {
+            alert("Adicione pelo menos um produto ao carrinho antes de fechar o pedido!");
+            return;
+        }
+        const total = carrinho.reduce((acc, p) => acc + p.preco, 0);
+        fetch("http://localhost:8081/api/pedidos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ total, produtos: carrinho.map(p => ({ id: p.id })) })
+        })
+            .then(() => {
+                alert(`🎉 Pedido confirmado!\n\nTotal: R$ ${total.toFixed(2).replace('.', ',')}\n\n🐾 Obrigado por apoiar o LudoPet!`);
+                carrinho = [];
+                atualizarCarrinho();
+            })
+            .catch(() => {
+                alert(`🎉 [Simulação] Pedido confirmado!\n\nTotal: R$ ${total.toFixed(2).replace('.', ',')}\n\nObrigado por comprar no LudoPet!`);
+                carrinho = [];
+                atualizarCarrinho();
+            });
+    }
+
+    renderizarCatalogo(produtosEKits);
+    atualizarCarrinho();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

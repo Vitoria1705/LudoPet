@@ -6,56 +6,456 @@
     <title>Animais Perdidos - LudoPet</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #F7F6F2;
+            color: #1a1a1a;
+        }
+
+        /* ── HERO ───────────────────────────────────── */
+        .perdidos-hero {
+            background: #1B3FAB;
+            padding: 3.5rem 0;
+        }
+        .hero-kicker {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 0.5rem;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        .hero-sub {
+            font-size: 14px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+            max-width: 500px;
+            margin-bottom: 1.75rem;
+        }
+        .btn-hero-primary {
+            background: #FBBF24;
+            color: #1B3FAB;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.2s, transform 0.15s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .btn-hero-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            color: #1B3FAB;
+        }
+        .btn-hero-secondary {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+            margin-bottom: 10px;
+        }
+        .btn-hero-secondary:hover {
+            background: rgba(255,255,255,0.18);
+            color: #fff;
+        }
+        .hero-counter {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .counter-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: #FBBF24;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .counter-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.5px;
+        }
+
+        /* ── FILTROS ────────────────────────────────── */
+        .filter-bar {
+            background: #fff;
+            border: 1.5px solid #F3F4F6;
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .filter-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            white-space: nowrap;
+        }
+        .filter-btn {
+            background: #F7F6F2;
+            border: 1.5px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 7px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #374151;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #1B3FAB;
+            border-color: #1B3FAB;
+            color: #fff;
+        }
+        .search-input {
+            border: 1.5px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 7px 14px;
+            font-size: 13px;
+            font-family: 'DM Sans', sans-serif;
+            color: #111827;
+            background: #F7F6F2;
+            outline: none;
+            transition: border-color 0.2s;
+            margin-left: auto;
+            min-width: 200px;
+        }
+        .search-input:focus {
+            border-color: #1B3FAB;
+            background: #fff;
+        }
+
+        /* ── CARDS ──────────────────────────────────── */
+        .animal-card {
+            background: #fff;
+            border: 1.5px solid #F3F4F6;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color 0.2s, transform 0.18s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .animal-card:hover {
+            border-color: #1B3FAB;
+            transform: translateY(-4px);
+        }
+        .card-photo {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background: #F3F4F6;
+        }
+        .card-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .animal-card:hover .card-photo img {
+            transform: scale(1.06);
+        }
+        .card-especie-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+        }
+        .badge-cachorro { background: #E6F1FB; color: #185FA5; }
+        .badge-gato     { background: #FAEEDA; color: #854F0B; }
+        .badge-outro    { background: #EAF3DE; color: #3B6D11; }
+
+        .dias-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.55);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+        }
+
+        .card-body-custom {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .card-animal-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #0f1f5c;
+            margin-bottom: 4px;
+        }
+        .card-raca {
+            font-size: 12px;
+            color: #9CA3AF;
+            margin-bottom: 10px;
+        }
+        .card-desc {
+            font-size: 13px;
+            color: #4B5563;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-info-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #6B7280;
+            margin-bottom: 6px;
+        }
+        .card-info-row i { color: #1B3FAB; font-size: 13px; }
+        .card-divider {
+            border: none;
+            border-top: 1px solid #F3F4F6;
+            margin: 1rem 0;
+        }
+        .btn-contato {
+            display: block;
+            background: #1B3FAB;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 11px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+            margin-top: auto;
+        }
+        .btn-contato:hover {
+            background: #1532A0;
+            color: #fff;
+        }
+
+        /* ── EMPTY STATE ────────────────────────────── */
+        .empty-state {
+            background: #fff;
+            border: 1.5px solid #F3F4F6;
+            border-radius: 16px;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .empty-icon {
+            font-size: 48px;
+            color: #D1D5DB;
+            margin-bottom: 1rem;
+        }
+        .empty-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #9CA3AF;
+            margin-bottom: 0.5rem;
+        }
+        .empty-sub {
+            font-size: 14px;
+            color: #9CA3AF;
+        }
+
+        /* ── SECTION TITLES ─────────────────────────── */
+        .section-kicker {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #1B3FAB;
+            display: block;
+            margin-bottom: 0.35rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 30px; }
+            .search-input { margin-left: 0; min-width: 100%; }
+        }
+    </style>
 </head>
 <body>
 
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
-<main class="container py-5">
-    <section class="page-hero mb-4">
-        <span class="section-kicker">Mural publico</span>
-        <h1>Animais perdidos</h1>
-        <p>Registros publicados por tutores e pela comunidade. Se reconhecer algum animal, use o contato informado no card.</p>
-        <div class="d-flex gap-2 flex-wrap">
-            <a class="btn btn-success" href="/novo-animal-perdido">Cadastrar animal perdido</a>
-            <a class="btn btn-outline-secondary" href="/petalerta">Buscar por foto no Pet Alerta</a>
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="perdidos-hero">
+    <div class="container">
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-8">
+                <p class="hero-kicker">Mural público</p>
+                <h1 class="hero-title">Animais perdidos</h1>
+                <p class="hero-sub">
+                    Registros publicados por tutores e pela comunidade.
+                    Se reconhecer algum animal, entre em contato com o tutor.
+                </p>
+                <a th:href="@{/cadastro-pet-perdido}" class="btn-hero-primary">
+                    <i class="bi bi-plus-circle me-2"></i>Cadastrar animal perdido
+                </a>
+                <a th:href="@{/pet-alerta}" class="btn-hero-secondary">
+                    <i class="bi bi-search me-2"></i>Buscar por foto no Pet Alerta
+                </a>
+            </div>
+            <div class="col-lg-4">
+                <div class="hero-counter">
+                    <div class="counter-num" th:text="${animais != null ? animais.size() : 0}">0</div>
+                    <div class="counter-label">animais aguardando por um lar</div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <div class="alert alert-light border" th:if="${#lists.isEmpty(animais)}">
-        Nenhum animal perdido cadastrado no momento.
+<!-- ── MURAL ──────────────────────────────────────────── -->
+<main class="container py-5">
+
+    <!-- Filtros -->
+    <div class="filter-bar">
+        <span class="filter-label">Filtrar por</span>
+        <button class="filter-btn active" onclick="filtrar('todos', this)">Todos</button>
+        <button class="filter-btn" onclick="filtrar('Cachorro', this)">🐶 Cachorro</button>
+        <button class="filter-btn" onclick="filtrar('Gato', this)">🐱 Gato</button>
+        <button class="filter-btn" onclick="filtrar('Outro', this)">🐾 Outro</button>
+        <input type="text" class="search-input" placeholder="Buscar por nome ou bairro..." id="campoBusca" oninput="buscar(this.value)">
     </div>
 
-    <div class="row g-4" th:if="${!#lists.isEmpty(animais)}">
-        <div class="col-md-6 col-lg-4" th:each="animal : ${animais}">
-            <article class="card lost-card h-100">
-                <img th:src="${#strings.startsWith(animal.foto, '/') ? animal.foto : '/img/' + animal.foto}"
-                     class="lost-card-img"
-                     th:alt="|Foto de ${animal.nome}|"
-                     onerror="this.src='/img/padrao.png'">
+    <!-- Grid de cards -->
+    <div class="row g-4" id="gridAnimais">
 
-                <div class="card-body">
-                    <div class="d-flex justify-content-between gap-3">
-                        <h2 class="h4" th:text="${animal.nome}">Nome</h2>
-                        <span class="status-pill">perdido</span>
-                    </div>
-
-                    <p class="mb-3" th:text="${animal.descricao}">Descricao</p>
-
-                    <div class="lost-info">
-                        <span><strong>Especie:</strong> <span th:text="${animal.especie}">Especie</span></span>
-                        <span><strong>Raca:</strong> <span th:text="${animal.raca}">Raca</span></span>
-                        <span><strong>Cidade:</strong> <span th:text="${animal.cidade}">Cidade</span></span>
-                        <span><strong>Contato:</strong> <span th:text="${animal.telefone}">Telefone</span></span>
-                    </div>
-                </div>
-            </article>
+        <!-- Empty state quando lista vazia -->
+        <div class="col-12" th:if="${animais == null or #lists.isEmpty(animais)}">
+            <div class="empty-state">
+                <div class="empty-icon"><i class="bi bi-search-heart"></i></div>
+                <h3 class="empty-title">Nenhum animal perdido cadastrado</h3>
+                <p class="empty-sub">Seja o primeiro a registrar um animal perdido no mural.</p>
+                <a th:href="@{/cadastro-pet-perdido}" class="btn-hero-primary mt-3 d-inline-block">
+                    Cadastrar agora
+                </a>
+            </div>
         </div>
+
+        <!-- Card de cada animal -->
+        <div class="col-sm-6 col-lg-4 card-item"
+             th:each="animal : ${animais}"
+             th:attr="data-especie=${animal.especie}, data-busca=${animal.nome + ' ' + animal.cidade + ' ' + animal.raca}">
+
+            <div class="animal-card">
+
+                <!-- Foto -->
+                <div class="card-photo">
+                    <img th:src="@{${animal.foto}}"
+                         th:alt="${animal.nome}"
+                         onerror="this.src='/img/padrao.png'">
+
+                    <!-- Badge espécie -->
+                    <span class="card-especie-badge"
+                          th:classappend="${animal.especie == 'Cachorro'} ? 'badge-cachorro' : (${animal.especie == 'Gato'} ? 'badge-gato' : 'badge-outro')"
+                          th:text="${animal.especie}">Espécie</span>
+
+                    <!-- Dias desde o cadastro -->
+                    <span class="dias-badge"
+                          th:text="${#temporals.format(animal.dataCadastro, 'dd/MM/yyyy')}">
+                        Data
+                    </span>
+                </div>
+
+                <!-- Info -->
+                <div class="card-body-custom">
+                    <h3 class="card-animal-name" th:text="${animal.nome}">Nome</h3>
+                    <p class="card-raca" th:text="${animal.raca + ' · ' + animal.cor}">Raça · Cor</p>
+                    <p class="card-desc" th:text="${animal.descricao}">Descrição do animal.</p>
+
+                    <div class="card-info-row">
+                        <i class="bi bi-geo-alt"></i>
+                        <span th:text="${animal.cidade}">Cidade</span>
+                    </div>
+                    <div class="card-info-row">
+                        <i class="bi bi-calendar3"></i>
+                        <span th:text="'Cadastrado em ' + ${#temporals.format(animal.dataCadastro, 'dd/MM/yyyy')}">Data</span>
+                    </div>
+
+                    <hr class="card-divider">
+
+                    <a th:href="'tel:' + ${animal.telefone}" class="btn-contato">
+                        <i class="bi bi-telephone me-2"></i>
+                        <span th:text="${animal.telefone}">Telefone</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<script>
+    function filtrar(especie, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        document.querySelectorAll('.card-item').forEach(card => {
+            if (especie === 'todos' || card.dataset.especie === especie) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    function buscar(termo) {
+        const t = termo.toLowerCase();
+        document.querySelectorAll('.card-item').forEach(card => {
+            const busca = card.dataset.busca.toLowerCase();
+            card.style.display = busca.includes(t) ? '' : 'none';
+        });
+    }
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

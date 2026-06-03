@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quero Ser Parceiro - LudoPet</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <style>
+        /* ── Layout Split ── */
+        .parceria-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 40px;
+            align-items: start;
+            padding: 48px 0 64px;
+        }
+
+        /* ── Painel Esquerdo ── */
+        .parceria-info {
+            position: sticky;
+            top: 100px;
+        }
+
+        .parceria-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #EFF6FF;
+            color: #2563EB;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+
+        .parceria-info h1 {
+            font-family: 'Fraunces', serif !important;
+            font-size: clamp(1.9rem, 3vw, 2.6rem) !important;
+            font-weight: 900 !important;
+            color: #0F172A !important;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .parceria-info h1 em {
+            color: #2563EB;
+            font-style: normal;
+        }
+
+        .parceria-info .subtitulo {
+            color: #64748B;
+            font-size: .95rem;
+            font-weight: 600;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        /* benefícios */
+        .beneficios {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .beneficio-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #F8FAFC;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 14px;
+            padding: 14px 16px;
+            transition: border-color .15s;
+        }
+
+        .beneficio-item:hover { border-color: #93C5FD; }
+
+        .beneficio-ic {
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .beneficio-ic.azul   { background: #EFF6FF; color: #2563EB; }
+        .beneficio-ic.verde  { background: #DCFCE7; color: #166534; }
+        .beneficio-ic.amarelo{ background: #FEF9C3; color: #854D0E; }
+        .beneficio-ic.roxo   { background: #EDE9FE; color: #6D28D9; }
+
+        .beneficio-txt strong {
+            display: block;
+            font-size: .85rem;
+            font-weight: 800;
+            color: #0F172A;
+        }
+
+        .beneficio-txt span {
+            font-size: .78rem;
+            color: #64748B;
+            font-weight: 600;
+        }
+
+        /* parceiros já cadastrados */
+        .parceiros-mini {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: #fff;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 14px;
+        }
+
+        .parceiros-mini .avatares {
+            display: flex;
+        }
+
+        .avatar-mini {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            margin-left: -8px;
+        }
+
+        .avatar-mini:first-child { margin-left: 0; }
+        .av1 { background: #EFF6FF; color: #2563EB; }
+        .av2 { background: #DCFCE7; color: #166534; }
+        .av3 { background: #FAEEDA; color: #854F0B; }
+        .av4 { background: #EDE9FE; color: #6D28D9; }
+
+        .parceiros-mini p {
+            font-size: .78rem;
+            font-weight: 700;
+            color: #64748B;
+            margin: 0;
+        }
+
+        .parceiros-mini p strong { color: #0F172A; }
+
+        /* ── Formulário ── */
+        .form-card {
+            background: #fff;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 24px;
+            padding: 36px 40px;
+            box-shadow: 0 8px 32px rgba(37,99,235,0.06);
+        }
+
+        .form-card h2 {
+            font-family: 'Fraunces', serif !important;
+            font-size: 1.5rem !important;
+            font-weight: 900 !important;
+            color: #0F172A !important;
+            margin-bottom: 4px;
+        }
+
+        .form-card .form-subtitulo {
+            font-size: .85rem;
+            color: #94A3B8;
+            font-weight: 600;
+            margin-bottom: 28px;
+        }
+
+        /* separador de seção */
+        .form-secao {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: #94A3B8;
+            border-bottom: 1px solid #F1F5F9;
+            padding-bottom: 8px;
+            margin: 24px 0 18px;
+        }
+
+        /* labels e inputs no padrão LudoPet */
+        .form-label {
+            font-size: .72rem !important;
+            font-weight: 800 !important;
+            color: #2563EB !important;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-bottom: 5px;
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #E2E8F0 !important;
+            border-radius: 11px !important;
+            font-size: .88rem !important;
+            height: 46px !important;
+            font-family: 'Nunito', sans-serif !important;
+            color: #0F172A !important;
+            background: #FAFAFA !important;
+            transition: border-color .15s, box-shadow .15s;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #2563EB !important;
+            box-shadow: 0 0 0 4px rgba(37,99,235,0.08) !important;
+            background: #fff !important;
+        }
+
+        textarea.form-control {
+            height: auto !important;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* botão enviar */
+        .btn-enviar {
+            width: 100%;
+            background: #FFD43B !important;
+            color: #1D4ED8 !important;
+            border: none !important;
+            border-radius: 12px !important;
+            padding: 14px !important;
+            font-size: .95rem !important;
+            font-weight: 800 !important;
+            transition: background .15s, transform .15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-enviar:hover {
+            background: #F0C800 !important;
+            transform: translateY(-2px);
+        }
+
+        .form-aviso {
+            text-align: center;
+            font-size: .75rem;
+            color: #94A3B8;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        /* alertas */
+        .alert-sucesso {
+            background: #DCFCE7;
+            border: 1.5px solid #86EFAC;
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .alert-sucesso i { color: #16A34A; font-size: 1.2rem; margin-top: 2px; }
+        .alert-sucesso p { margin: 0; font-size: .88rem; font-weight: 700; color: #166534; }
+        .alert-sucesso span { font-weight: 500; color: #15803D; font-size: .82rem; }
+
+        .alert-erro {
+            background: #FEE2E2;
+            border: 1.5px solid #FCA5A5;
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .alert-erro i { color: #DC2626; font-size: 1.1rem; }
+        .alert-erro p { margin: 0; font-size: .88rem; font-weight: 700; color: #991B1B; }
+
+        /* ── Responsivo ── */
+        @media (max-width: 900px) {
+            .parceria-wrap { grid-template-columns: 1fr; }
+            .parceria-info { position: static; }
+            .form-card { padding: 28px 20px; }
+        }
+    </style>
+</head>
+
+<body class="bg-light" style="font-family: 'Nunito', sans-serif;">
+
+<header th:replace="~{fragments/navbar :: navbar}"></header>
+
+<main class="container">
+    <div class="parceria-wrap">
+
+        <!-- ══════════════════════════════
+             COLUNA ESQUERDA — INFO
+        ══════════════════════════════ -->
+        <div class="parceria-info">
+
+            <div class="parceria-kicker">
+                <i class="bi bi-patch-check-fill"></i> Rede Parceiras LudoPet
+            </div>
+
+            <h1>Faça parte da <em>maior rede pet</em> de São Luís</h1>
+
+            <p class="subtitulo">
+                Conecte seu negócio a milhares de tutores de pets da capital maranhense.
+                Preencha o formulário e nossa equipe entrará em contato em até 2 dias úteis.
+            </p>
+
+            <div class="beneficios">
+                <div class="beneficio-item">
+                    <div class="beneficio-ic azul"><i class="bi bi-megaphone-fill"></i></div>
+                    <div class="beneficio-txt">
+                        <strong>Visibilidade gratuita</strong>
+                        <span>Seu negócio aparece para todos os usuários da LudoPet</span>
+                    </div>
+                </div>
+                <div class="beneficio-item">
+                    <div class="beneficio-ic verde"><i class="bi bi-geo-alt-fill"></i></div>
+                    <div class="beneficio-txt">
+                        <strong>Filtro por bairro</strong>
+                        <span>Clientes do seu bairro encontram você mais fácil</span>
+                    </div>
+                </div>
+                <div class="beneficio-item">
+                    <div class="beneficio-ic amarelo"><i class="bi bi-star-fill"></i></div>
+                    <div class="beneficio-txt">
+                        <strong>Avaliações e reputação</strong>
+                        <span>Construa sua reputação com avaliações verificadas</span>
+                    </div>
+                </div>
+                <div class="beneficio-item">
+                    <div class="beneficio-ic roxo"><i class="bi bi-telephone-fill"></i></div>
+                    <div class="beneficio-txt">
+                        <strong>Contato direto</strong>
+                        <span>Tutores ligam diretamente para o seu número</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="parceiros-mini">
+                <div class="avatares">
+                    <div class="avatar-mini av1">PM</div>
+                    <div class="avatar-mini av2">ZP</div>
+                    <div class="avatar-mini av3">PV</div>
+                    <div class="avatar-mini av4">+5</div>
+                </div>
+                <p><strong>8 parceiros</strong> já fazem parte da rede</p>
+            </div>
+
+        </div>
+
+        <!-- ══════════════════════════════
+             COLUNA DIREITA — FORMULÁRIO
+        ══════════════════════════════ -->
+        <div>
+
+            <!-- Alerta de sucesso -->
+            <div class="alert-sucesso" th:if="${sucesso}" th:with="msg=${sucesso}">
+                <i class="bi bi-check-circle-fill"></i>
+                <div>
+                    <p>Solicitação enviada com sucesso!</p>
+                    <span th:text="${sucesso}"></span>
+                </div>
+            </div>
+
+            <!-- Alerta de erro -->
+            <div class="alert-erro" th:if="${erro}">
+                <i class="bi bi-exclamation-circle-fill"></i>
+                <p th:text="${erro}"></p>
+            </div>
+
+            <div class="form-card">
+
+                <h2>Solicitar parceria</h2>
+                <p class="form-subtitulo">Todos os campos marcados com * são obrigatórios.</p>
+
+                <form th:action="@{/quero-patrocinar}" th:object="${solicitacao}" method="post">
+
+                    <!-- SEÇÃO: EMPRESA -->
+                    <div class="form-secao">Dados da Empresa</div>
+
+                    <div class="row g-3">
+
+                        <div class="col-12">
+                            <label class="form-label">Nome da empresa *</label>
+                            <input type="text" class="form-control"
+                                   th:field="*{nomeEmpresa}"
+                                   placeholder="Ex: Clínica VetVida"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Tipo de estabelecimento *</label>
+                            <select class="form-select" th:field="*{tipoEmpresa}" required>
+                                <option value="">Selecione...</option>
+                                <option value="Clínica Veterinária">Clínica Veterinária</option>
+                                <option value="Hospital Veterinário">Hospital Veterinário</option>
+                                <option value="Pet Shop">Pet Shop</option>
+                                <option value="ONG">ONG / Proteção Animal</option>
+                                <option value="Banho e Tosa">Banho e Tosa</option>
+                                <option value="Hotel Pet">Hotel Pet</option>
+                                <option value="Adestramento">Adestramento</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Bairro *</label>
+                            <select class="form-select" th:field="*{bairro}" required>
+                                <option value="">Selecione o bairro...</option>
+                                <option value="renascenca">Renascença</option>
+                                <option value="saofrancisco">São Francisco</option>
+                                <option value="cohama">Cohama</option>
+                                <option value="turu">Turu</option>
+                                <option value="calhau">Calhau</option>
+                                <option value="pontaareia">Ponta d'Areia</option>
+                                <option value="centro">Centro</option>
+                                <option value="vilaembratel">Vila Embratel</option>
+                                <option value="parquevitoria">Parque Vitória</option>
+                                <option value="outros">Outro bairro</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Endereço completo *</label>
+                            <input type="text" class="form-control"
+                                   th:field="*{endereco}"
+                                   placeholder="Ex: Rua das Flores, 123 — Renascença"
+                                   required>
+                        </div>
+
+                    </div>
+
+                    <!-- SEÇÃO: CONTATO -->
+                    <div class="form-secao">Dados de Contato</div>
+
+                    <div class="row g-3">
+
+                        <div class="col-12">
+                            <label class="form-label">Nome do responsável *</label>
+                            <input type="text" class="form-control"
+                                   th:field="*{responsavel}"
+                                   placeholder="Nome completo"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">E-mail *</label>
+                            <input type="email" class="form-control"
+                                   th:field="*{email}"
+                                   placeholder="contato@suaempresa.com.br"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">WhatsApp / Telefone *</label>
+                            <input type="tel" class="form-control"
+                                   th:field="*{telefone}"
+                                   placeholder="(98) 9xxxx-xxxx"
+                                   required>
+                        </div>
+
+                    </div>
+
+                    <!-- SEÇÃO: MENSAGEM -->
+                    <div class="form-secao">Mensagem (opcional)</div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Conte um pouco sobre seu negócio</label>
+                        <textarea class="form-control"
+                                  th:field="*{mensagem}"
+                                  rows="3"
+                                  placeholder="Serviços oferecidos, diferenciais, horário de funcionamento..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-enviar">
+                        <i class="bi bi-send-fill"></i> Enviar solicitação
+                    </button>
+
+                    <p class="form-aviso">
+                        <i class="bi bi-shield-lock-fill me-1"></i>
+                        Seus dados são usados apenas para análise da parceria e nunca compartilhados.
+                    </p>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Máscara simples de telefone
+    document.querySelector('input[name="telefone"]')?.addEventListener('input', function () {
+        let v = this.value.replace(/\D/g, '').substring(0, 11);
+        if (v.length > 6) {
+            v = '(' + v.substring(0,2) + ') ' + v.substring(2,7) + '-' + v.substring(7);
+        } else if (v.length > 2) {
+            v = '(' + v.substring(0,2) + ') ' + v.substring(2);
+        } else if (v.length > 0) {
+            v = '(' + v;
+        }
+        this.value = v;
+    });
+</script>
+
+</body>
+</html>

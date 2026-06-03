@@ -1,11 +1,14 @@
 package br.com.ludopet.controller;
 
+import br.com.ludopet.model.AnimalPerdido;
 import br.com.ludopet.repository.AnimalPerdidoRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PetAlertaController {
@@ -14,14 +17,16 @@ public class PetAlertaController {
     private AnimalPerdidoRepository repository;
 
     @GetMapping("/petalerta")
-    public String listarPets(Model model) {
+    public String petAlerta(Model model) {
 
-        model.addAttribute(
-                "pets",
-                repository.findByStatus("perdido")
-        );
+        List<AnimalPerdido> lista = repository.findByStatus("perdido");
+
+        if (lista == null) {
+            lista = new ArrayList<>();
+        }
+
+        model.addAttribute("animais", lista);
 
         return "petalerta";
     }
-
 }
