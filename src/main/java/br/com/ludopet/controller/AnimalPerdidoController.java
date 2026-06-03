@@ -74,4 +74,31 @@ public class AnimalPerdidoController {
 
         return "redirect:/animais-perdidos";
     }
+
+    @PostMapping("/pet-alerta/buscar")
+    public String buscarPet(
+            @RequestParam("foto") MultipartFile foto,
+            Model model) {
+
+        try {
+
+            model.addAttribute("mensagem",
+                    "Buscando em nosso banco de dados...");
+
+            List<AnimalPerdido> encontrados =
+                    repository.findByStatus("perdido");
+
+            model.addAttribute("animais", encontrados);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            model.addAttribute("erro",
+                    "Erro ao processar a busca.");
+
+        }
+
+        return "resultado_busca";
+    }
 }
