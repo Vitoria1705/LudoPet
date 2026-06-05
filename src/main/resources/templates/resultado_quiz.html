@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado do Quiz LudoPet</title>
+    <style>
+        body { font-family: Arial; text-align: center; margin: 40px; }
+        .card { border: 1px solid #ccc; padding: 20px; border-radius: 10px; width: 400px; margin: auto; }
+        .btn { background-color: #4FAF7B; color: white; padding: 10px; border: none;
+               border-radius: 6px; text-decoration: none; display: inline-block; margin-top: 15px; }
+        .pet { font-size: 22px; color: #4FAF7B; font-weight: bold; }
+    </style>
+</head>
+<body>
+<h1>🐾 Resultado do Quiz</h1>
+<div class="card">
+    <p>Com base nas suas respostas, o pet ideal para você é:</p>
+    <p class="pet" th:text="${pet}">Cachorro 🐶</p>
+    <p th:text="${descricao}">Descrição da recomendação.</p>
+    <a class="btn" th:href="@{/quiz}">Refazer o Quiz 🔁</a>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
