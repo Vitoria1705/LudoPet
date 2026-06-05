@@ -5,7 +5,209 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Animais para Adoção - LudoPet</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #F7F6F2;
+            color: #1a1a1a;
+        }
+
+        /* ── GRID HORIZONTAL ── */
+        .pets-scroll {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        /* ── CARD ── */
+        .animal-card {
+            background: #fff;
+            border: 1.5px solid #F3F4F6;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            width: 210px;
+            flex-shrink: 0;
+            transition: border-color 0.2s, transform 0.18s;
+        }
+        .animal-card:hover {
+            border-color: #1B3FAB;
+            transform: translateY(-4px);
+        }
+
+        .animal-card-img {
+            width: 100%;
+            height: 155px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+        .animal-card:hover .animal-card-img {
+            transform: scale(1.05);
+        }
+        .card-img-wrap {
+            overflow: hidden;
+        }
+
+        .card-body-custom {
+            padding: 0.85rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        .card-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: #0f1f5c;
+            margin: 0;
+        }
+        .card-desc {
+            font-size: 11px;
+            color: #9CA3AF;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .status-pill {
+            font-size: 10px;
+            font-weight: 600;
+            background: #E6F1FB;
+            color: #0C447C;
+            padding: 3px 8px;
+            border-radius: 99px;
+            white-space: nowrap;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+        .status-pill.adotado {
+            background: #EAF3DE;
+            color: #27500A;
+        }
+        .status-pill.em-processo {
+            background: #FAEEDA;
+            color: #633806;
+        }
+
+        /* Tags de atributos */
+        .pet-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .pet-tag {
+            font-size: 11px;
+            background: #F7F6F2;
+            color: #4B5563;
+            padding: 3px 9px;
+            border-radius: 99px;
+            border: 1px solid #E5E7EB;
+        }
+
+        /* Botão */
+        .btn-conhecer {
+            display: block;
+            text-align: center;
+            background: #FBBF24;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 99px;
+            padding: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            text-decoration: none;
+            margin-top: auto;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+        .btn-conhecer:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+            color: #1a1a1a;
+        }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            margin-bottom: 2rem;
+        }
+        .section-kicker {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #1B3FAB;
+            display: block;
+            margin-bottom: 0.35rem;
+        }
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #0f1f5c;
+            margin-bottom: 0.5rem;
+        }
+        .page-hero p {
+            font-size: 14px;
+            color: #6B7280;
+            max-width: 520px;
+        }
+
+        /* ── BANNER ── */
+        .adoption-banner {
+            background: #1B3FAB;
+            border-radius: 16px;
+            padding: 2.5rem;
+            color: #fff;
+        }
+        .adoption-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 99px;
+            padding: 4px 14px;
+            font-size: 12px;
+            margin-bottom: 1rem;
+        }
+        .adoption-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #fff;
+            margin-bottom: 0.75rem;
+        }
+        .adoption-banner p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            margin: 0;
+        }
+        .btn-banner {
+            background: #FBBF24;
+            color: #1B3FAB;
+            border: none;
+            border-radius: 99px;
+            padding: 12px 28px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+        .btn-banner:hover {
+            opacity: 0.9;
+            color: #1B3FAB;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,13 +215,13 @@
 
 <main class="container py-5">
 
-    <section class="page-hero mb-4">
+    <section class="page-hero">
         <span class="section-kicker">Adoção responsável</span>
         <h1>Animais para adoção</h1>
         <p>Veja os pets disponíveis, abra os detalhes e envie sua solicitação de adoção pelo formulário.</p>
-        <div class="d-flex gap-2 flex-wrap">
-            <a class="btn btn-success" th:href="@{/adocao}">Disponíveis</a>
-            <a class="btn btn-outline-secondary" th:href="@{/adocao/todos}">Todos os animais</a>
+        <div class="d-flex gap-2 flex-wrap mt-3">
+            <a class="btn btn-primary" th:href="@{/adocao}" style="background:#1B3FAB;border-color:#1B3FAB;border-radius:99px;padding:8px 22px;font-size:13px;">Disponíveis</a>
+            <a class="btn btn-outline-secondary" th:href="@{/adocao/todos}" style="border-radius:99px;padding:8px 22px;font-size:13px;">Todos os animais</a>
         </div>
     </section>
 
@@ -27,75 +229,55 @@
         Nenhum animal disponível no momento.
     </div>
 
-    <div class="row g-4" th:if="${!#lists.isEmpty(animais)}">
-        <div class="col-sm-6 col-lg-4" th:each="animal : ${animais}">
-            <article class="card animal-card h-100">
+    <!-- GRID HORIZONTAL DE CARDS -->
+    <div class="pets-scroll" th:if="${!#lists.isEmpty(animais)}">
+        <div class="animal-card" th:each="animal : ${animais}">
+
+            <div class="card-img-wrap">
                 <img th:src="@{'/img/' + ${animal.foto}}"
                      class="animal-card-img"
                      th:alt="|Foto de ${animal.nome}|"
                      onerror="this.src='/img/padrao.png'">
+            </div>
 
-                <div class="card-body d-flex flex-column">
-                    <div class="d-flex justify-content-between gap-3 align-items-start">
-                        <div>
-                            <h2 class="h4 mb-1" th:text="${animal.nome}">Nome</h2>
-                            <p class="text-muted mb-0" th:text="${animal.descricao}">Descrição do animal</p>
-                        </div>
-                        <span class="status-pill" th:text="${animal.status}">disponível</span>
+            <div class="card-body-custom">
+                <div class="card-top">
+                    <div>
+                        <p class="card-name" th:text="${animal.nome}">Nome</p>
+                        <p class="card-desc" th:text="${animal.descricao}">Descrição</p>
                     </div>
-
-                    <div class="pet-facts my-4">
-                        <span><strong>Raça</strong><small th:text="${animal.raca}">SRD</small></span>
-                        <span><strong>Idade</strong><small th:text="${animal.idade}">0</small></span>
-                        <span><strong>Sexo</strong><small th:text="${animal.sexo}">Sexo</small></span>
-                        <span><strong>Porte</strong><small th:text="${animal.porte}">Porte</small></span>
-                    </div>
-
-                    <a class="btn btn-success w-100 mt-auto"
-                       th:href="@{/detalhes/{id}(id=${animal.id})}">
-                        Conhecer pet
-                    </a>
+                    <span class="status-pill"
+                          th:classappend="${animal.status == 'Adotado'} ? 'adotado' : (${animal.status == 'Em processo'} ? 'em-processo' : '')"
+                          th:text="${animal.status}">Disponível</span>
                 </div>
-            </article>
+
+                <div class="pet-tags">
+                    <span class="pet-tag" th:text="${animal.raca}">Raça</span>
+                    <span class="pet-tag" th:text="${animal.idade}">Idade</span>
+                    <span class="pet-tag" th:text="${animal.sexo}">Sexo</span>
+                    <span class="pet-tag" th:text="${animal.porte}">Porte</span>
+                </div>
+
+                <a class="btn-conhecer"
+                   th:href="@{/detalhes/{id}(id=${animal.id})}">
+                    Conhecer pet
+                </a>
+            </div>
         </div>
     </div>
 
     <!-- BANNER KIT ADOÇÃO -->
     <section class="mt-5 adoption-banner">
-
-        <div class="row align-items-center">
-
+        <div class="row align-items-center gy-3">
             <div class="col-lg-8">
-
-            <span class="adoption-badge">
-                Novo lar 🐾
-            </span>
-
-                <h2>
-                    Seu novo melhor amigo merece conforto
-                </h2>
-
-                <p>
-                    Depois da adoção, continue cuidando do seu pet
-                    com produtos essenciais para alimentação,
-                    higiene, descanso e diversão.
-                </p>
-
+                <span class="adoption-badge">Novo lar 🐾</span>
+                <h2>Seu novo melhor amigo merece conforto</h2>
+                <p>Depois da adoção, continue cuidando do seu pet com produtos essenciais para alimentação, higiene, descanso e diversão.</p>
             </div>
-
             <div class="col-lg-4 text-lg-end">
-
-                <a href="/lojapet"
-                   class="btn btn-light btn-lg rounded-pill px-4">
-
-                    Ir para Loja Pet
-
-                </a>
-
+                <a href="/lojapet" class="btn-banner">Ir para Loja Pet</a>
             </div>
-
         </div>
-
     </section>
 
 </main>

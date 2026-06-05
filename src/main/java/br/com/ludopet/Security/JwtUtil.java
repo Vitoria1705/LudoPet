@@ -1,20 +1,33 @@
 package br.com.ludopet.Security;
-import org.springframework.web.bind.annotation.*;
-import io.jsonwebtoken.*;
-import io.jsonwebtoken.SignatureAlgorithm;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Date;
 
 public class JwtUtil {
 
-    private static final String SECRET = "segredo";
+    private static final String SECRET =
+            "segredo123456789012345678901234567890";
+
+    private static final Key KEY =
+            Keys.hmacShaKeyFor(
+                    SECRET.getBytes(StandardCharsets.UTF_8)
+            );
 
     public static String generateToken(String email) {
 
         return Jwts.builder()
-                .setSubject(email)
-                .setExpiration(new Date(System.currentTimeMillis() + 86400000))
-                .signWith(SignatureAlgorithm.HS512, SECRET)
+                .subject(email)
+                .expiration(
+                        new Date(
+                                System.currentTimeMillis() + 86400000
+                        )
+                )
+                .signWith(KEY, SignatureAlgorithm.HS512)
                 .compact();
     }
 }

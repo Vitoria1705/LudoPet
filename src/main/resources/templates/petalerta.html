@@ -45,6 +45,7 @@
                 Faça upload da foto do seu pet para verificar
                 se ele já foi encontrado ou cadastrado por outro usuário.
             </p>
+            <p>Detectado: <span th:text="${labels}"></span></p>
 
         </div>
 
@@ -68,6 +69,63 @@
 
         </form>
 
+        <!-- RESULTADO DA IA -->
+        <div th:if="${racaDetectada != null or corDetectada != null}" class="mt-4">
+            <div style="background:#F0FAF5; border-radius:12px; padding:20px; border-left:4px solid #4F8F78;">
+                <h5 class="fw-bold" style="color:#4F8F78;">🤖 O que a IA detectou na foto:</h5>
+                <p class="mb-1" th:if="${especieDetectada != null}">
+                    <strong>Espécie:</strong> <span th:text="${especieDetectada}"></span>
+                </p>
+                <p class="mb-1" th:if="${racaDetectada != null}">
+                    <strong>Raça:</strong> <span th:text="${racaDetectada}"></span>
+                </p>
+                <p class="mb-0" th:if="${corDetectada != null}">
+                    <strong>Cor:</strong> <span th:text="${corDetectada}"></span>
+                </p>
+            </div>
+        </div>
+
+        <!-- RESULTADOS DO BANCO -->
+        <div th:if="${resultados != null}" class="mt-4">
+
+            <div th:if="${#lists.isEmpty(resultados)}"
+                 style="background:#FFF3E0; border-radius:12px; padding:24px; text-align:center; border-left:4px solid #F97316;">
+                <h5>😔 Animal não registrado no nosso banco de dados</h5>
+                <p class="text-muted mb-3">Não encontramos nenhum animal semelhante cadastrado.</p>
+                <a href="/cadastro-pet-perdido" class="btn btn-warning">
+                    Registrar desaparecimento agora
+                </a>
+            </div>
+
+            <div th:if="${!#lists.isEmpty(resultados)}">
+                <h5 class="fw-bold mb-3" style="color:#4F8F78;">
+                    🎯 <span th:text="${#lists.size(resultados)}"></span> animal(is) semelhante(s) encontrado(s):
+                </h5>
+                <div class="row g-3">
+                    <div class="col-md-4" th:each="animal : ${resultados}">
+                        <div style="background:white; border-radius:12px; padding:16px;
+                            box-shadow:0 4px 12px rgba(0,0,0,0.08); border:2px solid #4F8F78;">
+                            <img th:src="${#strings.isEmpty(animal.foto) ? '/img/padrao.png' : animal.foto}"
+                                 style="width:100%; height:160px; object-fit:cover; border-radius:8px; margin-bottom:12px;"
+                                 onerror="this.src='/img/padrao.png'">
+                            <h6 class="fw-bold" th:text="${animal.nome}"></h6>
+                            <p class="small text-muted mb-1">
+                                <strong>Raça:</strong> <span th:text="${animal.raca}"></span>
+                            </p>
+                            <p class="small text-muted mb-1">
+                                <strong>Cor:</strong> <span th:text="${animal.cor}"></span>
+                            </p>
+                            <p class="small text-muted mb-1">
+                                <strong>Cidade:</strong> <span th:text="${animal.cidade}"></span>
+                            </p>
+                            <p class="small text-muted mb-0">
+                                <strong>Contato:</strong> <span th:text="${animal.telefone}"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- COMO FUNCIONA -->
