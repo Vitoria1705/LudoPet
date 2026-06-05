@@ -1,49 +1,209 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<!-- xmlns:th habilita os atributos do Thymeleaf (th:each, th:text, th:href...) -->
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Animais Encontrados</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludo Pet - Animais Encontrados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          background-color: #b2ffb2;
+          font-family: Arial, sans-serif;
+        }
+
+        .container-encontrados {
+          max-width: 1200px;
+          margin: 40px auto;
+          padding: 20px;
+        }
+
+        h1 {
+          text-align: center;
+          margin-bottom: 30px;
+          color: #2c3e50;
+        }
+
+        /* Formulário de cadastro */
+        .form-cadastro {
+          background-color: #fff;
+          border-radius: 12px;
+          padding: 20px;
+          max-width: 700px;
+          margin: 0 auto 40px auto;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .form-cadastro h2 {
+          color: #27ae60;
+          font-size: 1.3rem;
+          margin-bottom: 15px;
+        }
+
+        .btn-verde {
+          background-color: #27ae60;
+          color: #fff;
+          border: none;
+        }
+
+        .btn-verde:hover {
+          background-color: #1e8c4f;
+          color: #fff;
+        }
+
+        /* Cards dos animais */
+        .cards-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          justify-content: center;
+        }
+
+        .card-animal {
+          background-color: #fff;
+          border-radius: 12px;
+          width: 250px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          overflow: hidden;
+          transition: transform 0.2s;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .card-animal:hover {
+          transform: scale(1.05);
+        }
+
+        .card-animal img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+
+        .card-body {
+          padding: 15px;
+          flex-grow: 1;
+        }
+
+        .card-body h5 {
+          margin-bottom: 10px;
+          color: #27ae60;
+        }
+
+        .card-body p {
+          color: #555;
+          font-size: 0.95rem;
+          margin-bottom: 5px;
+        }
+
+        .sem-registros {
+          text-align: center;
+          color: #555;
+        }
+
+        @media (max-width: 768px) {
+          .card-animal {
+            width: 100%;
+          }
+        }
+    </style>
 </head>
-<form method="get" action="/animais-perdidos">
-
-    <input type="text" name="nome" placeholder="Buscar por nome">
-
-
-
-    <select name="especie">
-
-        <option value="">Todas espécies</option>
-
-        <option value="cachorro">Cachorro</option>
-
-        <option value="gato">Gato</option>
-
-    </select>
-
-
-
-    <button type="submit">Buscar</button>
-
-</form>
-
-
-<div th:each="animal : ${animais}">
-
-    <h3 th:text="${animal.nome}"></h3>
-
-    <p>Espécie: <span th:text="${animal.especie}"></span></p>
-
-    <p>Local: <span th:text="${animal.local}"></span></p>
-
-
-
-    <hr>
-
-</div>
 <body>
 
+<div class="container-encontrados">
+    <h1>Animais Encontrados 🐾</h1>
+
+    <!-- ===================== FORMULÁRIO DE CADASTRO ===================== -->
+    <!--
+      th:action  -> URL para onde o POST é enviado (cai no método salvar do Controller)
+      th:object  -> objeto que o formulário preenche (o "animalNovo" do Model)
+      th:field   -> liga cada input a um atributo do objeto (gera name/id/value)
+    -->
+    <div class="form-cadastro">
+        <h2>Encontrou um animal? Cadastre aqui 👇</h2>
+        <form th:action="@{/animais-encontrados/salvar}" th:object="${animalNovo}" method="post">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Nome (se souber)</label>
+                    <input type="text" class="form-control" th:field="*{nome}" placeholder="Ex.: Rex">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Espécie</label>
+                    <input type="text" class="form-control" th:field="*{especie}" placeholder="Cachorro, Gato..." required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Idade aproximada</label>
+                    <input type="text" class="form-control" th:field="*{idade}" placeholder="Ex.: 2 anos">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Cor / Pelagem</label>
+                    <input type="text" class="form-control" th:field="*{cor}" placeholder="Ex.: Caramelo">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Local onde foi encontrado</label>
+                    <input type="text" class="form-control" th:field="*{localEncontrado}" placeholder="Bairro / rua" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Contato (telefone/e-mail)</label>
+                    <input type="text" class="form-control" th:field="*{contato}" placeholder="Para o dono te achar" required>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Descrição</label>
+                    <textarea class="form-control" th:field="*{descricao}" rows="2"
+                              placeholder="Comportamento, coleira, estado de saúde..."></textarea>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">URL da foto</label>
+                    <input type="text" class="form-control" th:field="*{imagem}" placeholder="img/animal.jpg">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-verde mt-3">Cadastrar animal encontrado</button>
+        </form>
+    </div>
+
+    <!-- ===================== LISTAGEM (CARDS) ===================== -->
+
+    <!-- Mensagem mostrada SOMENTE quando a lista está vazia. -->
+    <p class="sem-registros" th:if="${#lists.isEmpty(animais)}">
+        Nenhum animal encontrado cadastrado ainda. Seja o primeiro a ajudar! 🐶
+    </p>
+
+    <div class="cards-container">
+        <!--
+          th:each repete este bloco para CADA animal da lista "animais".
+          Dentro do bloco, "animal" é o item da vez.
+        -->
+        <div class="card-animal" th:each="animal : ${animais}">
+            <!-- Se não houver imagem, usa uma foto padrão. -->
+            <img th:src="${animal.imagem != null and !animal.imagem.isBlank()}
+                     ? @{${animal.imagem}} : @{/img/sem-foto.png}"
+                 th:alt="${animal.nome}">
+            <div class="card-body">
+                <h5 th:text="${animal.nome}">Nome</h5>
+                <p><span th:text="${animal.especie}">Espécie</span>
+                    | Idade: <span th:text="${animal.idade}">?</span></p>
+                <p>Cor: <span th:text="${animal.cor}">?</span></p>
+                <p>Encontrado em: <span th:text="${animal.localEncontrado}">Local</span></p>
+                <p th:text="${animal.descricao}">Descrição</p>
+                <p><strong>Contato:</strong> <span th:text="${animal.contato}">contato</span></p>
+            </div>
+
+            <!--
+              Botão EXCLUIR: cada card tem seu próprio formulário, que envia o
+              id do animal para o método excluir do Controller.
+            -->
+            <form th:action="@{'/animais-encontrados/excluir/' + ${animal.id}}" method="post">
+                <button type="submit" class="btn btn-outline-danger w-100"
+                        onclick="return confirm('Remover este animal da lista?');">
+                    Dono apareceu / remover
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
-
 </html>
