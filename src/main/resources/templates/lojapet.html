@@ -437,32 +437,39 @@
         <span class="section-kicker">Categorias</span>
         <h2 class="section-title">O que você precisa?</h2>
         <div class="row g-3 mb-2">
-            <div class="col-6 col-md-3">
-                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('todos', null)">
-                    <div class="cat-icon-wrap ic-amber">🍖</div>
-                    <div class="cat-name">Alimentação</div>
-                    <div class="cat-count">1 item</div>
-                </button>
-            </div>
-            <div class="col-6 col-md-3">
-                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('venda', null)">
-                    <div class="cat-icon-wrap ic-blue">🛁</div>
-                    <div class="cat-name">Higiene</div>
-                    <div class="cat-count">1 item</div>
-                </button>
-            </div>
-            <div class="col-6 col-md-3">
-                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('venda', null)">
-                    <div class="cat-icon-wrap ic-pink">🧸</div>
+            <div class="col-6 col-md-2">
+                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('brinquedos', null)">
+                    <div class="cat-icon-wrap ic-pink">🎾</div>
                     <div class="cat-name">Brinquedos</div>
-                    <div class="cat-count">1 item</div>
+                    <div class="cat-count" id="cnt-brinquedos">...</div>
                 </button>
             </div>
-            <div class="col-6 col-md-3">
-                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('kit', null)">
-                    <div class="cat-icon-wrap ic-green">🎁</div>
-                    <div class="cat-name">Kits do Adotante</div>
-                    <div class="cat-count">2 kits</div>
+            <div class="col-6 col-md-2">
+                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('higiene', null)">
+                    <div class="cat-icon-wrap ic-blue">🧴</div>
+                    <div class="cat-name">Higiene</div>
+                    <div class="cat-count" id="cnt-higiene">...</div>
+                </button>
+            </div>
+            <div class="col-6 col-md-2">
+                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('camas', null)">
+                    <div class="cat-icon-wrap ic-green">🛏</div>
+                    <div class="cat-name">Camas</div>
+                    <div class="cat-count" id="cnt-camas">...</div>
+                </button>
+            </div>
+            <div class="col-6 col-md-2">
+                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('petisco', null)">
+                    <div class="cat-icon-wrap ic-amber">🦴</div>
+                    <div class="cat-name">Petiscos</div>
+                    <div class="cat-count" id="cnt-petiscos">...</div>
+                </button>
+            </div>
+            <div class="col-6 col-md-2">
+                <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('racoes', null)">
+                    <div class="cat-icon-wrap ic-amber">🍖</div>
+                    <div class="cat-name">Rações</div>
+                    <div class="cat-count" id="cnt-racoes">...</div>
                 </button>
             </div>
         </div>
@@ -481,9 +488,12 @@
 
                 <!-- Abas de filtro -->
                 <div class="loja-tabs">
-                    <button class="loja-tab-btn active" onclick="filtrarCatalogo('todos', this)">Todos os itens</button>
-                    <button class="loja-tab-btn" onclick="filtrarCatalogo('venda', this)">🛍️ Produtos à venda</button>
-                    <button class="loja-tab-btn" onclick="filtrarCatalogo('kit', this)">🎁 Kits do adotante</button>
+                    <button class="loja-tab-btn active" onclick="filtrarCatalogo('todos', this)">Todos</button>
+                    <button class="loja-tab-btn" onclick="filtrarCatalogo('brinquedos', this)">🎾 Brinquedos</button>
+                    <button class="loja-tab-btn" onclick="filtrarCatalogo('camas', this)">🛏 Camas</button>
+                    <button class="loja-tab-btn" onclick="filtrarCatalogo('higiene', this)">🧴 Higiene</button>
+                    <button class="loja-tab-btn" onclick="filtrarCatalogo('petisco', this)">🦴 Petiscos</button>
+                    <button class="loja-tab-btn" onclick="filtrarCatalogo('racoes', this)">🍖 Rações</button>
                 </div>
 
                 <!-- Grid dinâmico -->
@@ -592,97 +602,83 @@
 
 <script>
     let carrinho = [];
+    let todosProdutos = [];
 
-    const produtosEKits = [
-        {
-            id: 101,
-            tipo: "venda",
-            nome: "Ração PremieR Cães Adultos 15kg",
-            descricao: "Nutrição de alta performance, pelagem bonita e saudável para raças médias e grandes.",
-            preco: 189.90,
-            imagemUrl: "https://images.unsplash.com/photo-1589924691106-073b19f59392?q=80&w=300&auto=format&fit=crop"
-        },
-        {
-            id: 102,
-            tipo: "venda",
-            nome: "Arranhador Torre Cat Confort",
-            descricao: "Arranhador completo com brinquedo suspenso e plataforma revestida de sisal premium.",
-            preco: 84.90,
-            imagemUrl: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=300&auto=format&fit=crop"
-        },
-        {
-            id: 103,
-            tipo: "venda",
-            nome: "Shampoo Neutro Hidratante 500ml",
-            descricao: "Fórmula hipoalergênica ideal para banhos frequentes, deixando o pelo macio.",
-            preco: 32.90,
-            imagemUrl: "https://images.unsplash.com/photo-1608454367599-c1139e64bf87?q=80&w=300&auto=format&fit=crop"
-        },
-        {
-            id: 201,
-            tipo: "kit",
-            nome: "Kit Boas-Vindas Cão Adotado",
-            descricao: "Combo essencial: Cama Soft G, comedouro duplo, coleira regulável, ração e brinquedo de corda.",
-            preco: 249.90,
-            imagemUrl: "https://images.unsplash.com/photo-1516715094727-ec48be335d79?q=80&w=300&auto=format&fit=crop"
-        },
-        {
-            id: 202,
-            tipo: "kit",
-            nome: "Kit Conforto Gato Adotado",
-            descricao: "Tudo para o felino: Caixa de areia, pá higiênica, comedouro, caminha toca e arranhador p.",
-            preco: 179.90,
-            imagemUrl: "https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=300&auto=format&fit=crop"
-        }
-    ];
+    // Carrega produtos do banco
+    function carregarProdutos() {
+        fetch("/api/produtos")
+            .then(r => r.json())
+            .then(data => {
+                todosProdutos = data;
+                renderizarCatalogo(data);
+                atualizarContadores(data);
+            })
+            .catch(() => {
+                document.getElementById("gridProdutos").innerHTML =
+                    '<p style="color:#9CA3AF; font-size:14px; padding:2rem 0;">Erro ao carregar produtos.</p>';
+            });
+    }
+
+    function atualizarContadores(lista) {
+        const brinquedos = lista.filter(p => p.imagemUrl && p.imagemUrl.includes('brinquedos')).length;
+        const higiene = lista.filter(p => p.imagemUrl && p.imagemUrl.includes('higiene')).length;
+        const camas = lista.filter(p => p.imagemUrl && p.imagemUrl.includes('camas')).length;
+        const petiscos = lista.filter(p => p.imagemUrl && p.imagemUrl.includes('petisco')).length;
+        const racoes = lista.filter(p => p.imagemUrl && p.imagemUrl.includes('racoes')).length;
+
+        document.getElementById("cnt-brinquedos").textContent = brinquedos + " itens";
+        document.getElementById("cnt-higiene").textContent = higiene + " itens";
+        document.getElementById("cnt-camas").textContent = camas + " itens";
+        document.getElementById("cnt-petiscos").textContent = petiscos + " itens";
+        document.getElementById("cnt-racoes").textContent = racoes + " itens";
+    }
 
     function renderizarCatalogo(lista) {
         const grid = document.getElementById("gridProdutos");
         if (lista.length === 0) {
-            grid.innerHTML = '<p style="color:#9CA3AF; font-size:14px; padding:2rem 0;">Nenhum produto encontrado nesta categoria.</p>';
+            grid.innerHTML = '<p style="color:#9CA3AF; font-size:14px; padding:2rem 0;">Nenhum produto encontrado.</p>';
             return;
         }
-        grid.innerHTML = lista.map(item => {
-            const isKit = item.tipo === 'kit';
-            return `
-                <div class="prod-card">
-                    <div class="prod-img-wrap">
-                        <img src="${item.imagemUrl}" alt="${item.nome}" onerror="this.style.display='none'">
-                        <span class="prod-tag-badge ${isKit ? 'tag-kit' : 'tag-venda'}">
-                            ${isKit ? '🎁 Kit Adotante' : '🛍️ À Venda'}
-                        </span>
-                    </div>
-                    <div class="prod-body">
-                        <div class="prod-name">${item.nome}</div>
-                        <div class="prod-desc">${item.descricao}</div>
-                        <div class="prod-price">R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
-                        <button class="btn-add" onclick="adicionarAoCarrinho(${item.id})">
-                            <i class="bi bi-cart-plus me-2"></i>Adicionar ao carrinho
-                        </button>
-                    </div>
+        grid.innerHTML = lista.map(item => `
+            <div class="prod-card">
+                <div class="prod-img-wrap">
+                    <img src="${item.imagemUrl}" alt="${item.nome}"
+                         onerror="this.src='/img/produtos/padrao.png'">
                 </div>
-            `;
-        }).join('');
+                <div class="prod-body">
+                    <div class="prod-name">${item.nome}</div>
+                    <div class="prod-desc">${item.descricao}</div>
+                    <div class="prod-price">R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
+                    <button class="btn-add" onclick="adicionarAoCarrinho(${item.id}, '${item.nome.replace(/'/g, "\\'")}', ${item.preco}, '${item.imagemUrl}')">
+                        <i class="bi bi-cart-plus me-2"></i>Adicionar ao carrinho
+                    </button>
+                </div>
+            </div>
+        `).join('');
     }
 
-    function filtrarCatalogo(tipo, botao) {
+    function filtrarCatalogo(categoria, botao) {
         document.querySelectorAll('.loja-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.cat-card').forEach(b => b.style.borderColor = '');
         if (botao) botao.classList.add('active');
-        const lista = tipo === 'todos' ? produtosEKits : produtosEKits.filter(p => p.tipo === tipo);
-        renderizarCatalogo(lista);
+
+        if (categoria === 'todos') {
+            renderizarCatalogo(todosProdutos);
+        } else {
+            renderizarCatalogo(todosProdutos.filter(p =>
+                p.imagemUrl && p.imagemUrl.includes(categoria)
+            ));
+        }
     }
 
-    function adicionarAoCarrinho(id) {
-        const item = produtosEKits.find(p => p.id === id);
-        if (item) {
-            carrinho.push(item);
-            fetch("http://localhost:8081/api/carrinho", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nomeProduto: item.nome, preco: item.preco })
-            }).catch(() => {});
-            atualizarCarrinho();
-        }
+    function adicionarAoCarrinho(id, nome, preco, imagemUrl) {
+        carrinho.push({ id, nome, preco, imagemUrl });
+        fetch("/api/carrinho", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nomeProduto: nome, preco: preco })
+        }).catch(() => {});
+        atualizarCarrinho();
     }
 
     function removerDoCarrinho(index) {
@@ -713,7 +709,6 @@
                 <div class="cart-item-row">
                     <div style="min-width:0; flex:1;">
                         <div class="cart-item-name">${item.nome}</div>
-                        <div class="cart-item-type">${item.tipo === 'kit' ? '🎁 Kit especial' : '🛍️ Item avulso'}</div>
                     </div>
                     <div style="text-align:right; flex-shrink:0;">
                         <div class="cart-item-price">R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
@@ -729,28 +724,32 @@
 
     function finalizarCompra() {
         if (carrinho.length === 0) {
-            alert("Adicione pelo menos um produto ao carrinho antes de fechar o pedido!");
+            alert("Adicione pelo menos um produto ao carrinho!");
             return;
         }
         const total = carrinho.reduce((acc, p) => acc + p.preco, 0);
-        fetch("http://localhost:8081/api/pedidos", {
+        fetch("/api/pedidos", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ total, produtos: carrinho.map(p => ({ id: p.id })) })
+            body: JSON.stringify({
+                total,
+                produtos: carrinho.map(p => ({ id: p.id }))
+            })
         })
-            .then(() => {
-                alert(`🎉 Pedido confirmado!\n\nTotal: R$ ${total.toFixed(2).replace('.', ',')}\n\n🐾 Obrigado por apoiar o LudoPet!`);
+            .then(r => r.json())
+            .then(data => {
+                alert(`🎉 Pedido #${data.id} confirmado!\n\nTotal: R$ ${total.toFixed(2).replace('.', ',')}\n\n🐾 Obrigado por comprar no LudoPet!`);
                 carrinho = [];
                 atualizarCarrinho();
             })
             .catch(() => {
-                alert(`🎉 [Simulação] Pedido confirmado!\n\nTotal: R$ ${total.toFixed(2).replace('.', ',')}\n\nObrigado por comprar no LudoPet!`);
+                alert(`🎉 Pedido confirmado!\n\nTotal: R$ ${total.toFixed(2).replace('.', ',')}\n\n🐾 Obrigado por comprar no LudoPet!`);
                 carrinho = [];
                 atualizarCarrinho();
             });
     }
 
-    renderizarCatalogo(produtosEKits);
+    carregarProdutos();
     atualizarCarrinho();
 </script>
 
