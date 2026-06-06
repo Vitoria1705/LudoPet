@@ -6,93 +6,87 @@
 </head>
 <body>
 
-<footer th:fragment="footer" class="premium-footer mt-5" style="background: #FFFFFF; border-top: 2px solid #E2E8F0; padding: 60px 0 30px 0; font-family: 'Plus Jakarta Sans', sans-serif;">
+<footer th:fragment="footer" class="premium-footer" style="background: #FFFFFF; border-top: 1px solid #E2E8F0; padding: 50px 0 30px 0; font-family: 'Nunito', sans-serif;">
     <div class="container">
         <div class="row g-4 mb-5">
 
             <!-- COLUNA 1: LOGO E SOBRE A MARCA -->
-            <div class="col-lg-4 col-md-6">
+            <div class="col-md-7">
                 <div class="footer-brand mb-4">
                     <a th:href="@{/}">
-                        <img th:src="@{/img/logo/logocolorida.png}" alt="LudoPet Logo" style="height: 55px; width: auto; object-fit: contain; display: block;">
+                        <img th:src="@{/img/logo/logocolorida.png}" alt="LudoPet Logo" style="height: 48px; width: auto; object-fit: contain; display: block;">
                     </a>
                 </div>
-                <p class="text-muted" style="font-size: 0.9rem; line-height: 1.6; max-width: 320px;">
-                    Uma plataforma dedicada a conectar a comunidade de São Luís para apoiar a adoção responsável, o cuidado diário e o resgate de animais.
+
+                <!-- TÍTULO MINIMALISTA EM AZUL #0000CD -->
+                <h5 class="footer-title" style="font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 900; color: #0000CD; position: relative; padding-bottom: 8px; margin-bottom: 16px;">
+                    Sobre a LudoPet
+                    <span style="position: absolute; bottom: 0; left: 0; width: 30px; height: 2px; background: #0000CD;"></span>
+                </h5>
+
+                <!-- TEXTO CLEAN E SUAVE (SEM SOMBRAS OU CONTORNOS) -->
+                <p style="font-size: 0.9rem; color: #475569; line-height: 1.6; max-width: 500px; font-weight: 500;">
+                    Uma plataforma dedicada a conectar a comunidade de São Luís para apoiar a adoção responsável, o cuidado diário e o resgate de animais. Estamos por perto para ajudar você a cuidar, encontrar e acolher quem faz parte da família.
                 </p>
-                <!-- Selo de Localização -->
-                <div class="d-flex align-items-center gap-2 mt-3 text-muted" style="font-size: 0.85rem; font-weight: 600;">
-                    <i class="bi bi-geo-alt-fill" style="color: #2563EB;"></i>
-                    <span>São Luís, Maranhão</span>
+
+                <!-- ÍCONES SOCIAIS CIRCULARES MINIMALISTAS (Azul Puro que muda para Amarelo no Hover) -->
+                <div class="d-flex gap-2 mt-4">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style="width: 36px; height: 36px; background: #F1F5F9; color: #0000CD; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.background='#0000CD'; this.style.color='#FFD43B'" onmouseout="this.style.background='#F1F5F9'; this.style.color='#0000CD'">
+                        <i class="bi bi-facebook" style="font-size: 0.9rem;"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style="width: 36px; height: 36px; background: #F1F5F9; color: #0000CD; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.background='#0000CD'; this.style.color='#FFD43B'" onmouseout="this.style.background='#F1F5F9'; this.style.color='#0000CD'">
+                        <i class="bi bi-instagram" style="font-size: 0.9rem;"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" style="width: 36px; height: 36px; background: #F1F5F9; color: #0000CD; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.background='#0000CD'; this.style.color='#FFD43B'" onmouseout="this.style.background='#F1F5F9'; this.style.color='#0000CD'">
+                        <i class="bi bi-twitter-x" style="font-size: 0.9rem;"></i>
+                    </a>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" style="width: 36px; height: 36px; background: #F1F5F9; color: #0000CD; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.background='#0000CD'; this.style.color='#FFD43B'" onmouseout="this.style.background='#F1F5F9'; this.style.color='#0000CD'">
+                        <i class="bi bi-github" style="font-size: 0.9rem;"></i>
+                    </a>
                 </div>
             </div>
-            <!-- COLUNA 2: NAVEGAÇÃO / LINKS RÁPIDOS -->
-            <div class="col-lg-3 col-md-6 col-6">
-                <h5 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.75rem; font-weight: 800; color: #2563EB; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 20px;">Navegação</h5>
-                <ul class="list-unstyled d-flex flex-column gap-2" style="font-size: 0.9rem;">
-                    <li><a th:href="@{/}" style="color: #64748B; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#2563EB'" onmouseout="this.style.color='#64748B'">Início</a></li>
-                    <li><a th:href="@{/#vitrine-adocao}" style="color: #64748B; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#2563EB'" onmouseout="this.style.color='#64748B'">Quero Adotar</a></li>
-                    <li><a th:href="@{/loja}" style="color: #64748B; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#2563EB'" onmouseout="this.style.color='#64748B'">Loja Pet</a></li>
-                    <li><a th:href="@{/rede-parceiras}" style="color: #64748B; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#2563EB'" onmouseout="this.style.color='#64748B'">Rede Parceira</a></li>
-                </ul>
-            </div>
 
-            <!-- COLUNA 3: SUPORTE & RECURSOS -->
-            <div class="col-lg-2 col-md-6 col-6">
-                <h5 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.75rem; font-weight: 800; color: #2563EB; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 20px;">Recursos</h5>
-                <ul class="list-unstyled d-flex flex-column gap-2" style="font-size: 0.9rem;">
-                    <li><a th:href="@{/cadastro}" style="color: #64748B; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#2563EB'" onmouseout="this.style.color='#64748B'">Criar Conta</a></li>
-                    <li><a th:href="@{/login}" style="color: #64748B; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#2563EB'" onmouseout="this.style.color='#64748B'">Fazer Login</a></li>
-                    <li><a href="#" style="color: #64748B; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#2563EB'" onmouseout="this.style.color='#64748B'">Pet Alerta (Mapa)</a></li>
-                </ul>
-            </div>
+            <!-- COLUNA 2: CONTATO -->
+            <div class="col-md-5">
+                <!-- TÍTULO EM AZUL #0000CD -->
+                <h5 class="footer-title" style="font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 900; color: #0000CD; position: relative; padding-bottom: 8px; margin-bottom: 16px;">
+                    Contato
+                    <span style="position: absolute; bottom: 0; left: 0; width: 30px; height: 2px; background: #0000CD;"></span>
+                </h5>
 
-            <!-- COLUNA 4: CANAIS DE ATENDIMENTO -->
-            <div class="col-lg-3 col-md-6">
-                <h5 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.75rem; font-weight: 800; color: #2563EB; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 20px;">Fale Conosco</h5>
-                <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 16px;">Precisa de suporte ou quer sugerir melhorias? Fale conosco:</p>
+                <p style="font-size: 0.88rem; color: #475569; margin-bottom: 20px; font-weight: 500;">
+                    Precisa de suporte ou quer sugerir melhorias? Fale conosco por nossos canais:
+                </p>
 
-                <div class="d-flex flex-column gap-2">
-                    <!-- WhatsApp -->
-                    <a href="https://wa.me/5585999999999?text=Ola%20LudoPet!%20Quero%20falar%20com%20voces."
-                       target="_blank" rel="noopener noreferrer"
-                       class="btn d-flex align-items-center gap-2"
-                       style="background: #F1F5F9; color: #0F172A; border: 1px solid #E2E8F0; border-radius: 10px; padding: 8px 14px; font-size: 0.85rem; font-weight: 700; transition: all 0.2s;"
-                       onmouseover="this.style.background='#22C55E'; this.style.color='#FFF'; this.style.borderColor='#22C55E'"
-                       onmouseout="this.style.background='#F1F5F9'; this.style.color='#0F172A'; this.style.borderColor='#E2E8F0'">
-                        <i class="bi bi-whatsapp"></i> Contato via WhatsApp
-                    </a>
-
+                <!-- LINKS CONFIGURADOS COM HOVER DINÂMICO -->
+                <ul class="list-unstyled d-flex flex-column gap-3" style="font-size: 0.9rem; color: #475569; font-weight: 600;">
                     <!-- Email -->
-                    <a href="mailto:contatoludopet@gmail.com"
-                       class="btn d-flex align-items-center gap-2"
-                       style="background: #F1F5F9; color: #0F172A; border: 1px solid #E2E8F0; border-radius: 10px; padding: 8px 14px; font-size: 0.85rem; font-weight: 700; transition: all 0.2s;"
-                       onmouseover="this.style.background='#2563EB'; this.style.color='#FFF'; this.style.borderColor='#2563EB'"
-                       onmouseout="this.style.background='#F1F5F9'; this.style.color='#0F172A'; this.style.borderColor='#E2E8F0'">
-                        <i class="bi bi-envelope-fill"></i> Suporte por E-mail
-                    </a>
-
-                    <!-- GitHub -->
-                    <a href="https://github.com/"
-                       target="_blank" rel="noopener noreferrer"
-                       class="btn d-flex align-items-center gap-2"
-                       style="background: #F1F5F9; color: #0F172A; border: 1px solid #E2E8F0; border-radius: 10px; padding: 8px 14px; font-size: 0.85rem; font-weight: 700; transition: all 0.2s;"
-                       onmouseover="this.style.background='#0F172A'; this.style.color='#FFF'; this.style.borderColor='#0F172A'"
-                       onmouseout="this.style.background='#F1F5F9'; this.style.color='#0F172A'; this.style.borderColor='#E2E8F0'">
-                        <i class="bi bi-github"></i> Código no GitHub
-                    </a>
-                </div>
+                    <li class="d-flex align-items-center gap-2">
+                        <i class="bi bi-envelope-fill" style="color: #0000CD; font-size: 1rem;"></i>
+                        <a href="mailto:contatoludopet@gmail.com" style="color: #475569; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#0000CD'" onmouseout="this.style.color='#475569'">contatoludopet@gmail.com</a>
+                    </li>
+                    <!-- WhatsApp -->
+                    <li class="d-flex align-items-center gap-2">
+                        <i class="bi bi-whatsapp" style="color: #0000CD; font-size: 1rem;"></i>
+                        <a href="https://wa.me/5585999999999?text=Ola%20LudoPet!%20Quero%20falar%20com%20voces." target="_blank" rel="noopener noreferrer" style="color: #475569; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#0000CD'" onmouseout="this.style.color='#475569'">(98) 9 9999-9999</a>
+                    </li>
+                    <!-- Localização -->
+                    <li class="d-flex align-items-center gap-2">
+                        <i class="bi bi-geo-alt-fill" style="color: #0000CD; font-size: 1rem;"></i>
+                        <span>São Luís - MA, Brasil</span>
+                    </li>
+                </ul>
             </div>
 
         </div>
 
         <!-- DIVISOR INFERIOR E COPYRIGHT -->
-        <div class="pt-4 border-top d-flex flex-sm-row flex-column justify-content-between align-items-center gap-3" style="border-color: #E2E8F0 !important; font-size: 0.82rem; color: #64748B;">
+        <div class="pt-4 border-top d-flex flex-sm-row flex-column justify-content-between align-items-center gap-3" style="border-color: #F1F5F9 !important; font-size: 0.82rem; color: #94A3B8; font-weight: 500;">
             <div>
-                <span>&copy; 2026 <strong>LudoPet</strong>. Desenvolvido para o bem-estar animal.</span>
+                <span>&copy; 2026 <strong style="color: #0000CD; font-weight: 700;">LudoPet</strong>. Desenvolvido para o bem-estar animal.</span>
             </div>
-            <div class="d-flex gap-3" style="font-weight: 600;">
-                <span style="color: #64748B;">São Luís - MA</span>
+            <div class="d-flex gap-3">
+                <span>São Luís - MA</span>
             </div>
         </div>
     </div>

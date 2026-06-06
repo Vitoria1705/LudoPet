@@ -7,72 +7,84 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <style>
+        /* Estrutura para manter o footer estável na base */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
         body {
-            font-family: 'DM Sans', sans-serif;
-            background: #F7F6F2;
+            display: flex;
+            flex-direction: column;
+            background: #F8FAFC;
             color: #1a1a1a;
+            font-family: 'Nunito', sans-serif;
+        }
+        main {
+            flex: 1 0 auto;
         }
 
-        /* ── HERO ───────────────────────────────────── */
+        /* ── HERO AZUL ROYAL ── */
         .perdidos-hero {
-            background: #1B3FAB;
+            background: #0000CD;
             padding: 3.5rem 0;
         }
         .hero-kicker {
-            font-size: 10px;
-            font-weight: 500;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
             letter-spacing: 1.4px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.55);
+            color: rgba(255,255,255,0.7);
             margin-bottom: 0.5rem;
         }
         .hero-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Fraunces', serif;
             font-size: 42px;
             color: #fff;
             line-height: 1.1;
+            font-weight: 900;
             margin-bottom: 1rem;
         }
         .hero-sub {
             font-size: 14px;
-            color: rgba(255,255,255,0.65);
+            color: rgba(255,255,255,0.85);
             line-height: 1.7;
             max-width: 500px;
             margin-bottom: 1.75rem;
         }
         .btn-hero-primary {
-            background: #FBBF24;
-            color: #1B3FAB;
+            background: #FFD43B;
+            color: #0000CD;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 12px 24px;
             font-size: 14px;
-            font-weight: 500;
-            font-family: 'DM Sans', sans-serif;
+            font-weight: 800;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             text-decoration: none;
             display: inline-block;
-            transition: opacity 0.2s, transform 0.15s;
+            transition: all 0.2s;
             margin-right: 10px;
             margin-bottom: 10px;
         }
         .btn-hero-primary:hover {
-            opacity: 0.9;
             transform: translateY(-1px);
-            color: #1B3FAB;
+            box-shadow: 0 4px 12px rgba(255, 212, 59, 0.3);
+            color: #0000CD;
         }
         .btn-hero-secondary {
             background: rgba(255,255,255,0.1);
             color: #fff;
-            border: 1.5px solid rgba(255,255,255,0.3);
-            border-radius: 10px;
-            padding: 12px 24px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 11px 24px;
             font-size: 14px;
-            font-weight: 500;
-            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             text-decoration: none;
             display: inline-block;
             transition: background 0.2s;
@@ -85,134 +97,147 @@
         .hero-counter {
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.18);
-            border-radius: 14px;
+            border-radius: 16px;
             padding: 1.5rem;
             text-align: center;
         }
         .counter-num {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Fraunces', serif;
             font-size: 48px;
-            color: #FBBF24;
+            color: #FFD43B;
             line-height: 1;
+            font-weight: 900;
             margin-bottom: 4px;
         }
         .counter-label {
             font-size: 12px;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.7);
             letter-spacing: 0.5px;
         }
 
-        /* ── FILTROS ────────────────────────────────── */
+        /* ── SEÇÃO FILTROS ── */
         .filter-bar {
             background: #fff;
-            border: 1.5px solid #F3F4F6;
-            border-radius: 14px;
-            padding: 1.25rem 1.5rem;
-            margin-bottom: 2rem;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
             display: flex;
             align-items: center;
             gap: 12px;
             flex-wrap: wrap;
+            box-shadow: 0 10px 30px rgba(0, 0, 64, 0.02);
         }
         .filter-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 12px;
-            font-weight: 500;
-            color: #6B7280;
+            font-weight: 800;
+            color: #0000CD;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.08em;
             white-space: nowrap;
         }
         .filter-btn {
-            background: #F7F6F2;
-            border: 1.5px solid #E5E7EB;
-            border-radius: 8px;
-            padding: 7px 16px;
-            font-size: 13px;
-            font-weight: 500;
-            color: #374151;
-            font-family: 'DM Sans', sans-serif;
+            background: #FFFFFF;
+            border: 2px solid #EFF6FF;
+            border-radius: 12px;
+            padding: 8px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0000CD;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
-        .filter-btn:hover,
+        .filter-btn:hover {
+            border-color: #FFD43B;
+            background: #FFFDF0;
+        }
         .filter-btn.active {
-            background: #1B3FAB;
-            border-color: #1B3FAB;
-            color: #fff;
+            background: #FFD43B !important;
+            border-color: #FFD43B !important;
+            color: #0000CD !important;
+            box-shadow: 0 4px 15px rgba(255, 212, 59, 0.35);
+            transform: scale(1.03);
         }
         .search-input {
-            border: 1.5px solid #E5E7EB;
-            border-radius: 8px;
-            padding: 7px 14px;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 8px 16px;
             font-size: 13px;
-            font-family: 'DM Sans', sans-serif;
-            color: #111827;
-            background: #F7F6F2;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #0F172A;
+            background: #F8FAFC;
             outline: none;
-            transition: border-color 0.2s;
+            transition: all 0.2s;
             margin-left: auto;
-            min-width: 200px;
+            min-width: 260px;
         }
         .search-input:focus {
-            border-color: #1B3FAB;
+            border-color: #0000CD;
             background: #fff;
+            box-shadow: 0 0 0 4px rgba(0, 0, 205, 0.08);
         }
 
-        /* ── CARDS ──────────────────────────────────── */
+        /* ── CARDS DE ANIMAIS ── */
         .animal-card {
             background: #fff;
-            border: 1.5px solid #F3F4F6;
+            border: 1px solid #E2E8F0;
             border-radius: 16px;
             overflow: hidden;
-            transition: border-color 0.2s, transform 0.18s;
+            transition: all 0.2s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
         }
         .animal-card:hover {
-            border-color: #1B3FAB;
-            transform: translateY(-4px);
+            border-color: #0000CD;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0,0,205,0.04);
         }
         .card-photo {
             height: 200px;
             overflow: hidden;
             position: relative;
-            background: #F3F4F6;
+            background: #F8FAFC;
         }
         .card-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
         }
         .animal-card:hover .card-photo img {
-            transform: scale(1.06);
+            transform: scale(1.03);
         }
         .card-especie-badge {
             position: absolute;
             top: 12px;
             left: 12px;
             font-size: 11px;
-            font-weight: 500;
+            font-weight: 700;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             padding: 5px 12px;
             border-radius: 20px;
             letter-spacing: 0.3px;
         }
-        .badge-cachorro { background: #E6F1FB; color: #185FA5; }
-        .badge-gato     { background: #FAEEDA; color: #854F0B; }
-        .badge-outro    { background: #EAF3DE; color: #3B6D11; }
+        .badge-cachorro { background: #EBF2FF; color: #0000CD; }
+        .badge-gato     { background: #FFF9E6; color: #B45309; }
+        .badge-outro    { background: #F0FDF4; color: #166534; }
 
         .dias-badge {
             position: absolute;
             top: 12px;
             right: 12px;
-            background: rgba(0,0,0,0.55);
+            background: rgba(15, 23, 42, 0.75);
             color: #fff;
             font-size: 10px;
-            font-weight: 500;
+            font-weight: 600;
             padding: 4px 10px;
             border-radius: 20px;
-            letter-spacing: 0.3px;
         }
 
         .card-body-custom {
@@ -222,19 +247,21 @@
             flex: 1;
         }
         .card-animal-name {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Fraunces', serif;
             font-size: 20px;
-            color: #0f1f5c;
+            color: #0F172A;
+            font-weight: 800;
             margin-bottom: 4px;
         }
         .card-raca {
             font-size: 12px;
-            color: #9CA3AF;
+            color: #64748B;
             margin-bottom: 10px;
+            font-weight: 600;
         }
         .card-desc {
             font-size: 13px;
-            color: #4B5563;
+            color: #475569;
             line-height: 1.6;
             margin-bottom: 1rem;
             display: -webkit-box;
@@ -247,73 +274,64 @@
             align-items: center;
             gap: 6px;
             font-size: 12px;
-            color: #6B7280;
+            color: #64748B;
             margin-bottom: 6px;
+            font-weight: 500;
         }
-        .card-info-row i { color: #1B3FAB; font-size: 13px; }
+        .card-info-row i { color: #0000CD; font-size: 13px; }
         .card-divider {
             border: none;
-            border-top: 1px solid #F3F4F6;
+            border-top: 1px solid #F1F5F9;
             margin: 1rem 0;
         }
         .btn-contato {
             display: block;
-            background: #1B3FAB;
+            background: #0000CD;
             color: #fff;
             border: none;
             border-radius: 10px;
             padding: 11px;
             font-size: 13px;
-            font-weight: 500;
-            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             text-align: center;
             text-decoration: none;
-            transition: background 0.2s;
+            transition: opacity 0.2s;
             margin-top: auto;
         }
         .btn-contato:hover {
-            background: #1532A0;
+            opacity: 0.9;
             color: #fff;
         }
 
-        /* ── EMPTY STATE ────────────────────────────── */
+        /* ── EMPTY STATE ── */
         .empty-state {
             background: #fff;
-            border: 1.5px solid #F3F4F6;
+            border: 1px solid #E2E8F0;
             border-radius: 16px;
             padding: 4rem 2rem;
             text-align: center;
         }
         .empty-icon {
             font-size: 48px;
-            color: #D1D5DB;
+            color: #94A3B8;
             margin-bottom: 1rem;
         }
         .empty-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Fraunces', serif;
             font-size: 22px;
-            color: #9CA3AF;
+            color: #64748B;
             margin-bottom: 0.5rem;
         }
         .empty-sub {
             font-size: 14px;
-            color: #9CA3AF;
-        }
-
-        /* ── SECTION TITLES ─────────────────────────── */
-        .section-kicker {
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            color: #1B3FAB;
-            display: block;
-            margin-bottom: 0.35rem;
+            color: #94A3B8;
         }
 
         @media (max-width: 768px) {
             .hero-title { font-size: 30px; }
             .search-input { margin-left: 0; min-width: 100%; }
+            .filter-btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -321,7 +339,6 @@
 
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
-<!-- ── HERO ──────────────────────────────────────────── -->
 <section class="perdidos-hero">
     <div class="container">
         <div class="row align-items-center gy-4">
@@ -341,90 +358,197 @@
             </div>
             <div class="col-lg-4">
                 <div class="hero-counter">
-                    <div class="counter-num" th:text="${animais != null ? animais.size() : 0}">0</div>
-                    <div class="counter-label">animais aguardando por um lar</div>
+                    <div class="counter-num">8</div>
+                    <div class="counter-label">animais guardados no mural</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ── MURAL ──────────────────────────────────────────── -->
 <main class="container py-5">
 
-    <!-- Filtros -->
     <div class="filter-bar">
         <span class="filter-label">Filtrar por</span>
-        <button class="filter-btn active" onclick="filtrar('todos', this)">Todos</button>
-        <button class="filter-btn" onclick="filtrar('Cachorro', this)">🐶 Cachorro</button>
-        <button class="filter-btn" onclick="filtrar('Gato', this)">🐱 Gato</button>
-        <button class="filter-btn" onclick="filtrar('Outro', this)">🐾 Outro</button>
+        <button class="filter-btn active" onclick="filtrar('todos', this)"><i class=""></i> Todos</button>
+        <button class="filter-btn" onclick="filtrar('Cachorro', this)"><i class="l"></i> Cachorro</button>
+        <button class="filter-btn" onclick="filtrar('Gato', this)"><i class=""></i> Gato</button>
+        <button class="filter-btn" onclick="filtrar('Outro', this)"><i class=""></i> Outro</button>
         <input type="text" class="search-input" placeholder="Buscar por nome ou bairro..." id="campoBusca" oninput="buscar(this.value)">
     </div>
 
-    <!-- Grid de cards -->
     <div class="row g-4" id="gridAnimais">
 
-        <!-- Empty state quando lista vazia -->
-        <div class="col-12" th:if="${animais == null or #lists.isEmpty(animais)}">
-            <div class="empty-state">
-                <div class="empty-icon"><i class="bi bi-search-heart"></i></div>
-                <h3 class="empty-title">Nenhum animal perdido cadastrado</h3>
-                <p class="empty-sub">Seja o primeiro a registrar um animal perdido no mural.</p>
-                <a th:href="@{/cadastro-pet-perdido}" class="btn-hero-primary mt-3 d-inline-block">
-                    Cadastrar agora
-                </a>
-            </div>
-        </div>
-
-        <!-- Card de cada animal -->
         <div class="col-sm-6 col-lg-4 card-item"
              th:each="animal : ${animais}"
              th:attr="data-especie=${animal.especie}, data-busca=${animal.nome + ' ' + animal.cidade + ' ' + animal.raca}">
-
             <div class="animal-card">
-
-                <!-- Foto -->
                 <div class="card-photo">
-                    <img th:src="@{${animal.foto}}"
-                         th:alt="${animal.nome}"
-                         onerror="this.src='/img/padrao.png'">
-
-                    <!-- Badge espécie -->
-                    <span class="card-especie-badge"
-                          th:classappend="${animal.especie == 'Cachorro'} ? 'badge-cachorro' : (${animal.especie == 'Gato'} ? 'badge-gato' : 'badge-outro')"
-                          th:text="${animal.especie}">Espécie</span>
-
-                    <!-- Dias desde o cadastro -->
-                    <span class="dias-badge"
-                          th:text="${#temporals.format(animal.dataCadastro, 'dd/MM/yyyy')}">
-                        Data
-                    </span>
+                    <img th:src="@{${animal.foto}}" th:alt="${animal.nome}" onerror="this.src='/img/padrao.png'">
+                    <span class="card-especie-badge" th:classappend="${animal.especie == 'Cachorro'} ? 'badge-cachorro' : (${animal.especie == 'Gato'} ? 'badge-gato' : 'badge-outro')" th:text="${animal.especie}">Espécie</span>
+                    <span class="dias-badge" th:text="${#temporals.format(animal.dataCadastro, 'dd/MM/yyyy')}">Data</span>
                 </div>
-
-                <!-- Info -->
                 <div class="card-body-custom">
                     <h3 class="card-animal-name" th:text="${animal.nome}">Nome</h3>
                     <p class="card-raca" th:text="${animal.raca + ' · ' + animal.cor}">Raça · Cor</p>
                     <p class="card-desc" th:text="${animal.descricao}">Descrição do animal.</p>
-
-                    <div class="card-info-row">
-                        <i class="bi bi-geo-alt"></i>
-                        <span th:text="${animal.cidade}">Cidade</span>
-                    </div>
-                    <div class="card-info-row">
-                        <i class="bi bi-calendar3"></i>
-                        <span th:text="'Cadastrado em ' + ${#temporals.format(animal.dataCadastro, 'dd/MM/yyyy')}">Data</span>
-                    </div>
-
+                    <div class="card-info-row"><i class="bi bi-geo-alt-fill"></i><span th:text="${animal.cidade}">Cidade</span></div>
+                    <div class="card-info-row"><i class="bi bi-calendar3"></i><span th:text="'Cadastrado em ' + ${#temporals.format(animal.dataCadastro, 'dd/MM/yyyy')}">Data</span></div>
                     <hr class="card-divider">
-
-                    <a th:href="'tel:' + ${animal.telefone}" class="btn-contato">
-                        <i class="bi bi-telephone me-2"></i>
-                        <span th:text="${animal.telefone}">Telefone</span>
-                    </a>
+                    <a th:href="'tel:' + ${animal.telefone}" class="btn-contato"><i class="bi bi-telephone-fill me-2"></i><span th:text="${animal.telefone}">Telefone</span></a>
                 </div>
+            </div>
+        </div>
 
+        <div class="col-sm-6 col-lg-4 card-item" data-especie="Cachorro" data-busca="max cohama beagle">
+            <div class="animal-card">
+                <div class="card-photo">
+                    <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=400&auto=format&fit=crop" alt="Max">
+                    <span class="card-especie-badge badge-cachorro">Cachorro</span>
+                    <span class="dias-badge">04/06/2026</span>
+                </div>
+                <div class="card-body-custom">
+                    <h3 class="card-animal-name">Max</h3>
+                    <p class="card-raca">Beagle · Tricolor</p>
+                    <p class="card-desc">Fugiu pelo portão da garagem. Usava uma coleira vermelha de identificação sem o telefone atualizado.</p>
+                    <div class="card-info-row"><i class="bi bi-geo-alt-fill"></i><span>Cohama, São Luís</span></div>
+                    <div class="card-info-row"><i class="bi bi-calendar3"></i><span>Cadastrado em 04/06/2026</span></div>
+                    <hr class="card-divider">
+                    <a href="tel:+5598999991111" class="btn-contato"><i class="bi bi-telephone-fill me-2"></i>(98) 99999-1111</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 card-item" data-especie="Cachorro" data-busca="apollo turu golden">
+            <div class="animal-card">
+                <div class="card-photo">
+                    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=400&auto=format&fit=crop" alt="Apollo">
+                    <span class="card-especie-badge badge-cachorro">Cachorro</span>
+                    <span class="dias-badge">02/06/2026</span>
+                </div>
+                <div class="card-body-custom">
+                    <h3 class="card-animal-name">Apollo</h3>
+                    <p class="card-raca">Golden Retriever · Dourado</p>
+                    <p class="card-desc">Muito dócil, assustou-se com fogos de artifício e correu em direção à Avenida General Arthur Carvalho.</p>
+                    <div class="card-info-row"><i class="bi bi-geo-alt-fill"></i><span>Turu, São Luís</span></div>
+                    <div class="card-info-row"><i class="bi bi-calendar3"></i><span>Cadastrado em 02/06/2026</span></div>
+                    <hr class="card-divider">
+                    <a href="tel:+5598999992222" class="btn-contato"><i class="bi bi-telephone-fill me-2"></i>(98) 99999-2222</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 card-item" data-especie="Cachorro" data-busca="cacau calhau vira-lata">
+            <div class="animal-card">
+                <div class="card-photo">
+                    <img src="https://images.unsplash.com/photo-1537151625747-768eb64519f2?q=80&w=400&auto=format&fit=crop" alt="Cacau">
+                    <span class="card-especie-badge badge-cachorro">Cachorro</span>
+                    <span class="dias-badge">30/05/2026</span>
+                </div>
+                <div class="card-body-custom">
+                    <h3 class="card-animal-name">Cacau</h3>
+                    <p class="card-raca">Vira-lata (SRD) · Marrom</p>
+                    <p class="card-desc">Porte pequeno, manca levemente da pata traseira direita. Sumiu nas proximidades da igrejinha do Calhau.</p>
+                    <div class="card-info-row"><i class="bi bi-geo-alt-fill"></i><span>Calhau, São Luís</span></div>
+                    <div class="card-info-row"><i class="bi bi-calendar3"></i><span>Cadastrado em 30/05/2026</span></div>
+                    <hr class="card-divider">
+                    <a href="tel:+5598999993333" class="btn-contato"><i class="bi bi-telephone-fill"></i>(98) 99999-3333</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 card-item" data-especie="Cachorro" data-busca="thor renascenca pug">
+            <div class="animal-card">
+                <div class="card-photo">
+                    <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=400&auto=format&fit=crop" alt="Thor">
+                    <span class="card-especie-badge badge-cachorro">Cachorro</span>
+                    <span class="dias-badge">28/05/2026</span>
+                </div>
+                <div class="card-body-custom">
+                    <h3 class="card-animal-name">Thor</h3>
+                    <p class="card-raca">Pug · Abricó</p>
+                    <p class="card-desc">Precisa de medicação diária para os olhos. Sumiu perto do Shopping Tropical. Por favor, ajudem!</p>
+                    <div class="card-info-row"><i class="bi bi-geo-alt-fill"></i><span>Renascença, São Luís</span></div>
+                    <div class="card-info-row"><i class="bi bi-calendar3"></i><span>Cadastrado em 28/05/2026</span></div>
+                    <hr class="card-divider">
+                    <a href="tel:+5598999994444" class="btn-contato"><i class="bi bi-telephone-fill me-2"></i>(98) 99999-4444</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 card-item" data-especie="Gato" data-busca="luna centro siames">
+            <div class="animal-card">
+                <div class="card-photo">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=400&auto=format&fit=crop" alt="Luna">
+                    <span class="card-especie-badge badge-gato">Gato</span>
+                    <span class="dias-badge">05/06/2026</span>
+                </div>
+                <div class="card-body-custom">
+                    <h3 class="card-animal-name">Luna</h3>
+                    <p class="card-raca">Siamês · Beje e Preto</p>
+                    <p class="card-desc">Gata arisca, olhos azuis bem marcantes. Costuma passear pelos telhados das casas históricas do Centro.</p>
+                    <div class="card-info-row"><i class="bi bi-geo-alt-fill"></i><span>Centro, São Luís</span></div>
+                    <div class="card-info-row"><i class="bi bi-calendar3"></i><span>Cadastrado em 05/06/2026</span></div>
+                    <hr class="card-divider">
+                    <a href="tel:+5598999995555" class="btn-contato"><i class="bi bi-telephone-fill me-2"></i>(98) 99999-5555</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 card-item" data-especie="Gato" data-busca="oliver cohama persa">
+            <div class="animal-card">
+                <div class="card-photo">
+                    <img src="https://images.unsplash.com/photo-1618826411640-d6df44dd3f7a?q=80&w=400&auto=format&fit=crop" alt="Oliver">
+                    <span class="card-especie-badge badge-gato">Gato</span>
+                    <span class="dias-badge">03/06/2026</span>
+                </div>
+                <div class="card-body-custom">
+                    <h3 class="card-animal-name">Oliver</h3>
+                    <p class="card-raca">Persa · Branco</p>
+                    <p class="card-desc">Muito peludo, possui um olho azul e outro verde (heterocromia). Sumiu de dentro do apartamento.</p>
+                    <div class="card-info-row"><i class="bi bi-geo-alt-fill"></i><span>Cohama, São Luís</span></div>
+                    <div class="card-info-row"><i class="bi bi-calendar3"></i><span>Cadastrado em 03/06/2026</span></div>
+                    <hr class="card-divider">
+                    <a href="tel:+5598999996666" class="btn-contato"><i class="bi bi-telephone-fill me-2"></i>(98) 99999-6666</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 card-item" data-especie="Gato" data-busca="simba turu frajola">
+            <div class="animal-card">
+                <div class="card-photo">
+                    <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=400&auto=format&fit=crop" alt="Simba">
+                    <span class="card-especie-badge badge-gato">Gato</span>
+                    <span class="dias-badge">01/06/2026</span>
+                </div>
+                <div class="card-body-custom">
+                    <h3 class="card-animal-name">Simba</h3>
+                    <p class="card-raca">Frajola · Preto e Branco</p>
+                    <p class="card-desc">Possui uma manchinha preta perfeitamente redonda no nariz rosa. Sumiu nas imediações do Habitacional Turu.</p>
+                    <div class="card-info-row"><i class="bi bi-geo-alt-fill"></i><span>Turu, São Luís</span></div>
+                    <div class="card-info-row"><i class="bi bi-calendar3"></i><span>Cadastrado em 01/06/2026</span></div>
+                    <hr class="card-divider">
+                    <a href="tel:+5598999997777" class="btn-contato"><i class="bi bi-telephone-fill"></i>(98) 99999-7777</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 card-item" data-especie="Gato" data-busca="mia calhau angora">
+            <div class="animal-card">
+                <div class="card-photo">
+                    <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?q=80&w=400&auto=format&fit=crop" alt="Mia">
+                    <span class="card-especie-badge badge-gato">Gato</span>
+                    <span class="dias-badge">29/05/2026</span>
+                </div>
+                <div class="card-body-custom">
+                    <h3 class="card-animal-name">Mia</h3>
+                    <p class="card-raca">Angorá · Cinza</p>
+                    <p class="card-desc">Gatinha dócil de pelagem cinza clara uniforme. Sumiu próximo aos restaurantes da Avenida Litorânea.</p>
+                    <div class="card-info-row"><i class="bi bi-geo-alt-fill"></i><span>Calhau, São Luís</span></div>
+                    <div class="card-info-row"><i class="bi bi-calendar3"></i><span>Cadastrado em 29/05/2026</span></div>
+                    <hr class="card-divider">
+                    <a href="tel:+5598999998888" class="btn-contato"><i class="bi bi-telephone-fill me-2"></i>(98) 99999-8888</a>
+                </div>
             </div>
         </div>
 

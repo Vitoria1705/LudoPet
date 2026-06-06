@@ -120,13 +120,13 @@
         .btn-conhecer {
             display: block;
             text-align: center;
-            background: #FBBF24;
+            background: #FFD43B; /* Amarelo Oficial LudoPet sincronizado */
             color: #1a1a1a;
             border: none;
             border-radius: 99px;
             padding: 8px;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             font-family: 'DM Sans', sans-serif;
             text-decoration: none;
             margin-top: auto;
@@ -187,17 +187,17 @@
         }
         .adoption-banner p {
             font-size: 14px;
-            color: rgba(255,255,255,0.7);
+            color: #FFFFFF !important; /* Forçado para Branco Puro conforme solicitado */
             margin: 0;
         }
         .btn-banner {
-            background: #FBBF24;
+            background: #FFD43B; /* Sincronizado com o Amarelo Oficial */
             color: #1B3FAB;
             border: none;
             border-radius: 99px;
             padding: 12px 28px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
             font-family: 'DM Sans', sans-serif;
             text-decoration: none;
             display: inline-block;
@@ -225,21 +225,15 @@
         </div>
     </section>
 
-    <div class="alert alert-light border" th:if="${#lists.isEmpty(animais)}">
-        Nenhum animal disponível no momento.
-    </div>
-
-    <!-- GRID HORIZONTAL DE CARDS -->
-    <div class="pets-scroll" th:if="${!#lists.isEmpty(animais)}">
+    <!-- CONTAINER DINÂMICO DO BANCO DE DADOS -->
+    <div class="pets-scroll mb-4" th:if="${!#lists.isEmpty(animais)}">
         <div class="animal-card" th:each="animal : ${animais}">
-
             <div class="card-img-wrap">
                 <img th:src="@{'/img/' + ${animal.foto}}"
                      class="animal-card-img"
                      th:alt="|Foto de ${animal.nome}|"
                      onerror="this.src='/img/padrao.png'">
             </div>
-
             <div class="card-body-custom">
                 <div class="card-top">
                     <div>
@@ -250,22 +244,157 @@
                           th:classappend="${animal.status == 'Adotado'} ? 'adotado' : (${animal.status == 'Em processo'} ? 'em-processo' : '')"
                           th:text="${animal.status}">Disponível</span>
                 </div>
-
                 <div class="pet-tags">
                     <span class="pet-tag" th:text="${animal.raca}">Raça</span>
                     <span class="pet-tag" th:text="${animal.idade}">Idade</span>
                     <span class="pet-tag" th:text="${animal.sexo}">Sexo</span>
                     <span class="pet-tag" th:text="${animal.porte}">Porte</span>
                 </div>
-
-                <a class="btn-conhecer"
-                   th:href="@{/detalhes/{id}(id=${animal.id})}">
-                    Conhecer pet
-                </a>
+                <a class="btn-conhecer" th:href="@{/detalhes/{id}(id=${animal.id})}">Conhecer pet</a>
             </div>
         </div>
     </div>
 
+    <!-- ── NOVA SEÇÃO VIBRANTE: DESTAQUES PARA PREENCHER A TELA ── -->
+    <div class="mt-4">
+        <h4 style="font-family: 'Playfair Display', serif; color: #0f1f5c; font-size: 20px; margin-bottom: 20px;">Destaques para Adoção em São Luís</h4>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3">
+
+            <div class="col">
+                <div class="animal-card w-100" style="margin-bottom: 0;">
+                    <div class="card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=300&auto=format&fit=crop" class="animal-card-img" alt="Pipoca">
+                    </div>
+                    <div class="card-body-custom">
+                        <div class="card-top">
+                            <div>
+                                <p class="card-name">Pipoca</p>
+                                <p class="card-desc">Muito dócil e brincalhão.</p>
+                            </div>
+                            <span class="status-pill">Disponível</span>
+                        </div>
+                        <div class="pet-tags">
+                            <span class="pet-tag">Vira-lata</span>
+                            <span class="pet-tag">1 ano</span>
+                        </div>
+                        <a class="btn-conhecer" href="#">Conhecer</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="animal-card w-100" style="margin-bottom: 0;">
+                    <div class="card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=300&auto=format&fit=crop" class="animal-card-img" alt="Luna">
+                    </div>
+                    <div class="card-body-custom">
+                        <div class="card-top">
+                            <div>
+                                <p class="card-name">Luna</p>
+                                <p class="card-desc">Calma e adora um bom colo.</p>
+                            </div>
+                            <span class="status-pill em-processo">Processo</span>
+                        </div>
+                        <div class="pet-tags">
+                            <span class="pet-tag">Gato SDR</span>
+                            <span class="pet-tag">6 m</span>
+                        </div>
+                        <a class="btn-conhecer" href="#">Conhecer</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="animal-card w-100" style="margin-bottom: 0;">
+                    <div class="card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1444212477490-ca407925329e?q=80&w=300&auto=format&fit=crop" class="animal-card-img" alt="Thor">
+                    </div>
+                    <div class="card-body-custom">
+                        <div class="card-top">
+                            <div>
+                                <p class="card-name">Thor</p>
+                                <p class="card-desc">Ativo e excelente cão alerta.</p>
+                            </div>
+                            <span class="status-pill">Disponível</span>
+                        </div>
+                        <div class="pet-tags">
+                            <span class="pet-tag">Fila/SDR</span>
+                            <span class="pet-tag">2 anos</span>
+                        </div>
+                        <a class="btn-conhecer" href="#">Conhecer</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="animal-card w-100" style="margin-bottom: 0;">
+                    <div class="card-img-wrap">
+                        <img src="https://blog-static.petlove.com.br/wp-content/uploads/2022/11/10133544/nomes-para-Poodle-Petlove.jpg" class="animal-card-img" alt="Mel">
+                    </div>
+                    <div class="card-body-custom">
+                        <div class="card-top">
+                            <div>
+                                <p class="card-name">Mel</p>
+                                <p class="card-desc">Ideal para apartamentos.</p>
+                            </div>
+                            <span class="status-pill adotado">Adotado</span>
+                        </div>
+                        <div class="pet-tags">
+                            <span class="pet-tag">Poodle</span>
+                            <span class="pet-tag">3 anos</span>
+                        </div>
+                        <a class="btn-conhecer" href="#">Conhecer</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="animal-card w-100" style="margin-bottom: 0;">
+                    <div class="card-img-wrap">
+                        <img src="https://www.petz.com.br/blog/wp-content/uploads/2019/07/vida-de-gato.jpg" class="animal-card-img" alt="Bolota">
+                    </div>
+                    <div class="card-body-custom">
+                        <div class="card-top">
+                            <div>
+                                <p class="card-name">Bolota</p>
+                                <p class="card-desc">Calma, fofa e muito carinhosa.</p>
+                            </div>
+                            <span class="status-pill adotado">Adotado</span>
+                        </div>
+                        <div class="pet-tags">
+                            <span class="pet-tag">Gato SDR</span>
+                            <span class="pet-tag">1 ano</span>
+                        </div>
+                        <a class="btn-conhecer" href="#">Conhecer</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="animal-card w-100" style="margin-bottom: 0;">
+                    <div class="card-img-wrap">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKLBMpnxuefeUMyfeFlbnm9jsEnHH-09h4Eg&s" class="animal-card-img" alt="Amora">
+                    </div>
+                    <div class="card-body-custom">
+                        <div class="card-top">
+                            <div>
+                                <p class="card-name">Amora</p>
+                                <p class="card-desc">Quieta, vacinada e dócil.</p>
+                            </div>
+                            <span class="status-pill adotado">Adotado</span>
+                        </div>
+                        <div class="pet-tags">
+                            <span class="pet-tag">SDR</span>
+                            <span class="pet-tag">2 anos</span>
+                        </div>
+                        <a class="btn-conhecer" href="#">Conhecer</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <!-- BANNER KIT ADOÇÃO -->
     <section class="mt-5 adoption-banner">
         <div class="row align-items-center gy-3">
