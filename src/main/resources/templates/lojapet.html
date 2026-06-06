@@ -7,39 +7,41 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <style>
         body {
-            font-family: 'DM Sans', sans-serif;
-            background: #F7F6F2;
+            font-family: 'Nunito', sans-serif;
+            background: #F8FAFC;
             color: #1a1a1a;
         }
 
-        /* ── HERO ──────────────────────────────────── */
+        /* ── HERO CARROSSEL ─────────────────────────── */
         .loja-hero {
-            background: #1B3FAB;
-            padding: 4rem 0;
+            background: #0000CD; /* Azul Royal Puro Oficial */
+            padding: 0;
         }
         .hero-kicker {
-            font-size: 10px;
-            font-weight: 500;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
             letter-spacing: 1.4px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.55);
+            color: rgba(255,255,255,0.7);
             margin-bottom: 0.5rem;
         }
         .hero-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Fraunces', serif;
             font-size: 48px;
             color: #fff;
             line-height: 1.1;
             margin-bottom: 1rem;
+            font-weight: 900;
         }
         .hero-sub {
             font-size: 15px;
-            color: rgba(255,255,255,0.65);
+            color: rgba(255,255,255,0.85);
             line-height: 1.7;
             max-width: 480px;
             margin-bottom: 2rem;
@@ -49,6 +51,7 @@
             flex-direction: column;
             gap: 12px;
             align-items: flex-end;
+            padding: 4rem 0;
         }
         .stat-pill {
             background: rgba(255,255,255,0.1);
@@ -60,7 +63,7 @@
         }
         .stat-num {
             font-size: 24px;
-            font-weight: 500;
+            font-weight: 800;
             color: #fff;
             line-height: 1;
             margin-bottom: 3px;
@@ -69,43 +72,42 @@
             font-size: 10px;
             letter-spacing: 0.6px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.6);
         }
 
-        /* ── CATEGORIAS ────────────────────────────── */
+        /* ── TITULOS EM AMARELO CRISTALINO ────────────────── */
         .section-kicker {
-            font-size: 10px;
-            font-weight: 500;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
             letter-spacing: 1.2px;
             text-transform: uppercase;
-            color: #1B3FAB;
+            color: #0000CD;
             display: block;
             margin-bottom: 0.35rem;
         }
         .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            color: #0f1f5c;
-            margin-bottom: 0.4rem;
+            font-family: 'Fraunces', serif;
+            font-size: 32px;
+            color: #FFD43B !important; /* Amarelo Puro LudoPet */
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 1px rgba(15, 23, 42, 0.15);
         }
-        .section-sub {
-            font-size: 14px;
-            color: #6B7280;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
+
+        /* ── CATEGORIAS CARD COESÃO ── */
         .cat-card {
             background: #fff;
-            border: 1.5px solid #F3F4F6;
-            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
             padding: 1.5rem 1rem;
             text-align: center;
             cursor: pointer;
             text-decoration: none;
             display: block;
-            transition: border-color 0.2s, transform 0.15s;
+            transition: all 0.2s ease;
         }
-        .cat-card:hover { border-color: #1B3FAB; transform: translateY(-2px); }
+        .cat-card:hover { border-color: #0000CD; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,205,0.03); }
         .cat-icon-wrap {
             width: 52px;
             height: 52px;
@@ -114,20 +116,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 20px;
         }
-        .ic-amber { background: #FAEEDA; }
-        .ic-blue  { background: #E6F1FB; }
-        .ic-pink  { background: #FBEAF0; }
-        .ic-green { background: #EAF3DE; }
-        .cat-name { font-size: 14px; font-weight: 500; color: #111827; margin-bottom: 3px; }
-        .cat-count { font-size: 12px; color: #9CA3AF; }
+        .ic-amber { background: #EFF6FF; color: #B45309; }
+        .ic-blue  { background: #EFF6FF; color: #0000CD; }
+        .ic-pink  { background: #EFF6FF; color: #9F1239; }
+        .ic-green { background: #EFF6FF; color: #166534; }
 
-        /* ── ABAS DE FILTRO ────────────────────────── */
+        .cat-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; color: #0F172A; margin-bottom: 3px; }
+        .cat-count { font-size: 12px; color: #64748B; font-weight: 500; }
+
+        /* ── ABAS DE FILTRO ESTILO LOGIN ── */
         .loja-tabs {
             display: flex;
             gap: 8px;
-            border-bottom: 2px solid #E5E7EB;
+            border-bottom: 2px solid #E2E8F0;
             padding-bottom: 0;
             margin-bottom: 1.5rem;
             flex-wrap: wrap;
@@ -135,24 +138,27 @@
         .loja-tab-btn {
             background: transparent;
             border: none;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 14px;
-            font-weight: 500;
-            color: #9CA3AF;
+            font-weight: 700;
+            color: #64748B;
             padding: 10px 18px;
             position: relative;
             cursor: pointer;
             border-bottom: 3px solid transparent;
             margin-bottom: -2px;
-            transition: color 0.2s;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
-        .loja-tab-btn:hover { color: #1B3FAB; }
+        .loja-tab-btn:hover { color: #0000CD; }
         .loja-tab-btn.active {
-            color: #1B3FAB;
-            border-bottom-color: #1B3FAB;
+            color: #0000CD;
+            border-bottom-color: #0000CD;
         }
 
-        /* ── GRID DE PRODUTOS ──────────────────────── */
+        /* ── GRID DE PRODUTOS DINÂMICOS ── */
         .produtos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -160,14 +166,14 @@
         }
         .prod-card {
             background: #fff;
-            border: 1.5px solid #F3F4F6;
-            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: border-color 0.2s, transform 0.15s;
+            transition: all 0.2s ease;
         }
-        .prod-card:hover { border-color: #1B3FAB; transform: translateY(-3px); }
+        .prod-card:hover { border-color: #0000CD; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,205,0.04); }
         .prod-img-wrap {
             height: 170px;
             background: #F8FAFC;
@@ -183,30 +189,19 @@
             object-fit: cover;
             transition: transform 0.3s ease;
         }
-        .prod-card:hover .prod-img-wrap img { transform: scale(1.05); }
-        .prod-tag-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-        .tag-venda { background: #EAF3DE; color: #3B6D11; }
-        .tag-kit   { background: #FAEEDA; color: #854F0B; }
+        .prod-card:hover .prod-img-wrap img { transform: scale(1.03); }
+
         .prod-body {
-            padding: 14px 16px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
             flex: 1;
         }
         .prod-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 14px;
-            font-weight: 500;
-            color: #111827;
+            font-weight: 700;
+            color: #0F172A;
             margin-bottom: 4px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -216,7 +211,7 @@
         }
         .prod-desc {
             font-size: 12px;
-            color: #9CA3AF;
+            color: #64748B;
             margin-bottom: 12px;
             line-height: 1.5;
             display: -webkit-box;
@@ -226,83 +221,85 @@
         }
         .prod-price {
             font-size: 17px;
-            font-weight: 600;
-            color: #1B3FAB;
+            font-weight: 700;
+            color: #0000CD;
             margin-bottom: 12px;
             margin-top: auto;
         }
         .btn-add {
-            background: #1B3FAB;
+            background: #0000CD; /* Azul Royal */
             color: #fff;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 10px;
             font-size: 13px;
-            font-weight: 500;
-            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             cursor: pointer;
             width: 100%;
-            transition: background 0.2s;
+            transition: opacity 0.2s;
         }
-        .btn-add:hover { background: #1532A0; }
+        .btn-add:hover { opacity: 0.9; }
 
-        /* ── CARRINHO LATERAL ──────────────────────── */
+        /* ── CARRINHO LATERAL ── */
         .checkout-box {
             background: #fff;
-            border: 1.5px solid #F3F4F6;
-            border-radius: 18px;
+            border: 1px solid #E2E8F0;
+            border-radius: 20px;
             padding: 1.5rem;
             position: sticky;
             top: 24px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
         }
         .cart-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Fraunces', serif;
             font-size: 20px;
-            color: #0f1f5c;
+            color: #0F172A;
             margin-bottom: 1rem;
+            font-weight: 800;
         }
         .cart-empty {
             text-align: center;
             padding: 2rem 0;
-            color: #9CA3AF;
+            color: #64748B;
         }
-        .cart-empty i { font-size: 2.5rem; display: block; margin-bottom: 8px; }
-        .cart-empty p { font-size: 13px; margin: 0; }
+        .cart-empty i { font-size: 2.2rem; display: block; margin-bottom: 8px; color: #0000CD; }
+        .cart-empty p { font-size: 13px; margin: 0; font-weight: 600; }
+
         .cart-item-row {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            padding: 10px 0;
-            border-bottom: 1px solid #F3F4F6;
+            padding: 12px 0;
+            border-bottom: 1px solid #F1F5F9;
             gap: 8px;
         }
         .cart-item-name {
             font-size: 13px;
-            font-weight: 500;
-            color: #111827;
+            font-weight: 600;
+            color: #0F172A;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             max-width: 140px;
         }
-        .cart-item-type { font-size: 11px; color: #9CA3AF; }
-        .cart-item-price { font-size: 13px; font-weight: 600; color: #111827; white-space: nowrap; }
+        .cart-item-price { font-size: 13px; font-weight: 700; color: #0000CD; white-space: nowrap; }
         .btn-remove {
             background: none;
             border: none;
             color: #EF4444;
             font-size: 11px;
-            font-weight: 500;
+            font-weight: 700;
             padding: 0;
             cursor: pointer;
-            font-family: 'DM Sans', sans-serif;
         }
         .summary-line {
             display: flex;
             justify-content: space-between;
             font-size: 13px;
-            color: #6B7280;
+            color: #64748B;
             margin-bottom: 6px;
+            font-weight: 500;
         }
         .summary-total {
             display: flex;
@@ -310,164 +307,213 @@
             align-items: center;
             margin-top: 12px;
         }
-        .summary-total strong { font-size: 15px; color: #111827; }
-        .summary-total span { font-size: 22px; font-weight: 600; color: #1B3FAB; }
+        .summary-total strong { font-size: 15px; color: #0F172A; font-family: 'Plus Jakarta Sans'; }
+        .summary-total span { font-size: 22px; font-weight: 800; color: #0000CD; }
+
         .btn-checkout {
-            background: #FBBF24;
-            color: #1B3FAB;
+            background: #FFD43B;
+            color: #0000CD;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 14px;
             font-size: 14px;
-            font-weight: 600;
-            font-family: 'DM Sans', sans-serif;
+            font-weight: 800;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             cursor: pointer;
             width: 100%;
             margin-top: 1rem;
-            transition: opacity 0.2s, transform 0.15s;
+            transition: all 0.2s;
         }
-        .btn-checkout:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-checkout:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255,212,59,0.3); }
 
-        /* ── PROMO BANNER ──────────────────────────── */
+        /* ── PROMO BANNER ── */
         .promo-banner {
-            background: #0f1f5c;
-            border-radius: 18px;
+            background: #0000CD;
+            border-radius: 20px;
             padding: 2.5rem;
         }
-        .promo-kicker {
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 0.4rem;
-        }
         .promo-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Fraunces', serif;
             font-size: 26px;
             color: #fff;
             margin-bottom: 0.5rem;
+            font-weight: 900;
         }
-        .promo-sub { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
-        .promo-cupom { color: #FBBF24; font-weight: 600; }
+        .promo-sub { font-size: 14px; color: rgba(255,255,255,0.9); line-height: 1.6; }
+        .promo-cupom { color: #FFD43B; font-weight: 700; }
         .btn-promo {
-            background: #FBBF24;
-            color: #0f1f5c;
+            background: #FFD43B;
+            color: #0000CD;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 13px 28px;
             font-size: 14px;
-            font-weight: 600;
-            font-family: 'DM Sans', sans-serif;
+            font-weight: 800;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             cursor: pointer;
             transition: opacity 0.2s;
         }
         .btn-promo:hover { opacity: 0.9; }
 
-        /* ── PERKS ─────────────────────────────────── */
+        /* ── PERKS ── */
         .perk-card {
             background: #fff;
-            border: 1.5px solid #F3F4F6;
-            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
             padding: 1.25rem;
             display: flex;
             align-items: flex-start;
             gap: 14px;
+            height: 100%;
         }
         .perk-icon {
             width: 40px;
             height: 40px;
-            background: #E6F1FB;
+            background: #EFF6FF;
+            color: #0000CD;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             flex-shrink: 0;
         }
-        .perk-title { font-size: 13px; font-weight: 500; color: #111827; margin-bottom: 3px; }
-        .perk-sub { font-size: 12px; color: #9CA3AF; line-height: 1.4; }
+        .perk-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: #0F172A; margin-bottom: 3px; }
+        .perk-sub { font-size: 12px; color: #64748B; line-height: 1.4; font-weight: 500; }
 
         @media (max-width: 768px) {
             .hero-title { font-size: 32px; }
             .hero-stats { flex-direction: row; flex-wrap: wrap; align-items: stretch; }
             .stat-pill { min-width: 80px; }
+            .hero-stats { padding: 2rem 0; }
         }
     </style>
 </head>
 <body>
 
 <header th:replace="~{fragments/navbar :: navbar}"></header>
-
-<!-- ── HERO ──────────────────────────────────────────── -->
 <section class="loja-hero">
-    <div class="container">
-        <div class="row align-items-center gy-4">
-            <div class="col-lg-8">
-                <p class="hero-kicker">Bem-vindo à Loja Pet</p>
-                <h1 class="hero-title">Tudo que seu<br>pet merece</h1>
-                <p class="hero-sub">
-                    Produtos essenciais e kits completos para a chegada do seu novo amigo.
-                    Qualidade e carinho em cada item.
-                </p>
-            </div>
-            <div class="col-lg-4">
-                <div class="hero-stats">
-                    <div class="stat-pill">
-                        <div class="stat-num">5</div>
-                        <div class="stat-label">Produtos</div>
-                    </div>
-                    <div class="stat-pill">
-                        <div class="stat-num">4.9</div>
-                        <div class="stat-label">Avaliação média</div>
-                    </div>
-                    <div class="stat-pill">
-                        <div class="stat-num">Grátis</div>
-                        <div class="stat-label">Frete em São Luís</div>
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+
+            <div class="carousel-item active" style="background: linear-gradient(90deg, rgba(0, 0, 205, 0.95) 0%, rgba(0, 0, 205, 0.75) 50%, rgba(0, 0, 0, 0.4) 100%), url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=1200&auto=format&fit=crop'); background-size: cover; background-position: center;">
+                <div class="container">
+                    <div class="row align-items-center gy-4">
+                        <div class="col-lg-8 py-5">
+                            <p class="hero-kicker">Bem-vindo à Loja Pet</p>
+                            <h1 class="hero-title">Tudo que seu<br>pet merece</h1>
+                            <p class="hero-sub">
+                                Produtos essenciais e kits completos para a chegada do seu novo amigo.
+                                Qualidade e carinho em cada item.
+                            </p>
+                        </div>
+                        <div class="col-lg-4 d-none d-lg-block">
+                            <div class="hero-stats">
+                                <div class="stat-pill">
+                                    <div class="stat-num">5</div>
+                                    <div class="stat-label">Produtos</div>
+                                </div>
+                                <div class="stat-pill">
+                                    <div class="stat-num">4.9</div>
+                                    <div class="stat-label">Avaliação média</div>
+                                </div> <div class="stat-pill">
+                                <div class="stat-num">Grátis</div>
+                                <div class="stat-label">Frete em São Luís</div>
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div class="carousel-item" style="background: linear-gradient(90deg, rgba(0, 0, 205, 0.95) 0%, rgba(0, 0, 205, 0.75) 50%, rgba(0, 0, 0, 0.4) 100%), url('https://images.unsplash.com/photo-1589924691106-073b19f59392?q=80&w=1200&auto=format&fit=crop'); background-size: cover; background-position: center;">
+                <div class="container">
+                    <div class="row align-items-center gy-4">
+                        <div class="col-lg-8 py-5">
+                            <p class="hero-kicker">Nutrição Premium</p>
+                            <h1 class="hero-title">Festival de<br>Rações Especiais</h1>
+                            <p class="hero-sub">
+                                Marcas selecionadas com até 20% de desconto. Garanta a energia e saúde que seu companheiro precisa.
+                            </p>
+                        </div>
+                        <div class="col-lg-4 d-none d-lg-block text-center">
+                            <i class="bi bi-box-seam" style="font-size: 130px; color: rgba(255,255,255,0.2); line-height: 1;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item" style="background: linear-gradient(90deg, rgba(0, 0, 205, 0.95) 0%, rgba(0, 0, 205, 0.75) 50%, rgba(0, 0, 0, 0.4) 100%), url('https://images.unsplash.com/photo-1516715094727-ec48be335d79?q=80&w=1200&auto=format&fit=crop'); background-size: cover; background-position: center;">
+                <div class="container">
+                    <div class="row align-items-center gy-4">
+                        <div class="col-lg-8 py-5">
+                            <p class="hero-kicker">Adoção Responsável</p>
+                            <h1 class="hero-title">Kits Adotante<br>com Desconto</h1>
+                            <p class="hero-sub">
+                                Adotou um pet no LudoPet? Ganhe condições exclusivas em kits completos de boas-vindas.
+                            </p>
+                        </div>
+                        <div class="col-lg-4 d-none d-lg-block text-center">
+                            <i class="bi bi-gift" style="font-size: 130px; color: rgba(255,255,255,0.2); line-height: 1;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Próximo</span>
+        </button>
     </div>
 </section>
 
-<!-- ── CATEGORIAS ─────────────────────────────────────── -->
-<section class="py-5">
+    <section class="py-5">
     <div class="container">
         <span class="section-kicker">Categorias</span>
         <h2 class="section-title">O que você precisa?</h2>
         <div class="row g-3 mb-2">
             <div class="col-6 col-md-2">
                 <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('brinquedos', null)">
-                    <div class="cat-icon-wrap ic-pink">🎾</div>
+                    <div class="cat-icon-wrap ic-pink"><i class="bi bi-brightness-low-fill"></i></div>
                     <div class="cat-name">Brinquedos</div>
                     <div class="cat-count" id="cnt-brinquedos">...</div>
                 </button>
             </div>
             <div class="col-6 col-md-2">
                 <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('higiene', null)">
-                    <div class="cat-icon-wrap ic-blue">🧴</div>
+                    <div class="cat-icon-wrap ic-blue"><i class="bi bi-moisture"></i></div>
                     <div class="cat-name">Higiene</div>
                     <div class="cat-count" id="cnt-higiene">...</div>
                 </button>
             </div>
             <div class="col-6 col-md-2">
                 <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('camas', null)">
-                    <div class="cat-icon-wrap ic-green">🛏</div>
+                    <div class="cat-icon-wrap ic-green"><i class="bi bi-box2-heart-fill"></i></div>
                     <div class="cat-name">Camas</div>
                     <div class="cat-count" id="cnt-camas">...</div>
                 </button>
             </div>
             <div class="col-6 col-md-2">
                 <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('petisco', null)">
-                    <div class="cat-icon-wrap ic-amber">🦴</div>
+                    <div class="cat-icon-wrap ic-amber"><i class="bi bi-patch-check-fill"></i></div>
                     <div class="cat-name">Petiscos</div>
                     <div class="cat-count" id="cnt-petiscos">...</div>
                 </button>
             </div>
             <div class="col-6 col-md-2">
                 <button class="cat-card w-100 border-0" onclick="filtrarCatalogo('racoes', null)">
-                    <div class="cat-icon-wrap ic-amber">🍖</div>
+                    <div class="cat-icon-wrap ic-amber"><i class="bi bi-cookie"></i></div>
                     <div class="cat-name">Rações</div>
                     <div class="cat-count" id="cnt-racoes">...</div>
                 </button>
@@ -476,35 +522,30 @@
     </div>
 </section>
 
-<!-- ── CATÁLOGO COMPLETO + CARRINHO ──────────────────── -->
 <section class="pb-5">
     <div class="container">
         <div class="row g-4">
 
-            <!-- Coluna produtos -->
             <div class="col-lg-8">
                 <span class="section-kicker">Catálogo</span>
                 <h2 class="section-title mb-3">Todos os produtos</h2>
 
-                <!-- Abas de filtro -->
                 <div class="loja-tabs">
                     <button class="loja-tab-btn active" onclick="filtrarCatalogo('todos', this)">Todos</button>
-                    <button class="loja-tab-btn" onclick="filtrarCatalogo('brinquedos', this)">🎾 Brinquedos</button>
-                    <button class="loja-tab-btn" onclick="filtrarCatalogo('camas', this)">🛏 Camas</button>
-                    <button class="loja-tab-btn" onclick="filtrarCatalogo('higiene', this)">🧴 Higiene</button>
-                    <button class="loja-tab-btn" onclick="filtrarCatalogo('petisco', this)">🦴 Petiscos</button>
-                    <button class="loja-tab-btn" onclick="filtrarCatalogo('racoes', this)">🍖 Rações</button>
+                    <button class="loja-tab-btn" onclick="filtrarCatalogo('brinquedos', this)"><i class="bi bi-brightness-low-fill me-1"></i> Brinquedos</button>
+                    <button class="loja-tab-btn" onclick="filtrarCatalogo('camas', this)"><i class="bi bi-box2-heart-fill me-1"></i> Camas</button>
+                    <button class="loja-tab-btn" onclick="filtrarCatalogo('higiene', this)"><i class="bi bi-moisture me-1"></i> Higiene</button>
+                    <button class="loja-tab-btn" onclick="filtrarCatalogo('petisco', this)"><i class="bi bi-patch-check-fill me-1"></i> Petiscos</button>
+                    <button class="loja-tab-btn" onclick="filtrarCatalogo('racoes', this)"><i class="bi bi-cookie me-1"></i> Rações</button>
                 </div>
 
-                <!-- Grid dinâmico -->
                 <div id="gridProdutos" class="produtos-grid"></div>
             </div>
 
-            <!-- Carrinho lateral -->
             <div class="col-lg-4">
                 <div class="checkout-box">
                     <h3 class="cart-title">
-                        <i class="bi bi-bag-heart" style="color:#1B3FAB; margin-right:8px;"></i>Seu carrinho
+                        <i class="bi bi-bag-heart-fill" style="color:#0000CD; margin-right:8px;"></i>Seu carrinho
                     </h3>
 
                     <div id="listaCarrinho" style="max-height: 300px; overflow-y: auto;">
@@ -514,14 +555,14 @@
                         </div>
                     </div>
 
-                    <div class="pt-3 mt-2" style="border-top: 1px solid #F3F4F6;">
+                    <div class="pt-3 mt-2" style="border-top: 1px solid #E2E8F0;">
                         <div class="summary-line">
                             <span>Subtotal</span>
-                            <span id="cartSubtotal" style="color:#111827; font-weight:500;">R$ 0,00</span>
+                            <span id="cartSubtotal" style="color:#0F172A; font-weight:700;">R$ 0,00</span>
                         </div>
                         <div class="summary-line">
                             <span>Frete (São Luís)</span>
-                            <span style="color:#3B6D11; font-weight:600;">GRÁTIS</span>
+                            <span style="color:#166534; font-weight:700;">GRÁTIS</span>
                         </div>
                         <div class="summary-total">
                             <strong>Total</strong>
@@ -532,7 +573,7 @@
                     <button class="btn-checkout" onclick="finalizarCompra()">
                         <i class="bi bi-credit-card-2-back-fill me-2"></i>Fechar pedido
                     </button>
-                    <p style="font-size:11px; color:#9CA3AF; text-align:center; margin-top:10px; margin-bottom:0;">
+                    <p style="font-size:11px; color:#64748B; text-align:center; margin-top:10px; margin-bottom:0;">
                         <i class="bi bi-shield-lock me-1"></i>Ambiente seguro e simulado
                     </p>
                 </div>
@@ -542,13 +583,12 @@
     </div>
 </section>
 
-<!-- ── BANNER CUPOM ───────────────────────────────────── -->
 <section class="pb-5">
     <div class="container">
         <div class="promo-banner">
             <div class="row align-items-center gy-3">
                 <div class="col-lg-8">
-                    <p class="promo-kicker">Oferta especial</p>
+                    <p class="promo-kicker" style="color: rgba(255,255,255,0.6);">Oferta especial</p>
                     <h3 class="promo-title">15% off na primeira compra</h3>
                     <p class="promo-sub">
                         Use o cupom <span class="promo-cupom">BEMVINDO</span> e ganhe desconto em qualquer produto.
@@ -563,13 +603,12 @@
     </div>
 </section>
 
-<!-- ── PERKS ──────────────────────────────────────────── -->
 <section class="pb-5">
     <div class="container">
         <div class="row g-3">
             <div class="col-md-4">
                 <div class="perk-card">
-                    <div class="perk-icon">📦</div>
+                    <div class="perk-icon"><i class="bi bi-truck"></i></div>
                     <div>
                         <div class="perk-title">Entrega rápida</div>
                         <div class="perk-sub">São Luís em até 2 dias úteis após confirmação</div>
@@ -578,7 +617,7 @@
             </div>
             <div class="col-md-4">
                 <div class="perk-card">
-                    <div class="perk-icon">🔒</div>
+                    <div class="perk-icon"><i class="bi bi-shield-lock-fill"></i></div>
                     <div>
                         <div class="perk-title">Pagamento seguro</div>
                         <div class="perk-sub">Pix, cartão de crédito e boleto bancário</div>
@@ -587,7 +626,7 @@
             </div>
             <div class="col-md-4">
                 <div class="perk-card">
-                    <div class="perk-icon">💬</div>
+                    <div class="perk-icon"><i class="bi bi-chat-heart-fill"></i></div>
                     <div>
                         <div class="perk-title">Suporte humano</div>
                         <div class="perk-sub">Atendemos via WhatsApp em horário comercial</div>
@@ -604,7 +643,6 @@
     let carrinho = [];
     let todosProdutos = [];
 
-    // Carrega produtos do banco
     function carregarProdutos() {
         fetch("/api/produtos")
             .then(r => r.json())
@@ -615,10 +653,11 @@
             })
             .catch(() => {
                 document.getElementById("gridProdutos").innerHTML =
-                    '<p style="color:#9CA3AF; font-size:14px; padding:2rem 0;">Erro ao carregar produtos.</p>';
+                    '<p style="color:#64748B; font-size:14px; padding:2rem 0; font-weight:600;">Erro ao carregar produtos.</p>';
             });
     }
 
+    // Mantendo sua lógica JS intacta para os contadores dinâmicos da API
     function atualizarContadores(lista) {
         const brinquedos = lista.filter(p => p.imagemUrl && p.imagemUrl.includes('brinquedos')).length;
         const higiene = lista.filter(p => p.imagemUrl && p.imagemUrl.includes('higiene')).length;
@@ -636,7 +675,7 @@
     function renderizarCatalogo(lista) {
         const grid = document.getElementById("gridProdutos");
         if (lista.length === 0) {
-            grid.innerHTML = '<p style="color:#9CA3AF; font-size:14px; padding:2rem 0;">Nenhum produto encontrado.</p>';
+            grid.innerHTML = '<p style="color:#64748B; font-size:14px; padding:2rem 0; font-weight:600;">Nenhum produto encontrado.</p>';
             return;
         }
         grid.innerHTML = lista.map(item => `

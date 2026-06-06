@@ -8,7 +8,7 @@
 /* ── Design System (Nova Paleta Azulada e Magnética) ─────────────────── */
 :root {
     /* Tons de Azul principais do site */
-    --verde-principal: #2563EB; /* LudoPet Azul Royal (Confiança e Destaque) */
+    --verde-principal: #1F15E6; /* LudoPet Azul Royal (Confiança e Destaque) */
     --verde-escuro:    #1D4ED8; /* Azul Marinho para textos e hovers profundos */
     --verde-light:     #EFF6FF; /* Fundo azul bem clarinho para cards e foco */
     --verde-logo:      #93C5FD; /* Azul céu suave para bordas interativas */

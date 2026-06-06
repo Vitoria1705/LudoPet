@@ -6,7 +6,206 @@
     <title>Pet Alerta - LudoPet</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <style>
+        /* Estrutura para manter o footer estável na base */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            background: #F8FAFC;
+            color: #1a1a1a;
+            font-family: 'Nunito', sans-serif;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+
+        /* ── HERO AZUL ROYAL ── */
+        .page-hero {
+            background: #0000CD;
+            border-radius: 20px;
+            padding: 50px 40px;
+        }
+        .section-kicker {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: #FFD43B !important;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .page-hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 42px;
+            color: #fff !important;
+            line-height: 1.1;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        /* ── SEÇÃO TITULOS EM AMARELO ── */
+        .section-title-yellow {
+            font-family: 'Fraunces', serif;
+            font-size: 32px;
+            color: #FFD43B !important;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 1px rgba(15, 23, 42, 0.15);
+        }
+
+        /* ── CARD DE UPLOAD ESTILO LOGIN ── */
+        .upload-panel {
+            background: #fff;
+            border: 1px solid #E2E8F0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 64, 0.03);
+        }
+
+        /* Input de arquivo brutalista customizado */
+        .modern-form input[type="file"] {
+            border: 2px dashed #0000CD !important;
+            padding: 20px !important;
+            border-radius: 12px !important;
+            background: #F8FAFC !important;
+            color: #475569 !important; /* Texto mais escuro para leitura */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 1.5rem;
+            transition: all 0.2s;
+        }
+        .modern-form input[type="file"]:hover {
+            background: #EFF6FF !important;
+            border-color: #FFD43B !important;
+        }
+
+        /* Botão Principal Azul Royal */
+        .btn-submit-royal {
+            background: #0000CD !important;
+            color: #FFFFFF !important;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 14px;
+            border: none !important;
+            border-radius: 12px !important;
+            padding: 14px 32px !important;
+            transition: opacity 0.2s;
+            width: 100%;
+        }
+        .btn-submit-royal:hover {
+            opacity: 0.9;
+        }
+
+        /* ── BOX DE DETECÇÃO DA IA ── */
+        .ia-box-detected {
+            background: #EBF2FF;
+            border-radius: 16px;
+            padding: 24px;
+            border-left: 5px solid #0000CD;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* ── CARDS DE RESULTADOS SEMELHANTES ── */
+        .pet-match-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border: 1px solid #E2E8F0;
+            transition: all 0.2s ease;
+        }
+        .pet-match-card:hover {
+            border-color: #0000CD;
+            transform: translateY(-4px);
+        }
+
+        /* ── PERKS / COMO FUNCIONA ── */
+        .perk-card {
+            background: #fff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            height: 100%;
+            transition: transform 0.2s;
+        }
+        .perk-card:hover { transform: translateY(-3px); }
+        .perk-icon-wrap {
+            width: 50px;
+            height: 50px;
+            background: #EFF6FF;
+            color: #0000CD;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin: 0 auto 16px;
+        }
+        .perk-card h5 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 8px;
+        }
+
+        /* Textos explicativos maiores e mais escuros */
+        .perk-card p, .upload-panel p.lead-text, .text-muted-dark {
+            color: #475569 !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            line-height: 1.6;
+        }
+
+        /* ── BANNER DE ADOÇÃO / REDIRECIONAMENTO ── */
+        .adoption-banner {
+            background: #0000CD;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            color: #fff;
+        }
+        .adoption-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 999px;
+            padding: 5px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-family: 'Plus Jakarta Sans';
+        }
+        .adoption-banner h2 {
+            font-family: 'Fraunces', serif;
+            font-weight: 900;
+            font-size: 28px;
+        }
+        .btn-banner-yellow {
+            background: #FFD43B !important;
+            color: #0000CD !important;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 14px;
+            border: none !important;
+            border-radius: 12px !important;
+            padding: 12px 32px !important;
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+        .btn-banner-yellow:hover { opacity: 0.9; color: #0000CD; }
+    </style>
 </head>
 
 <body>
@@ -15,104 +214,80 @@
 
 <main class="container py-5">
 
-    <!-- HERO -->
-    <section class="page-hero mb-5 text-center">
-
-        <span class="section-kicker">
-            Inteligência para encontrar seu pet
-        </span>
-
-        <h1>Pet Alerta Inteligente 🐾</h1>
-
-        <p class="lead">
-            Perdeu seu animal?
-            Envie uma foto e a plataforma LudoPet irá procurar
-            pets semelhantes cadastrados no sistema.
+    <section class="page-hero mb-5 text-center shadow-sm">
+        <span class="section-kicker">Inteligência para encontrar seu pet</span>
+        <h1>Pet Alerta Inteligente</h1>
+        <p class="lead text-white opacity-90 max-width-600 mx-auto fs-5 fw-medium">
+            Perdeu seu animal? Envie uma foto e a plataforma LudoPet irá procurar pets semelhantes cadastrados por outros usuários no sistema de São Luís.
         </p>
-
     </section>
 
-    <!-- CARD PRINCIPAL -->
-    <section class="card border-0 shadow-sm p-5 mb-5">
-
-        <div class="text-center">
-
-            <h2 class="mb-3">
-                Buscar por imagem
-            </h2>
-
-            <p class="text-muted mb-4">
-                Faça upload da foto do seu pet para verificar
-                se ele já foi encontrado ou cadastrado por outro usuário.
+    <section class="upload-panel p-4 p-md-5 mb-5">
+        <div class="text-center max-width-600 mx-auto">
+            <span class="text-dark uppercase tracking-wider small font-weight-bold d-block mb-2" style="font-family:'Plus Jakarta Sans'; font-size: 12px; color: #0000CD !important;">Scaneamento de imagem</span>
+            <h2 class="section-title-yellow mb-3">Buscar por imagem</h2>
+            <p class="text-muted-dark mb-4">
+                Faça upload da foto mais limpa do seu pet para que nossa inteligência compare características como raça e cor com o banco de dados.
             </p>
-            <p>Detectado: <span th:text="${labels}"></span></p>
 
+            <div th:if="${labels != null}" class="mb-4">
+                <span class="badge bg-dark p-2 font-family-sans fs-6" style="border-radius:8px; background-color: #0F172A !important;">
+                    <i class="bi bi-tag me-1"></i> Detectado: <span th:text="${labels}"></span>
+                </span>
+            </div>
         </div>
 
-        <form action="/pet-alerta/buscar"
-              method="post"
-              enctype="multipart/form-data">
-
+        <form action="/pet-alerta/buscar" method="post" enctype="multipart/form-data" class="modern-form max-width-500 mx-auto">
             <input type="file" name="foto" required>
-
-            <button type="submit">
-                Buscar Pet
+            <button type="submit" class="btn-submit-royal">
+                <i class="bi bi-cpu me-2"></i>Iniciar Reconhecimento
             </button>
-
         </form>
 
-        <!-- RESULTADO DA IA -->
-        <div th:if="${racaDetectada != null or corDetectada != null}" class="mt-4">
-            <div style="background:#F0FAF5; border-radius:12px; padding:20px; border-left:4px solid #4F8F78;">
-                <h5 class="fw-bold" style="color:#4F8F78;">🤖 O que a IA detectou na foto:</h5>
-                <p class="mb-1" th:if="${especieDetectada != null}">
-                    <strong>Espécie:</strong> <span th:text="${especieDetectada}"></span>
+        <div th:if="${racaDetectada != null or corDetectada != null}" class="mt-5 max-width-600 mx-auto">
+            <div class="ia-box-detected">
+                <h5 class="fw-bold mb-3" style="color:#0000CD; font-size: 16px;"><i class="bi bi-robot me-2"></i>Análise da Inteligência Artificial:</h5>
+                <p class="mb-2 text-dark font-weight-bold" style="font-size: 14px;" th:if="${especieDetectada != null}">
+                    <strong>Espécie identificada:</strong> <span th:text="${especieDetectada}"></span>
                 </p>
-                <p class="mb-1" th:if="${racaDetectada != null}">
-                    <strong>Raça:</strong> <span th:text="${racaDetectada}"></span>
+                <p class="mb-2 text-dark font-weight-bold" style="font-size: 14px;" th:if="${racaDetectada != null}">
+                    <strong>Raça aproximada:</strong> <span th:text="${racaDetectada}"></span>
                 </p>
-                <p class="mb-0" th:if="${corDetectada != null}">
-                    <strong>Cor:</strong> <span th:text="${corDetectada}"></span>
+                <p class="mb-0 text-dark font-weight-bold" style="font-size: 14px;" th:if="${corDetectada != null}">
+                    <strong>Padrão de cor:</strong> <span th:text="${corDetectada}"></span>
                 </p>
             </div>
         </div>
 
-        <!-- RESULTADOS DO BANCO -->
-        <div th:if="${resultados != null}" class="mt-4">
+        <div th:if="${resultados != null}" class="mt-5">
 
             <div th:if="${#lists.isEmpty(resultados)}"
-                 style="background:#FFF3E0; border-radius:12px; padding:24px; text-align:center; border-left:4px solid #F97316;">
-                <h5>😔 Animal não registrado no nosso banco de dados</h5>
-                <p class="text-muted mb-3">Não encontramos nenhum animal semelhante cadastrado.</p>
-                <a href="/cadastro-pet-perdido" class="btn btn-warning">
-                    Registrar desaparecimento agora
+                 style="background:#FFF9E6; border-radius:16px; padding:32px; text-align:center; border-left:5px solid #FFD43B;">
+                <h5 class="fw-bold" style="color:#B45309; font-size:16px;"><i class="bi bi-exclamation-triangle-fill me-2"></i>Nenhum pet correspondente encontrado no momento</h5>
+                <p class="text-dark font-weight-bold mb-3" style="font-size: 14px;">Não encontramos registros semelhantes ativos nas últimas horas com essas características visuais.</p>
+                <a href="/cadastro-pet-perdido" class="btn" style="background:#0000CD; color:white; font-family:'Plus Jakarta Sans'; font-weight:700; border-radius:10px; padding:10px 24px; font-size:14px;">
+                    Publicar no mural manualmente
                 </a>
             </div>
 
             <div th:if="${!#lists.isEmpty(resultados)}">
-                <h5 class="fw-bold mb-3" style="color:#4F8F78;">
-                    🎯 <span th:text="${#lists.size(resultados)}"></span> animal(is) semelhante(s) encontrado(s):
+                <h5 class="fw-bold mb-4" style="color:#0000CD; font-size:18px; font-family:'Fraunces';">
+                    <i class="bi bi-check-circle-fill me-2"></i> Encontramos <span th:text="${#lists.size(resultados)}"></span> pet(s) com características semelhantes:
                 </h5>
-                <div class="row g-3">
+                <div class="row g-4">
                     <div class="col-md-4" th:each="animal : ${resultados}">
-                        <div style="background:white; border-radius:12px; padding:16px;
-                            box-shadow:0 4px 12px rgba(0,0,0,0.08); border:2px solid #4F8F78;">
+                        <div class="pet-match-card">
                             <img th:src="${#strings.isEmpty(animal.foto) ? '/img/padrao.png' : animal.foto}"
-                                 style="width:100%; height:160px; object-fit:cover; border-radius:8px; margin-bottom:12px;"
+                                 style="width:100%; height:160px; object-fit:cover; border-radius:12px; margin-bottom:14px;"
                                  onerror="this.src='/img/padrao.png'">
-                            <h6 class="fw-bold" th:text="${animal.nome}"></h6>
-                            <p class="small text-muted mb-1">
-                                <strong>Raça:</strong> <span th:text="${animal.raca}"></span>
-                            </p>
-                            <p class="small text-muted mb-1">
-                                <strong>Cor:</strong> <span th:text="${animal.cor}"></span>
-                            </p>
-                            <p class="small text-muted mb-1">
-                                <strong>Cidade:</strong> <span th:text="${animal.cidade}"></span>
-                            </p>
-                            <p class="small text-muted mb-0">
-                                <strong>Contato:</strong> <span th:text="${animal.telefone}"></span>
-                            </p>
+                            <h6 class="fw-bold mb-2" style="font-size:16px; color:#0F172A;" th:text="${animal.nome}"></h6>
+                            <p class="text-dark font-weight-bold mb-1" style="font-size: 14px;"><strong>Raça:</strong> <span th:text="${animal.raca}"></span></p>
+                            <p class="text-dark font-weight-bold mb-1" style="font-size: 14px;"><strong>Cor:</strong> <span th:text="${animal.cor}"></span></p>
+                            <p class="text-dark font-weight-bold mb-1" style="font-size: 14px;"><strong>Região:</strong> <span th:text="${animal.cidade}"></span></p>
+                            <hr class="my-3" style="border-color:#F1F5F9;">
+                            <a th:href="'tel:' + ${animal.telefone}" class="btn w-100 btn-md" style="background:#EBF2FF; color:#0000CD; font-weight:800; border-radius:8px;">
+                                <i class="bi bi-telephone-fill me-1"></i> Entrar em contato
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -120,92 +295,50 @@
         </div>
     </section>
 
-    <!-- COMO FUNCIONA -->
     <section class="row g-4 mb-5">
-
         <div class="col-md-4">
-
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
-
-                <h3>📷</h3>
-
-                <h5>Envie a foto</h5>
-
-                <p class="text-muted">
-                    Faça upload da foto mais recente do seu pet.
-                </p>
-
+            <div class="perk-card">
+                <div class="perk-icon-wrap"><i class="bi bi-camera-fill"></i></div>
+                <h5>1. Envie a foto</h5>
+                <p class="mb-0">Faça o upload do arquivo JPG ou PNG com o rosto do pet centralizado para melhor precisão.</p>
             </div>
-
         </div>
-
         <div class="col-md-4">
-
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
-
-                <h3>🤖</h3>
-
-                <h5>Análise Inteligente</h5>
-
-                <p class="text-muted">
-                    O sistema compara a imagem enviada
-                    com os animais cadastrados.
-                </p>
-
+            <div class="perk-card">
+                <div class="perk-icon-wrap"><i class="bi bi-cpu-fill"></i></div>
+                <h5>2. Análise Inteligente</h5>
+                <p class="mb-0">Nossos algoritmos varrem as publicações extraindo padrões cromáticos e estruturais de raças.</p>
             </div>
-
         </div>
-
         <div class="col-md-4">
-
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
-
-                <h3>🐶</h3>
-
-                <h5>Possíveis resultados</h5>
-
-                <p class="text-muted">
-                    Caso exista correspondência,
-                    os resultados serão exibidos.
-                </p>
-
+            <div class="perk-card">
+                <div class="perk-icon-wrap"><i class="bi bi-shield-check"></i></div>
+                <h5>3. Veja as conexões</h5>
+                <p class="mb-0">O mural gera conexões imediatas exibindo os telefones de contato dos tutores ou protetores.</p>
             </div>
-
         </div>
-
     </section>
+    <section class="adoption-banner text-center shadow-sm" style="background: #0000CD; border-radius: 20px; padding: 3rem 2rem;">
+        <span class="adoption-badge mb-2">Não encontrou correspondência?</span>
 
-    <!-- CASO NÃO ENCONTRE -->
-    <section class="adoption-banner text-center">
-
-        <span class="adoption-badge">
-            Não encontrou?
-        </span>
-
-        <h2 class="mt-3">
-            Cadastre seu pet perdido
+        <h2 class="mt-2 mb-3" style="font-family: 'Fraunces', serif; font-weight: 900; font-size: 28px; color: #FFFFFF !important;">
+            Cadastre seu pet perdido no mural público
         </h2>
 
-        <p class="mb-4">
-            Se nenhum resultado for encontrado,
-            você pode cadastrar o animal para que
-            outros usuários ajudem na localização.
+        <p class="mb-4 opacity-90 mx-auto max-width-600 fw-medium" style="font-size: 15px; color: #FFFFFF !important;">
+            Se a IA não localizou registros idênticos agora, não desanime. Registre a ocorrência de forma tradicional para que toda a comunidade de São Luís possa visualizar os dados.
         </p>
 
-        <a href="/novo-animal-perdido"
-           class="btn btn-light btn-lg rounded-pill px-5">
-
-            Cadastrar pet perdido
-
+        <a href="/cadastro-pet-perdido" class="btn-banner-yellow">
+            <i class="bi bi-file-earmark-plus-fill me-2"></i>Criar Alerta no Mural
         </a>
-
     </section>
 
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
