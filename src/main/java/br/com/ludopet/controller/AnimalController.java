@@ -4,7 +4,17 @@ import br.com.ludopet.model.Animal;
 import br.com.ludopet.model.Adocao;
 import br.com.ludopet.repository.AnimalRepository;
 import br.com.ludopet.repository.AdocaoRepository;
+import java.util.List;
 
+
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +24,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-
-@Controller
-public class AnimalController {
+//MVC: ANIMAL.JAVA
+//Controller: Responsável por receber as requisições do usuário, processar os dados e retornar a resposta adequada.
+//VIEW: HTML (ADOCÃO.HTML, DETALHES.HTML, FORMULARIO-ADOÇÃO.HTML)
+//Polimorfismo: Capacidade de um objeto se comportar de diferentes formas, dependendo do contexto em que é utilizado.
+@Controller  //HERANÇA: Quando uma classe herda características de outra
+public class AnimalController {  //HERANÇA: public class
 
     @Autowired
     private AnimalRepository repository;
@@ -25,8 +38,8 @@ public class AnimalController {
     private AdocaoRepository adocaoRepository;
 
     // LISTAR ANIMAIS
-    @GetMapping("/adocao")
-    public String listarAnimais(Model model) {
+    @GetMapping("/adocao") //ENCAPSULAMENTO: Proteção dos dados da classe
+    public String listarAnimais(Model model) { //ENCAPSULAMENTO:public String
 
         List<Animal> animais =
                 repository
@@ -40,7 +53,7 @@ public class AnimalController {
         return "adocao";
     }
 
-    // 🐶 VER DETALHES
+    //  VER DETALHES
     @GetMapping("/pet/{id}")
     public String detalhesPet(@PathVariable Long id,
                               Model model) {
@@ -161,5 +174,49 @@ public class AnimalController {
 
         return "adocao";
     }
+    @GetMapping("/cadastro-animal")
+    public String abrirCadastro(Model model) {
+
+        model.addAttribute("animal", new Animal());
+
+        return "cadastro-animal";
+    }
+    @PostMapping("/cadastro-animal")
+    public String salvarAnimal(
+            @ModelAttribute Animal animal,
+            @RequestParam("arquivo") MultipartFile arquivo) {
+
+        try {
+
+            if (!arquivo.isEmpty()) {
+
+                String nomeArquivo = System.currentTimeMillis()
+                        + "_"
+                        + arquivo.getOriginalFilename();
+
+                Path caminho = Paths.get("uploads");
+
+                if (!Files.exists(caminho)) {
+                    Files.createDirectories(caminho);
+                }
+
+                Files.copy(
+                        arquivo.getInputStream(),
+                        caminho.resolve(nomeArquivo),
+                        StandardCopyOption.REPLACE_EXISTING
+                );
+
+                animal.setFoto(nomeArquivo);
+            }
+
+            repository.save(animal);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/adocao";
+    }
+
 }
 

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class AnimalService {
+@Service  //ABSTRAÇÃO: Esconder detalhes de implementação e mostrar apenas funcionalidades essenciais
+public class AnimalService {  //ABSTRAÇÃO
 
     private final AnimalRepository animalRepository;
 

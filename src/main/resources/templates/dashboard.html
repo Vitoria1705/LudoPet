@@ -1,83 +1,390 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard - LudoPet</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <style>
-
         body {
-            font-family: Arial;
-            text-align: center;
+            font-family: 'DM Sans', sans-serif;
+            background: #F0F4FF;
+            color: #1a1a1a;
         }
 
-        .card {
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin: 20px;
+        .dashboard-hero {
+            background: #1B3FAB;
+            padding: 3rem 0 6rem;
         }
 
-        .btn {
-            background-color: purple;
+        .hero-kicker {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-sub {
+            font-size: 14px;
+            color: rgba(255,255,255,0.65);
+        }
+
+        .avatar-circle {
+            width: 56px;
+            height: 56px;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
             color: white;
-            padding: 10px;
-            text-decoration: none;
+            font-weight: 700;
         }
 
+        /* Cards flutuando sobre o hero */
+        .dashboard-cards-wrapper {
+            margin-top: -4rem;
+        }
+
+        .dash-card {
+            background: #fff;
+            border: 1.5px solid #E8EDFB;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(27,63,171,0.07);
+            height: 100%;
+        }
+
+        .dash-card:hover {
+            border-color: #1B3FAB;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px rgba(27,63,171,0.13);
+            color: inherit;
+        }
+
+        .dash-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .ic-blue   { background: #E6F1FB; }
+        .ic-green  { background: #EAF3DE; }
+        .ic-amber  { background: #FAEEDA; }
+        .ic-purple { background: #F3EEFF; }
+        .ic-red    { background: #FDEAEA; }
+        .ic-teal   { background: #E6F7F5; }
+
+        .dash-card-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+            margin: 0;
+        }
+
+        .dash-card-sub {
+            font-size: 12px;
+            color: #9CA3AF;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .dash-card-link {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1B3FAB;
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Seção de atividade rápida */
+        .quick-section {
+            background: #fff;
+            border: 1.5px solid #E8EDFB;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(27,63,171,0.06);
+        }
+
+        .quick-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #0f1f5c;
+            margin-bottom: 1rem;
+        }
+
+        .quick-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6;
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
+        }
+
+        .quick-item:last-child { border-bottom: none; }
+        .quick-item:hover { opacity: 0.75; }
+
+        .quick-item-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .quick-item-text { font-size: 13px; font-weight: 500; color: #111827; }
+        .quick-item-sub  { font-size: 11px; color: #9CA3AF; }
+
+        .btn-logout {
+            background: transparent;
+            border: 1.5px solid #E8EDFB;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #EF4444;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-logout:hover { background: #FEF2F2; color: #EF4444; }
     </style>
-
 </head>
-
 <body>
-<br><br>
 
-<a href="/perfil">
-    Meu Perfil
-</a>
-<div class="card">
+<header th:replace="~{fragments/navbar :: navbar}"></header>
 
-    <a class="btn"
-       href="/lojapet">
+<!-- HERO -->
+<section class="dashboard-hero">
+    <div class="container">
+        <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="avatar-circle"
+                 th:text="${#strings.substring(usuario.nome, 0, 1)}">V</div>
+            <div>
+                <p class="hero-kicker mb-0">Área do usuário</p>
+                <h1 class="hero-title mb-0"
+                    th:text="|Olá, ${usuario.nome}!|">Olá, Usuário!</h1>
+                <p class="hero-sub mb-0"
+                   th:text="${usuario.email}">email@exemplo.com</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-        Abrir Loja Pet
+<!-- CARDS PRINCIPAIS -->
+<main class="container dashboard-cards-wrapper pb-5">
 
-    </a>
+    <div class="row g-3 mb-4">
 
-</div>
-<h1>🐶 Dashboard LudoPet</h1>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="/perfil" class="dash-card">
+                <div class="dash-icon ic-blue">👤</div>
+                <div>
+                    <p class="dash-card-title">Meu Perfil</p>
+                    <p class="dash-card-sub">Editar seus dados</p>
+                </div>
+                <span class="dash-card-link">Abrir <i class="bi bi-arrow-right"></i></span>
+            </a>
+        </div>
 
-<div class="card">
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="/adocao" class="dash-card">
+                <div class="dash-icon ic-green">🐾</div>
+                <div>
+                    <p class="dash-card-title">Adoção</p>
+                    <p class="dash-card-sub">Ver animais disponíveis</p>
+                </div>
+                <span class="dash-card-link">Ver <i class="bi bi-arrow-right"></i></span>
+            </a>
+        </div>
 
-    <a class="btn"
-       href="/adocao">
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="/petalerta" class="dash-card">
+                <div class="dash-icon ic-amber">🔔</div>
+                <div>
+                    <p class="dash-card-title">Pet Alerta</p>
+                    <p class="dash-card-sub">Buscar pets perdidos</p>
+                </div>
+                <span class="dash-card-link">Acessar <i class="bi bi-arrow-right"></i></span>
+            </a>
+        </div>
 
-        Ver Animais para Adoção
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="/lojapet" class="dash-card">
+                <div class="dash-icon ic-purple">🛍</div>
+                <div>
+                    <p class="dash-card-title">Loja Pet</p>
+                    <p class="dash-card-sub">Produtos para seu pet</p>
+                </div>
+                <span class="dash-card-link">Abrir <i class="bi bi-arrow-right"></i></span>
+            </a>
+        </div>
 
-    </a>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="/animais-perdidos" class="dash-card">
+                <div class="dash-icon ic-red">🔍</div>
+                <div>
+                    <p class="dash-card-title">Perdidos</p>
+                    <p class="dash-card-sub">Mural de perdidos</p>
+                </div>
+                <span class="dash-card-link">Ver <i class="bi bi-arrow-right"></i></span>
+            </a>
+        </div>
 
-</div>
-<h2>
-    Olá,
-    <span th:text="${usuario.nome}"></span>
-</h2>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="/forum" class="dash-card">
+                <div class="dash-icon ic-teal">💬</div>
+                <div>
+                    <p class="dash-card-title">Fórum</p>
+                    <p class="dash-card-sub">Comunidade LudoPet</p>
+                </div>
+                <span class="dash-card-link">Acessar <i class="bi bi-arrow-right"></i></span>
+            </a>
+        </div>
 
-<a href="/logout">
-    Sair
-</a>
+    </div>
 
-<div class="card">
+    <!-- LINHA INFERIOR -->
+    <div class="row g-3">
 
-    <a class="btn"
-       href="/animais-perdidos">
+        <!-- Ações rápidas -->
+        <div class="col-lg-6">
+            <div class="quick-section h-100">
+                <h3 class="quick-title">Ações rápidas</h3>
 
-        Ver Animais Perdidos
+                <a href="/adocao" class="quick-item">
+                    <div class="quick-item-icon ic-green">🐶</div>
+                    <div>
+                        <div class="quick-item-text">Ver pets disponíveis para adoção</div>
+                        <div class="quick-item-sub">Encontre seu novo companheiro</div>
+                    </div>
+                    <i class="bi bi-chevron-right ms-auto" style="color:#9CA3AF;"></i>
+                </a>
 
-    </a>
+                <a href="/cadastro-pet-perdido" class="quick-item">
+                    <div class="quick-item-icon ic-amber">📋</div>
+                    <div>
+                        <div class="quick-item-text">Cadastrar pet perdido</div>
+                        <div class="quick-item-sub">Registre no Pet Alerta</div>
+                    </div>
+                    <i class="bi bi-chevron-right ms-auto" style="color:#9CA3AF;"></i>
+                </a>
 
-</div>
-<div th:replace="fragments/footer :: footer"></div>
+                <a href="/lojapet" class="quick-item">
+                    <div class="quick-item-icon ic-purple">🛒</div>
+                    <div>
+                        <div class="quick-item-text">Ir para a Loja Pet</div>
+                        <div class="quick-item-sub">Produtos essenciais para pets</div>
+                    </div>
+                    <i class="bi bi-chevron-right ms-auto" style="color:#9CA3AF;"></i>
+                </a>
 
+                <a href="/rede-parceiras" class="quick-item">
+                    <div class="quick-item-icon ic-teal">🤝</div>
+                    <div>
+                        <div class="quick-item-text">Rede de parceiros</div>
+                        <div class="quick-item-sub">Clínicas e ONGs em São Luís</div>
+                    </div>
+                    <i class="bi bi-chevron-right ms-auto" style="color:#9CA3AF;"></i>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Info do usuário -->
+        <div class="col-lg-6">
+            <div class="quick-section h-100">
+                <h3 class="quick-title">Minha conta</h3>
+
+                <div class="quick-item" style="cursor:default;">
+                    <div class="quick-item-icon ic-blue">📧</div>
+                    <div>
+                        <div class="quick-item-text">Email</div>
+                        <div class="quick-item-sub" th:text="${usuario.email}">—</div>
+                    </div>
+                </div>
+
+                <div class="quick-item" style="cursor:default;">
+                    <div class="quick-item-icon ic-green">📱</div>
+                    <div>
+                        <div class="quick-item-text">Telefone</div>
+                        <div class="quick-item-sub"
+                             th:text="${usuario.telefone != null ? usuario.telefone : 'Não informado'}">—</div>
+                    </div>
+                </div>
+
+                <div class="quick-item" style="cursor:default;">
+                    <div class="quick-item-icon ic-amber">🏷</div>
+                    <div>
+                        <div class="quick-item-text">Tipo de perfil</div>
+                        <div class="quick-item-sub"
+                             th:text="${usuario.tipo != null ? usuario.tipo : 'Adotante'}">—</div>
+                    </div>
+                </div>
+
+                <div class="quick-item" style="cursor:default;">
+                    <div class="quick-item-icon ic-teal">📍</div>
+                    <div>
+                        <div class="quick-item-text">Cidade</div>
+                        <div class="quick-item-sub"
+                             th:text="${usuario.cidade != null ? usuario.cidade : 'São Luís, MA'}">—</div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <a href="/logout" class="btn-logout">
+                        <i class="bi bi-box-arrow-right"></i> Sair da conta
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
